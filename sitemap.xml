@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://www.mark-overseas.com/</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Main Pages -->
+    <url>
+        <loc>https://www.mark-overseas.com/about-us.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/our-products.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/contact-us.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Category Pages -->
+    <url>
+        <loc>https://www.mark-overseas.com/oil-seeds.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/spices-herbs.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/grains-pulses.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/beans-nuts.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/animal-feed.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Product Detail Pages - Oil Seeds -->
+    <url>
+        <loc>https://www.mark-overseas.com/product-sesame-natural.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/sesame-natural.png</image:loc>
+            <image:title>Natural Sesame Seeds</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-sesame-black.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/sesame-black.png</image:loc>
+            <image:title>Black Sesame Seeds</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-groundnut.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/groundnut.png</image:loc>
+            <image:title>HPS Groundnut Shelled</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-mustard.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/mustard.png</image:loc>
+            <image:title>Yellow Mustard Seeds</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Product Detail Pages - Spices -->
+    <url>
+        <loc>https://www.mark-overseas.com/product-asafoetida.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/asafoetida.png</image:loc>
+            <image:title>Asafoetida Hing</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-cardamom.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/cardamom.png</image:loc>
+            <image:title>Green Cardamom</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-turmeric.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/turmeric.png</image:loc>
+            <image:title>Turmeric Finger and Powder</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-cumin.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/cumin.png</image:loc>
+            <image:title>Premium Cumin Seeds</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Product Detail Pages - Grains -->
+    <url>
+        <loc>https://www.mark-overseas.com/product-maize.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/maize.png</image:loc>
+            <image:title>Yellow Maize Corn</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-millet.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/bajra.png</image:loc>
+            <image:title>Pearl Millet Bajra</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-rice.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/rice.png</image:loc>
+            <image:title>Premium Basmati Rice</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-pulses.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/pulses.png</image:loc>
+            <image:title>Beans and Pulses</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Product Detail Pages - Nuts -->
+    <url>
+        <loc>https://www.mark-overseas.com/product-cashew.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/cashew.png</image:loc>
+            <image:title>Premium Whole Cashews</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-pistachios.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/pistachios.png</image:loc>
+            <image:title>Premium Roasted Pistachios</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Product Detail Pages - Animal Feed -->
+    <url>
+        <loc>https://www.mark-overseas.com/product-soya-cake.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/soya-cake.png</image:loc>
+            <image:title>Soya De Oiled Cake</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-rapeseed-meal.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/rapeseed-meal.png</image:loc>
+            <image:title>Premium Rapeseed Meal</image:title>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://www.mark-overseas.com/product-rice-bran-cake.html</loc>
+        <lastmod>2026-01-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://www.mark-overseas.com/images/products/rice-bran-cake.png</image:loc>
+            <image:title>Rice Bran De Oiled Cake</image:title>
+        </image:image>
+    </url>
+    
+</urlset>
