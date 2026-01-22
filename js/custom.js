@@ -51,4 +51,14 @@ $(document).ready(function() {
 		
 		window.location.href = mailtoLink;
 	});
+	// Product Tab Switching
+	$('.product-tab-btn').click(function() {
+		var tabId = $(this).data('tab');
+		
+		$('.product-tab-btn').removeClass('active');
+		$(this).addClass('active');
+		
+		$('.tab-pane').removeClass('active');
+		$('#' + tabId).addClass('active');
+	});
 });

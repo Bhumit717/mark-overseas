@@ -84,14 +84,7 @@
         height: 14px;
     }
 
-        width: 150px;
-        height: 150px;
-        min-width: 150px;
-    }
-
-        width: 120px;
-        height: 120px;
-    }
+    /* Broken selectors removed */
 
     .product-text h2 {
         font-size: 26px;
@@ -204,9 +197,7 @@
         font-size: 48px;
     }
 
-    .product-image {
-        padding: 20px;
-    }
+    /* Unused .product-image reference removed */
 
     .product-description h2 {
         font-size: 38px;
