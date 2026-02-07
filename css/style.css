@@ -106,6 +106,11 @@ html .btn {
     position: relative;
 }
 
+.category-page .btn,
+.our-product .btn {
+    box-shadow: none !important;
+}
+
 html .btn-danger {
     background: var(--danger) !important;
     border-color: var(--danger) !important;
@@ -691,6 +696,10 @@ header {
     padding: 25px 15px;
     margin: 20px 0;
     height: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    transition: all 0.4s ease;
 }
 
 .our-product-slider .item {
@@ -742,7 +751,7 @@ header {
     bottom: 0;
     right: 60px;
     background: var(--primary);
-    box-shadow: 2px 4px 10px rgba(48, 118, 45, 0.3);
+    box-shadow: none;
     width: 44px;
     height: 44px;
     display: flex;
@@ -754,7 +763,7 @@ header {
 
 .product-card .image .our-product-link:hover {
     background: var(--dark);
-    box-shadow: 2px 4px 10px rgb(18 18 18 / 30%);
+    box-shadow: none;
 }
 
 .product-text h2 {
@@ -1219,7 +1228,7 @@ footer .social-media {
 }
 
 .industries-section {
-    background-color: #F8F9FB;
+    background-color: #ffffff;
     padding-top: 80px;
     padding-bottom: 80px;
 }
@@ -1475,9 +1484,10 @@ footer .social-media {
 
 .inner-section-banner {
     background-image: url("../images/banner-bg-1.svg");
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    background-color: #fff;
     position: relative;
     z-index: 3;
     padding-top: 145px;
@@ -1725,6 +1735,7 @@ html .modal-fullscreen .modal-body {
 .category-section {
     padding-bottom: 80px;
     padding-top: 80px;
+    background: #ffffff !important;
 }
 
 .category-divider {
@@ -1793,7 +1804,11 @@ html .modal-fullscreen .modal-body {
 }
 
 .category-page .product-card:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transform: translateY(-5px);
+}
+
+.category-page .product-card:hover .product-text h2 {
+    color: var(--primary);
 }
 
 .category-page .product-card .image {
@@ -2588,8 +2603,7 @@ section.export_document_sec .title h2 {
 /* Illustrated About Section */
 /* Illustrated About Section */
 .illustrated-about {
-    background-color: #f3f0ff;
-    /* Light Lavender */
+    background-color: #ffffff;
     padding: 100px 0;
     overflow: hidden;
 }
@@ -3543,7 +3557,7 @@ section.export_document_sec .title h2 {
 .region-item:hover {
     transform: translateX(5px);
     box-shadow: 0 5px 20px rgba(237, 50, 55, 0.15);
-    background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+    background: #ffffff;
 }
 
 .region-item i {
@@ -3610,7 +3624,7 @@ section.export_document_sec .title h2 {
 }
 
 .step-item:hover {
-    background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+    background: #ffffff;
     border-left-color: #ED3237;
     box-shadow: 0 5px 15px rgba(237, 50, 55, 0.12);
 }
@@ -3757,7 +3771,7 @@ section.export_document_sec .title h2 {
     border-color: #ED3237;
     transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(237, 50, 55, 0.15);
-    background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+    background: #ffffff;
 }
 
 .value-item i {

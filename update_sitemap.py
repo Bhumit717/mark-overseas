@@ -25,7 +25,8 @@ def generate_sitemap():
         'spices-herbs.html',
         'grains-pulses.html',
         'beans-nuts.html',
-        'animal-feed.html'
+        'animal-feed.html',
+        'product-fruits-vegetables.html'
     }
     
     html_files = [f for f in os.listdir(cwd) if f.endswith('.html') and f not in ignore_files]

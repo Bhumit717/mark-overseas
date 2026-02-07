@@ -1,4 +1,4 @@
-/* Product Detail Page Styles - Clean Version (Shadows Removed) */
+/* Product Detail Page Styles */
 
 /* Product Detail Section */
 .product-detail-section {
@@ -139,7 +139,7 @@
 
 .product-accordion .accordion-button:not(.collapsed) {
     color: var(--primary);
-    background: #f9f9f9;
+    background: #fdfdfd;
 }
 
 .product-accordion .accordion-body {
@@ -219,7 +219,7 @@
     font-weight: 700;
     width: 35%;
     color: var(--dark);
-    background: #f9f9f9;
+    background: #f9f9ff;
 }
 
 .product-detail-title-center {
@@ -325,7 +325,7 @@
     font-weight: 600;
     color: var(--dark);
     width: 40%;
-    background: #f9f9ff;
+    background: #fefefe;
 }
 
 .variant-badge {

@@ -56,7 +56,7 @@ $(document).ready(function () {
 		$("html").removeClass("menu-show");
 	});
 
-	// Contact Form Submission Handler
+	// Contact Form Submission Handler (Connected to Live API)
 	$('#contact_form').on('submit', function (e) {
 		e.preventDefault();
 
@@ -66,17 +66,38 @@ $(document).ready(function () {
 		var subject = $('#subject').val();
 		var message = $('#message').val();
 
-		var emailBody = "New Inquiry from Mark Overseas Website\n\n";
-		emailBody += "Name: " + name + "\n";
-		emailBody += "Email: " + email + "\n";
-		emailBody += "Phone: " + phone + "\n\n";
-		emailBody += "Message:\n" + message;
+		var $btn = $('#btn_submit');
+		var originalBtnText = $btn.text();
+		$btn.prop('disabled', true).text('Sending...');
 
-		var mailtoLink = "mailto:info@mark-overseas.com" +
-			"?subject=" + encodeURIComponent(subject || "Website Inquiry") +
-			"&body=" + encodeURIComponent(emailBody);
+		$.ajax({
+			type: 'POST',
+			url: 'https://www.mark-overseas.com/contact-action.php',
+			data: $(this).serialize(),
+			success: function (response) {
+				alert('Thank you! Your message has been sent successfully to Mark Overseas.');
+				$('#contact_form')[0].reset();
+			},
+			error: function (xhr, status, error) {
+				console.error('API Submission failed:', error);
+				// Fallback to mailto if direct API call fails (common for local files due to CORS)
+				var emailBody = "New Inquiry from Mark Overseas Website\n\n";
+				emailBody += "Name: " + name + "\n";
+				emailBody += "Email: " + email + "\n";
+				emailBody += "Phone: " + phone + "\n\n";
+				emailBody += "Message:\n" + message;
 
-		window.location.href = mailtoLink;
+				var mailtoLink = "mailto:info@mark-overseas.com" +
+					"?subject=" + encodeURIComponent(subject || "Website Inquiry") +
+					"&body=" + encodeURIComponent(emailBody);
+
+				alert('Direct submission encountered a connection issue (likely CORS). Opening your email client instead.');
+				window.location.href = mailtoLink;
+			},
+			complete: function () {
+				$btn.prop('disabled', false).text(originalBtnText);
+			}
+		});
 	});
 	// Product Tab Switching
 	$('.product-tab-btn').click(function () {

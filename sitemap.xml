@@ -80,6 +80,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://www.mark-overseas.com/product-basil.html</loc>
+        <lastmod>2026-02-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://www.mark-overseas.com/product-bay-leaves.html</loc>
         <lastmod>2026-02-07</lastmod>
         <changefreq>monthly</changefreq>
@@ -210,6 +216,12 @@
         <lastmod>2026-02-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.mark-overseas.com/product-fruits-vegetables.html</loc>
+        <lastmod>2026-02-07</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.mark-overseas.com/product-garlic.html</loc>
@@ -477,6 +489,12 @@
     </url>
     <url>
         <loc>https://www.mark-overseas.com/product-sweet-flag.html</loc>
+        <lastmod>2026-02-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.mark-overseas.com/product-tamarind.html</loc>
         <lastmod>2026-02-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
