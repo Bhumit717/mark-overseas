@@ -1,0 +1,39 @@
+Inserted Category into product-asafoetida.html: HERBS & SPICES
+Updated product-bishops-weed.html: Herbs & Spices -> HERBS & SPICES
+Inserted Category into product-cardamom.html: HERBS & SPICES
+Inserted Category into product-cashew.html: BEANS & NUTS
+Inserted Category into product-cereals.html: GRAINS & PULSES
+Inserted Category into product-cumin.html: HERBS & SPICES
+Updated product-dill-seeds.html: Herbs & Spices -> HERBS & SPICES
+Inserted Category into product-groundnut-bold.html: OIL SEEDS
+Inserted Category into product-groundnut-java.html: OIL SEEDS
+Updated product-hyssop.html: Herbs & Spices -> HERBS & SPICES
+Updated product-juniper-berry.html: Herbs & Spices -> HERBS & SPICES
+Updated product-kokam.html: Herbs & Spices -> HERBS & SPICES
+Updated product-long-pepper.html: Herbs & Spices -> HERBS & SPICES
+Inserted Category into product-maize.html: GRAINS & PULSES
+Inserted Category into product-millet.html: GRAINS & PULSES
+Inserted Category into product-mustard-brown.html: OIL SEEDS
+Inserted Category into product-mustard-yellow.html: OIL SEEDS
+Inserted Category into product-mustard.html: OIL SEEDS
+Inserted Category into product-peanut-blanched.html: OIL SEEDS
+Inserted Category into product-pistachios.html: BEANS & NUTS
+Updated product-pomegranate-seeds.html: Herbs & Spices -> HERBS & SPICES
+Inserted Category into product-pulses.html: GRAINS & PULSES
+Updated product-raisin-kismiss-dry-grapes.html: BEANS & NUTS / Raisin (Kismiss) -> BEANS & NUTS
+Inserted Category into product-rapeseed-meal.html: ANIMAL FEED
+Inserted Category into product-rice-bran-cake.html: ANIMAL FEED
+Inserted Category into product-rice.html: GRAINS & PULSES
+Inserted Category into product-roasted-gram.html: GRAINS & PULSES
+Inserted Category into product-sesame-black.html: OIL SEEDS
+Inserted Category into product-sesame-brown.html: OIL SEEDS
+Inserted Category into product-sesame-hulled.html: OIL SEEDS
+Inserted Category into product-sesame-natural.html: OIL SEEDS
+Updated product-sesame.html: Oil Seeds -> OIL SEEDS
+Inserted Category into product-soya-cake.html: ANIMAL FEED
+Updated product-sweet-flag-vacha.html: Herbs & Spices -> HERBS & SPICES
+Updated product-total.html: ðŸ“Š Category Summary -> HERBS & SPICES
+Inserted Category into product-turmeric.html: HERBS & SPICES
+Updated subproduct-raisin-kismiss-dry-grapes.html: BEANS & NUTS / Raisin (Kismiss) -> BEANS & NUTS
+Updated subproduct-total.html: ðŸ“Š Category Summary -> HERBS & SPICES
+Total files updated: 38

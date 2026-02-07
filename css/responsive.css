@@ -167,8 +167,14 @@
         height: 170px;
     }
 
+    .header-logo {
+        margin-left: auto;
+    }
+
     .header-logo a {
         max-width: 100px;
+        display: flex;
+        justify-content: flex-end;
     }
 
     header {

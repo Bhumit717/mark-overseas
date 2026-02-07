@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -24,12 +24,17 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css" />
     <link rel="stylesheet" href="css/fancybox.css">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/logo-video.css" rel="stylesheet" type="text/css" />
     <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="css/language-selector.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="category-page">
     <div class="page-loader">
-        <img src="images/mark-logo.png" alt="Loader" />
+        <video class="logo-video" muted playsinline webkit-playsinline>
+					<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4" type="video/mp4">
+					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+				</video>
     </div>
     <div class="contacts_link">
         <a href="tel:+919913305996"><img src="images/calls.svg" alt="Click to call" /></a>
@@ -43,21 +48,28 @@
         <div class="header-main-bar">
             <div class="header-logo">
                 <a href="index.html">
-                    <img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+                    <video class="logo-video" muted playsinline webkit-playsinline>
+					<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4" type="video/mp4">
+					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+				</video>
                 </a>
             </div>
             <div class="navbar-toggle">
                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
+
+
+
             <div class="menu-bar">
-                <div class="navbar-toggle">
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
+
                 <ul class="menu-list">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li class="active"><a href="our-products.html">Our Products</a></li>
+                    <li><a href="exports.html">Exports</a></li>
+                    <li><a href="industries-we-serve.html">Industries We Serve</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
+                    <li class="language-selector"><a href="#" id="lang-selector-btn"><i class="fas fa-globe me-2"></i>Translate</a></li>
                 </ul>
             </div>
         </div>
@@ -78,19 +90,43 @@
             <div class="container">
                 <!-- Category: Beans & Nuts -->
                 <div class="row mb-5 justify-content-center">
-                    <div class="col-12 text-center mb-4">
-                        <img src="images/banners/nuts-banner.gif" alt="Beans & Nuts" class="img-fluid rounded shadow-sm"
-                            style="max-height: 200px;">
+
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <a href="product-almonds.html" class="product-card-link">
+                            <div class="product-card">
+                                <div class="image">
+                                    <img src="images/products/almonds.png" alt="Almonds Exporter India" />
+                                </div>
+                                <div class="product-text text-center">
+                                    <h2>Almonds Exporter India</h2>
+                                    <p>Premium Quality</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a href="product-cashew.html" class="product-card-link">
                             <div class="product-card">
                                 <div class="image">
-                                    <img src="images/products/cashew.png" alt="Cashew" />
+                                    <img src="images/products/cashew.png" alt="Premium Cashews" />
                                 </div>
                                 <div class="product-text text-center">
-                                    <h2>Cashew</h2>
-                                    <p>High nutrient value and long shelf life.</p>
+                                    <h2>Premium Cashews</h2>
+                                    <p>Premium Quality</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <a href="product-desiccated-coconut.html" class="product-card-link">
+                            <div class="product-card">
+                                <div class="image">
+                                    <img src="images/products/desiccated-coconut.png"
+                                        alt="Desiccated Coconut Exporter India" />
+                                </div>
+                                <div class="product-text text-center">
+                                    <h2>Desiccated Coconut Exporter India</h2>
+                                    <p>Premium Quality</p>
                                 </div>
                             </div>
                         </a>
@@ -99,11 +135,25 @@
                         <a href="product-pistachios.html" class="product-card-link">
                             <div class="product-card">
                                 <div class="image">
-                                    <img src="images/products/pistachios.png" alt="Pistachios" />
+                                    <img src="images/products/pistachios.png" alt="Premium Pistachios" />
                                 </div>
                                 <div class="product-text text-center">
-                                    <h2>Pistachios</h2>
-                                    <p>High in fiber and phytosterols; supports heart health.</p>
+                                    <h2>Premium Pistachios</h2>
+                                    <p>Premium Quality</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <a href="product-raisin-kismiss-dry-grapes.html" class="product-card-link">
+                            <div class="product-card">
+                                <div class="image">
+                                    <img src="images/products/raisin-kismiss-dry-grapes.png"
+                                        alt="Raisin (Kismiss) / Dry Grapes Exporter India" />
+                                </div>
+                                <div class="product-text text-center">
+                                    <h2>Raisin (Kismiss) / Dry Grapes Exporter India</h2>
+                                    <p>Premium Quality</p>
                                 </div>
                             </div>
                         </a>
@@ -114,8 +164,10 @@
 
         <footer>
             <div class="footer-top-image" style="text-align: center; padding: 20px 0;">
-                <a href="index.html" data-aos="fade-up"><img src="images/mark-logo.png" alt="Mark Overseas"
-                        style="max-height: 80px; width: auto;" /></a>
+                <a href="index.html" data-aos="fade-up"><video class="logo-video" muted playsinline webkit-playsinline>
+					<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4" type="video/mp4">
+					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+				</video></a>
             </div>
             <div class="footer-top">
                 <div class="container">
@@ -144,7 +196,7 @@
                                         <a href="mailto:info@mark-overseas.com">info@mark-overseas.com</a>
                                     </li>
                                     <li class="tel">
-                                        <b>TEL</b>
+                                        <b>MOBILE</b>
                                         <a href="tel:+919913305996">+91 99133 05996</a>
                                     </li>
                                 </ul>
@@ -180,6 +232,23 @@
         AOS.init();
     </script>
     <script src="js/owl.carousel.min.js"></script>
+    <script src="js/logo-video.js"></script>
+    <script src="js/language-selector.js"></script>
+
+    <!-- Hidden Google Translate Widget -->
+    <div id="google_translate_element" style="display:none"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>

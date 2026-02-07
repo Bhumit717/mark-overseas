@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -25,12 +25,17 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css" />
     <link rel="stylesheet" href="css/fancybox.css">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/logo-video.css" rel="stylesheet" type="text/css" />
     <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="css/language-selector.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="category-page">
     <div class="page-loader">
-        <img src="images/mark-logo.png" alt="Loader" />
+        <video class="logo-video" muted playsinline webkit-playsinline>
+					<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4" type="video/mp4">
+					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+				</video>
     </div>
     <div class="contacts_link">
         <a href="tel:+919913305996"><img src="images/calls.svg" alt="Click to call" /></a>
@@ -44,21 +49,28 @@
         <div class="header-main-bar">
             <div class="header-logo">
                 <a href="index.html">
-                    <img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+                    <video class="logo-video" muted playsinline webkit-playsinline>
+					<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4" type="video/mp4">
+					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+				</video>
                 </a>
             </div>
             <div class="navbar-toggle">
                 <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
             </div>
+
+
+
             <div class="menu-bar">
-                <div class="navbar-toggle">
-                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                </div>
+
                 <ul class="menu-list">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about-us.html">About Us</a></li>
                     <li class="active"><a href="our-products.html">Our Products</a></li>
+                    <li><a href="exports.html">Exports</a></li>
+                    <li><a href="industries-we-serve.html">Industries We Serve</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
+                    <li class="language-selector"><a href="#" id="lang-selector-btn"><i class="fas fa-globe me-2"></i>Translate</a></li>
                 </ul>
             </div>
         </div>
@@ -79,46 +91,16 @@
             <div class="container">
                 <!-- Category: Oil Seeds -->
                 <div class="row mb-5 justify-content-center">
-                    <div class="col-12 text-center mb-4">
-                        <img src="images/banners/oil-seeds-banner.gif" alt="Oil Seeds"
-                            class="img-fluid rounded shadow-sm" style="max-height: 200px;">
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <a href="product-sesame-natural.html" class="product-card-link">
-                            <div class="product-card">
-                                <div class="image">
-                                    <img src="images/products/sesame-natural.png" alt="Natural Sesame Seeds" />
-                                </div>
-                                <div class="product-text text-center">
-                                    <h2>Natural Sesame Seeds</h2>
-                                    <p>Whitish seeds from Sesamum Indicum L. Suited for human consumption.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
 
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                        <a href="product-sesame-black.html" class="product-card-link">
-                            <div class="product-card">
-                                <div class="image">
-                                    <img src="images/products/sesame-black.png" alt="Black Sesame Seeds" />
-                                </div>
-                                <div class="product-text text-center">
-                                    <h2>Black Sesame Seeds</h2>
-                                    <p>Jet black seeds used for human consumption.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                         <a href="product-groundnut.html" class="product-card-link">
                             <div class="product-card">
                                 <div class="image">
-                                    <img src="images/products/groundnut.png" alt="HPS Groundnut Shelled" />
+                                    <img src="images/products/groundnut.png" alt="HPS Groundnuts" />
                                 </div>
                                 <div class="product-text text-center">
-                                    <h2>HPS Groundnut Shelled</h2>
-                                    <p>Cultivated in tropical regions, processed hygienically.</p>
+                                    <h2>HPS Groundnuts</h2>
+                                    <p>Premium Java, Bold, and Blanched varieties.</p>
                                 </div>
                             </div>
                         </a>
@@ -127,11 +109,24 @@
                         <a href="product-mustard.html" class="product-card-link">
                             <div class="product-card">
                                 <div class="image">
-                                    <img src="images/products/mustard.png" alt="Yellow Mustard Seeds" />
+                                    <img src="images/products/mustard.png" alt="Mustard Seeds" />
                                 </div>
                                 <div class="product-text text-center">
-                                    <h2>Yellow Mustard Seeds</h2>
-                                    <p>Unavoidable ingredient for Indian cooking, known for quality.</p>
+                                    <h2>Mustard Seeds</h2>
+                                    <p>Premium Yellow and Brown varieties.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <a href="product-sesame.html" class="product-card-link">
+                            <div class="product-card">
+                                <div class="image">
+                                    <img src="images/products/sesame-natural.png" alt="Sesame Seeds" />
+                                </div>
+                                <div class="product-text text-center">
+                                    <h2>Sesame Seeds</h2>
+                                    <p>Available in Natural, Hulled, Black, and Brown varieties.</p>
                                 </div>
                             </div>
                         </a>
@@ -142,8 +137,10 @@
 
         <footer>
             <div class="footer-top-image" style="text-align: center; padding: 20px 0;">
-                <a href="index.html" data-aos="fade-up"><img src="images/mark-logo.png" alt="Mark Overseas"
-                        style="max-height: 80px; width: auto;" /></a>
+                <a href="index.html" data-aos="fade-up"><video class="logo-video" muted playsinline webkit-playsinline>
+					<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4" type="video/mp4">
+					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+				</video></a>
             </div>
             <div class="footer-top">
                 <div class="container">
@@ -172,7 +169,7 @@
                                         <a href="mailto:info@mark-overseas.com">info@mark-overseas.com</a>
                                     </li>
                                     <li class="tel">
-                                        <b>TEL</b>
+                                        <b>MOBILE</b>
                                         <a href="tel:+919913305996">+91 99133 05996</a>
                                     </li>
                                 </ul>
@@ -208,6 +205,23 @@
         AOS.init();
     </script>
     <script src="js/owl.carousel.min.js"></script>
+    <script src="js/logo-video.js"></script>
+    <script src="js/language-selector.js"></script>
+
+    <!-- Hidden Google Translate Widget -->
+    <div id="google_translate_element" style="display:none"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>

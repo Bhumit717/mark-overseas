@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -28,12 +28,18 @@
 	<link rel="stylesheet" href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css" />
 	<link rel="stylesheet" href="css/fancybox.css">
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="css/logo-video.css" rel="stylesheet" type="text/css" />
 	<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+	<link href="css/language-selector.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	<div class="page-loader">
-		<img src="images/mark-logo.png" alt="Mark Overseas Loader" />
+		<video class="logo-video" muted playsinline webkit-playsinline>
+			<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+				type="video/mp4">
+			<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+		</video>
 	</div>
 	<div class="contacts_link">
 		<a href="tel:+919913305996"><img src="images/calls.svg" alt="Click to call Mark Overseas" /></a>
@@ -45,14 +51,23 @@
 	</div>
 	<header>
 		<div class="header-main-bar">
+
+			<div class="header-logo">
+				<a href="index.html">
+					<video class="logo-video" muted playsinline webkit-playsinline>
+						<source
+							src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+							type="video/mp4">
+						<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					</video>
+				</a>
+			</div>
 			<div class="navbar-toggle">
 				<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 			</div>
-			<div class="header-logo">
-				<a href="index.html">
-					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
-				</a>
-			</div>
+
+
+
 			<div class="menu-bar">
 				<ul class="menu-list">
 					<li class="active"><a href="index.html">Home</a></li>
@@ -61,6 +76,7 @@
 					<li><a href="exports.html">Exports</a></li>
 					<li><a href="industries-we-serve.html">Industries We Serve</a></li>
 					<li><a href="contact-us.html">Contact Us</a></li>
+					<li class="language-selector"><a href="#" id="lang-selector-btn"><i class="fas fa-globe me-2"></i>Translate</a></li>
 				</ul>
 			</div>
 		</div>
@@ -159,7 +175,8 @@
 						<div class="about-us-image">
 							<div class="image">
 								<!-- Using groundnut image in About Us section -->
-								<img src="images/products/groundnut.png" alt="About Mark Overseas" />
+								<img src="images/products/groundnut.png" alt="About Mark Overseas"
+									class="scroll-rotate-groundnut" />
 							</div>
 						</div>
 					</div>
@@ -261,10 +278,114 @@
 				</div>
 			</div>
 		</section>
+
+		<!-- Demo Product Demo Section -->
+		<section class="demo-product-section" data-aos="fade-up">
+			<div class="container">
+				<div class="row">
+					<!-- Card 1: Collage Category -->
+					<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="0">
+						<div class="demo-product-card">
+							<div class="image-container">
+								<div class="product-img-circle">
+									<img src="images/products/pulses.png" alt="All Grains" />
+								</div>
+								<a href="our-products.html" class="arrow-btn">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+										<polyline points="12 5 19 12 12 19"></polyline>
+									</svg>
+								</a>
+							</div>
+							<h3>Our Range</h3>
+							<p>Invariably known as the core essence of Indian agricultural resources.</p>
+							<a href="our-products.html" class="btn read-more-btn">Read More</a>
+						</div>
+					</div>
+					<!-- Card 2: Corn Flour -->
+					<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+						<div class="demo-product-card">
+							<div class="image-container">
+								<div class="product-img-circle">
+									<img src="images/products/maize.png" alt="Corn Flour" />
+								</div>
+								<a href="product-maize.html" class="arrow-btn">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+										<polyline points="12 5 19 12 12 19"></polyline>
+									</svg>
+								</a>
+							</div>
+							<h3>Corn Flour</h3>
+							<p>Invariably known as Corn Meal, Semoule de maïs, Groats of Maize.</p>
+							<a href="product-maize.html" class="btn read-more-btn">Read More</a>
+						</div>
+					</div>
+					<!-- Card 3: Green Millet -->
+					<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+						<div class="demo-product-card">
+							<div class="image-container">
+								<div class="product-img-circle">
+									<img src="images/products/bajra.png" alt="Green Millet" />
+								</div>
+								<a href="product-millet.html" class="arrow-btn">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+										<polyline points="12 5 19 12 12 19"></polyline>
+									</svg>
+								</a>
+							</div>
+							<h3>Green Millet</h3>
+							<p>Nutritious pearl millet (Bajra) sourced from the finest farms.</p>
+							<a href="product-millet.html" class="btn read-more-btn">Read More</a>
+						</div>
+					</div>
+					<!-- Card 4: Sorghum Seeds -->
+					<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+						<div class="demo-product-card">
+							<div class="image-container">
+								<div class="product-img-circle">
+									<img src="images/products/sorghum-jwar.png" alt="Sorghum Seeds" />
+								</div>
+								<a href="product-sorghum-jwar.html" class="arrow-btn">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+										fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round">
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+										<polyline points="12 5 19 12 12 19"></polyline>
+									</svg>
+								</a>
+							</div>
+							<h3>Sorghum Seeds</h3>
+							<p>High quality Jowar (Sorghum) seeds, a staple agro commodity.</p>
+							<a href="product-sorghum-jwar.html" class="btn read-more-btn">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Full Width About Banner -->
+		<section class="about-us-banner-full">
+			<div class="container-fluid p-0">
+				<img src="images/about-us-banner-full.png" alt="About Mark Overseas" />
+			</div>
+		</section>
+
 		<footer>
 			<div class="footer-top-image" style="text-align: center; padding: 20px 0;">
-				<a href="index.html" data-aos="fade-up"><img src="images/mark-logo.png" alt="Mark Overseas"
-						style="max-height: 80px; width: auto;" /></a>
+				<a href="index.html" data-aos="fade-up"><video class="logo-video" muted playsinline webkit-playsinline>
+						<source
+							src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+							type="video/mp4">
+						<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					</video></a>
 			</div>
 			<div class="footer-top">
 				<div class="container">
@@ -285,7 +406,7 @@
 								<h4>Contact Details</h4>
 								<ul class="contact-information">
 									<li class="tel">
-										<b>TEL</b>
+										<b>MOBILE</b>
 										<a href="tel:+919913305996">+91 99133 05996</a>
 									</li>
 									<li class="mail">
@@ -328,6 +449,23 @@
 		AOS.init();
 	</script>
 	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/logo-video.js"></script>
+	<script src="js/language-selector.js"></script>
+
+	<!-- Hidden Google Translate Widget -->
+	<div id="google_translate_element" style="display:none"></div>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'en',
+
+				autoDisplay: false
+			}, 'google_translate_element');
+		}
+	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>

@@ -28,13 +28,19 @@
 	<link rel="stylesheet" href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css" />
 	<link rel="stylesheet" href="css/fancybox.css">
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="css/logo-video.css" rel="stylesheet" type="text/css" />
 	<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+	<link href="css/language-selector.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="category-page">
 
 	<div class="page-loader">
-		<img src="images/mark-logo.png" alt="Loader" />
+		<video class="logo-video" muted playsinline webkit-playsinline>
+			<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+				type="video/mp4">
+			<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+		</video>
 	</div>
 
 	<div class="contacts_link">
@@ -51,21 +57,31 @@
 		<div class="header-main-bar">
 			<div class="header-logo">
 				<a href="index.html">
-					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					<video class="logo-video" muted playsinline webkit-playsinline>
+						<source
+							src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+							type="video/mp4">
+						<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					</video>
 				</a>
 			</div>
 			<div class="navbar-toggle">
 				<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 			</div>
+
+
+
 			<div class="menu-bar">
-				<div class="navbar-toggle">
-					<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-				</div>
+
 				<ul class="menu-list">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="about-us.html">About Us</a></li>
 					<li class="active"><a href="our-products.html">Our Products</a></li>
+					<li><a href="exports.html">Exports</a></li>
+					<li><a href="industries-we-serve.html">Industries We Serve</a></li>
 					<li><a href="contact-us.html">Contact Us</a></li>
+					<li class="language-selector"><a href="#" id="lang-selector-btn"><i
+								class="fas fa-globe me-2"></i>Translate</a></li>
 				</ul>
 			</div>
 		</div>
@@ -87,32 +103,17 @@
 				<!-- Category: Oil Seeds -->
 				<div class="row mb-5 justify-content-center" id="oil-seeds">
 					<div class="col-12 text-center mb-4">
-						<img src="images/banners/oil-seeds-banner.gif" alt="Oil Seeds"
-							class="img-fluid rounded shadow-sm" style="max-height: 200px;">
 						<h3 class="mt-3">Oil Seeds</h3>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-						<a href="product-sesame-natural.html" class="product-card-link">
+						<a href="product-sesame.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/sesame-natural.png" alt="Natural Sesame Seeds" />
+									<img src="images/products/sesame-natural.png" alt="Sesame Seeds" />
 								</div>
 								<div class="product-text text-center">
-									<h2>Natural Sesame Seeds</h2>
-									<p>Whitish seeds from Sesamum Indicum L. Suited for human consumption.</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-						<a href="product-sesame-black.html" class="product-card-link">
-							<div class="product-card">
-								<div class="image">
-									<img src="images/products/sesame-black.png" alt="Black Sesame Seeds" />
-								</div>
-								<div class="product-text text-center">
-									<h2>Black Sesame Seeds</h2>
-									<p>Jet black seeds used for human consumption.</p>
+									<h2>Sesame Seeds</h2>
+									<p>Available in Natural, Hulled, Black, and Brown varieties.</p>
 								</div>
 							</div>
 						</a>
@@ -121,11 +122,11 @@
 						<a href="product-groundnut.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/groundnut.png" alt="HPS Groundnut Shelled" />
+									<img src="images/products/groundnut.png" alt="HPS Groundnuts" />
 								</div>
 								<div class="product-text text-center">
-									<h2>HPS Groundnut Shelled</h2>
-									<p>Cultivated in tropical regions, processed hygienically.</p>
+									<h2>HPS Groundnuts</h2>
+									<p>Premium Java, Bold, and Blanched varieties.</p>
 								</div>
 							</div>
 						</a>
@@ -134,11 +135,11 @@
 						<a href="product-mustard.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/mustard.png" alt="Yellow Mustard Seeds" />
+									<img src="images/products/mustard.png" alt="Mustard Seeds" />
 								</div>
 								<div class="product-text text-center">
-									<h2>Yellow Mustard Seeds</h2>
-									<p>Unavoidable ingredient for Indian cooking, known for quality.</p>
+									<h2>Mustard Seeds</h2>
+									<p>Premium Yellow and Brown varieties.</p>
 								</div>
 							</div>
 						</a>
@@ -160,10 +161,9 @@
 				<!-- Category: Herbs & Spices -->
 				<div class="row mb-5 justify-content-center" id="spices">
 					<div class="col-12 text-center mb-4">
-						<img src="images/banners/spices-banner.gif" alt="Herbs & Spices"
-							class="img-fluid rounded shadow-sm" style="max-height: 200px;">
 						<h3 class="mt-3">Herbs & Spices</h3>
 					</div>
+					<!-- Existing Spices -->
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 						<a href="product-asafoetida.html" class="product-card-link">
 							<div class="product-card">
@@ -177,19 +177,74 @@
 							</div>
 						</a>
 					</div>
+					<!-- Cardamom Entry -->
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 						<a href="product-cardamom.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/cardamom.png" alt="Cardamom" />
+									<img src="images/products/cardamom.png" alt="Cardamom (Small & Large)" />
 								</div>
 								<div class="product-text text-center">
-									<h2>Cardamom</h2>
-									<p>'Queen of Spices'. Used in rice dishes and sweets.</p>
+									<h2>Cardamom (Small & Large)</h2>
+									<p>'Queen of Spices'. Small green & large black varieties.</p>
 								</div>
 							</div>
 						</a>
 					</div>
+					<!-- Sync Missing Spices from category page -->
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-cassia.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/cassia.png" alt="Cassia" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Cassia</h2>
+									<p>Similar to cinnamon, with a stronger, spicier flavor.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-celery.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/celery.png" alt="Celery Seeds" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Celery Seeds</h2>
+									<p>Warm, bitter, and aromatic flavor; used in seasoning.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-mace.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/mace.png" alt="Mace" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Mace</h2>
+									<p>Outer lace of nutmeg; delicate and warm aroma.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-mint.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/mint.png" alt="Mint Leaves" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Mint Leaves</h2>
+									<p>Refreshing aroma; essential for dips and herbal teas.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<!-- Rest of spices... -->
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 						<a href="product-turmeric.html" class="product-card-link">
 							<div class="product-card">
@@ -211,11 +266,274 @@
 								</div>
 								<div class="product-text text-center">
 									<h2>Cumin</h2>
-									<p>Warm aroma; used in curries and Middle-Eastern dishes.</p>
+									<p>Warm aroma; used in curries and dishes.</p>
 								</div>
 							</div>
 						</a>
 					</div>
+					<!-- Additional Spices -->
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-chilli.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/chilli.png" alt="Chilli" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Red Chilli</h2>
+									<p>Adds heat and flavor to diverse global cuisines.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-coriander.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/coriander.png" alt="Coriander" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Coriander</h2>
+									<p>Citrusy flavor; essential for spice blends.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-fennel.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/fennel.png" alt="Fennel" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Fennel Seeds</h2>
+									<p>Licorice-like flavor; great for digestion.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-fenugreek.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/fenugreek.png" alt="Fenugreek" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Fenugreek</h2>
+									<p>Bittersweet seeds used in curries and pickles.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-bay-leaves.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/bay-leaves.png" alt="Bay Leaves" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Bay Leaves</h2>
+									<p>Aromatic dried leaves; essential for slow-cooked dishes.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-bishop-s-weed-ajwain.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/bishop-s-weed-ajwain.png" alt="Ajwain" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Ajwain (Bishop's Weed)</h2>
+									<p>Pungent and bitter seeds; common in Indian breads.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-cinnamon.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/cinnamon.png" alt="Cinnamon" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Cinnamon</h2>
+									<p>Sweet and woody spice from tree bark.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-cloves.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/cloves.png" alt="Cloves" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Cloves</h2>
+									<p>Intense aroma; used in spice blends and baking.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-garlic.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/garlic.png" alt="Garlic" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Garlic</h2>
+									<p>Essential pungent flavor for cuisines worldwide.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-ginger.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/ginger.png" alt="Ginger" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Ginger</h2>
+									<p>Zesty and aromatic; used in tea and cooking.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-pepper.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/pepper.png" alt="Black Pepper" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Black Pepper</h2>
+									<p>'King of Spices'. Universal seasoning.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-curry-leaf.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/curry-leaf.png" alt="Curry Leaves" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Curry Leaves</h2>
+									<p>Unique citrusy aroma; essential for many Indian dishes.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-nutmeg.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/nutmeg.png" alt="Nutmeg" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Nutmeg</h2>
+									<p>Warm, sweet spice for both savory and sweet dishes.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-long-pepper.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/pepper-long.png" alt="Long Pepper" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Long Pepper (Pippali)</h2>
+									<p>Pungent and sweet; used in medicine and cooking.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-pomegranate-seeds.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/pomegranate.png" alt="Pomegranate Seeds" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Pomegranate Seeds (Anardana)</h2>
+									<p>Tart and tangy dried seeds for flavoring.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-kokam.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/kokam.png" alt="Kokam" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Kokam</h2>
+									<p>Used as an acidulant in many Indian dishes.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-sweet-flag-vacha.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/sweet-flag.png" alt="Sweet Flag" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Sweet Flag (Vacha)</h2>
+									<p>Aromatic medicinal herb and spice.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-hyssop.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/hyssop.png" alt="Hyssop" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Hyssop</h2>
+									<p>Herb with a minty scent; used in teas and cooking.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-juniper-berry.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/juniper-berry.png" alt="Juniper Berries" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Juniper Berries</h2>
+									<p>Piney aroma; essential for many flavor blends.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-dill-seeds.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/dill.png" alt="Dill Seeds" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Dill Seeds</h2>
+									<p>Pungent and lemony; common in pickling.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+
+
 				</div>
 
 				<div class="category-divider" data-aos="fade-up">
@@ -233,32 +551,43 @@
 				<!-- Category: Grains & Pulses -->
 				<div class="row mb-5 justify-content-center" id="grains">
 					<div class="col-12 text-center mb-4">
-						<img src="images/banners/grains-banner.gif" alt="Grains & Pulses"
-							class="img-fluid rounded shadow-sm" style="max-height: 200px;">
 						<h3 class="mt-3">Grains & Pulses</h3>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-						<a href="product-maize.html" class="product-card-link">
+						<a href="product-cereals.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/maize.png" alt="Maize" />
+									<img src="images/products/maize.png" alt="Cereals" />
 								</div>
 								<div class="product-text text-center">
-									<h2>Maize (Corn)</h2>
-									<p>High quality yellow and white maize for human and animal consumption.</p>
+									<h2>Cereals</h2>
+									<p>High quality wheat, jowar, and mixed breakfast cereals.</p>
 								</div>
 							</div>
 						</a>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-						<a href="product-millet.html" class="product-card-link">
+						<a href="product-maize-corn.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/bajra.png" alt="Bajra" />
+									<img src="images/products/maize-corn.png" alt="Maize" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Maize (Corn)</h2>
+									<p>High quality yellow and white maize variants.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-millet-bajra.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/millet-bajra.png" alt="Bajra" />
 								</div>
 								<div class="product-text text-center">
 									<h2>Millet (Bajra)</h2>
-									<p>Nutritious pearl millet sourced from best farms.</p>
+									<p>Nutritious pearl millet from best farms.</p>
 								</div>
 							</div>
 						</a>
@@ -271,7 +600,7 @@
 								</div>
 								<div class="product-text text-center">
 									<h2>Rice</h2>
-									<p>Premium Basmati and Non-Basmati rice varieties.</p>
+									<p>Premium Basmati and Non-Basmati rice.</p>
 								</div>
 							</div>
 						</a>
@@ -280,11 +609,50 @@
 						<a href="product-pulses.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/pulses.png" alt="Pulses" />
+									<img src="images/products/pulses.png" alt="Beans & Pulses" />
 								</div>
 								<div class="product-text text-center">
 									<h2>Beans & Pulses</h2>
-									<p>Wholesome varieties of beans and pulses.</p>
+									<p>Kabuli, Desi Chickpeas, Moong, Masoor and more pulses.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-roasted-gram.html" class="product-card-link">
+							<div class="product-card featured-product">
+								<div class="image">
+									<img src="images/products/roasted-gram-1.png" alt="Roasted Gram" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Roasted Gram</h2>
+									<p>Healthy, high-protein crunchy snack.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-barley.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/barley.png" alt="Barley" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Barley</h2>
+									<p>Versatile grain used in brewing and health foods.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-sorghum-jwar.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/sorghum-jwar.png" alt="Sorghum" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Sorghum (Jwar)</h2>
+									<p>Gluten-free grain used in diverse foods.</p>
 								</div>
 							</div>
 						</a>
@@ -306,9 +674,20 @@
 				<!-- Category: Beans & Nuts -->
 				<div class="row mb-5 justify-content-center" id="nuts">
 					<div class="col-12 text-center mb-4">
-						<img src="images/banners/nuts-banner.gif" alt="Beans & Nuts" class="img-fluid rounded shadow-sm"
-							style="max-height: 200px;">
 						<h3 class="mt-3">Beans & Nuts</h3>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-almonds.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/almonds.png" alt="Almonds" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Almonds</h2>
+									<p>Premium quality California and Indian almonds.</p>
+								</div>
+							</div>
+						</a>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 						<a href="product-cashew.html" class="product-card-link">
@@ -318,7 +697,7 @@
 								</div>
 								<div class="product-text text-center">
 									<h2>Cashew</h2>
-									<p>High nutrient value and long shelf life.</p>
+									<p>Large, creamy whole cashews.</p>
 								</div>
 							</div>
 						</a>
@@ -331,7 +710,33 @@
 								</div>
 								<div class="product-text text-center">
 									<h2>Pistachios</h2>
-									<p>High in fiber and phytosterols; supports heart health.</p>
+									<p>Salted or plain; rich in fiber and heart healthy.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-desiccated-coconut.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/desiccated-coconut.png" alt="Desiccated Coconut" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Desiccated Coconut</h2>
+									<p>Finely shredded coconut for baking and cooking.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-raisin-kismiss-dry-grapes.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/raisin-kismiss-dry-grapes.png" alt="Raisins" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Raisins (Kismiss)</h2>
+									<p>Natural sweet dried grapes.</p>
 								</div>
 							</div>
 						</a>
@@ -353,15 +758,13 @@
 				<!-- Category: Animal Feed -->
 				<div class="row mb-5 justify-content-center" id="feed">
 					<div class="col-12 text-center mb-4">
-						<img src="images/banners/feed-banner.gif" alt="Animal Feed" class="img-fluid rounded shadow-sm"
-							style="max-height: 200px;">
 						<h3 class="mt-3">Animal Feed</h3>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-						<a href="product-soya-cake.html" class="product-card-link">
+						<a href="product-soya-de-oiled-cake.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/soya-cake.png" alt="Soya Cake" />
+									<img src="images/products/soya-de-oiled-cake.png" alt="Soya Cake" />
 								</div>
 								<div class="product-text text-center">
 									<h2>Soya De Oiled Cake</h2>
@@ -378,20 +781,46 @@
 								</div>
 								<div class="product-text text-center">
 									<h2>Rapeseed Meal</h2>
-									<p>Processed under strict hygiene; free from husk.</p>
+									<p>Processed under strict hygiene conditions.</p>
 								</div>
 							</div>
 						</a>
 					</div>
 					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-						<a href="product-rice-bran-cake.html" class="product-card-link">
+						<a href="product-rice-bran-de-oiled-cake.html" class="product-card-link">
 							<div class="product-card">
 								<div class="image">
-									<img src="images/products/rice-bran-cake.png" alt="Rice Bran Cake" />
+									<img src="images/products/rice-bran-de-oiled-cake.png" alt="Rice Bran Cake" />
 								</div>
 								<div class="product-text text-center">
 									<h2>Rice Bran De Oiled Cake</h2>
-									<p>Digestible fiber for cattle, fish, and horse feed.</p>
+									<p>Digestible fiber for various livestock.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-groundnut-oil-cakes.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/groundnut-oil-cakes.png" alt="Groundnut Oil Cake" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Groundnut Oil Cake</h2>
+									<p>Rich protein source for livestock feed.</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+						<a href="product-cottonseed-de-oiled-cake.html" class="product-card-link">
+							<div class="product-card">
+								<div class="image">
+									<img src="images/products/cottonseed-de-oiled-cake.png" alt="Cottonseed Cake" />
+								</div>
+								<div class="product-text text-center">
+									<h2>Cottonseed De Oiled Cake</h2>
+									<p>High quality protein supplement for cattle.</p>
 								</div>
 							</div>
 						</a>
@@ -403,8 +832,12 @@
 
 		<footer>
 			<div class="footer-top-image" style="text-align: center; padding: 20px 0;">
-				<a href="index.html" data-aos="fade-up"><img src="images/mark-logo.png" alt="Mark Overseas"
-						style="max-height: 80px; width: auto;" /></a>
+				<a href="index.html" data-aos="fade-up"><video class="logo-video" muted playsinline webkit-playsinline>
+						<source
+							src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+							type="video/mp4">
+						<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					</video></a>
 			</div>
 			<div class="footer-top">
 				<div class="container">
@@ -429,11 +862,11 @@
 										#202 – B, Imperial Heights, 150 Ft. Ring Road, Rajkot – 360005 (Gujarat), India
 									</li>
 									<li class="mail">
-										<b>MAIL</b>
+										<b>MOBILE</b>
 										<a href="mailto:info@mark-overseas.com">info@mark-overseas.com</a>
 									</li>
 									<li class="tel">
-										<b>TEL</b>
+										<b>MOBILE</b>
 										<a href="tel:+919913305996">+91 99133 05996</a>
 									</li>
 								</ul>
@@ -469,6 +902,23 @@
 		AOS.init();
 	</script>
 	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/logo-video.js"></script>
+	<script src="js/language-selector.js"></script>
+
+	<!-- Hidden Google Translate Widget -->
+	<div id="google_translate_element" style="display:none"></div>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'en',
+
+				autoDisplay: false
+			}, 'google_translate_element');
+		}
+	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>

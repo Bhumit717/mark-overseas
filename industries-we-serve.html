@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -28,13 +28,19 @@
 	<link rel="stylesheet" href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css" />
 	<link rel="stylesheet" href="css/fancybox.css">
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<link href="css/logo-video.css" rel="stylesheet" type="text/css" />
 	<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+	<link href="css/language-selector.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 
 	<div class="page-loader">
-		<img src="images/mark-logo.png" alt="Loader" />
+		<video class="logo-video" muted playsinline webkit-playsinline>
+			<source src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+				type="video/mp4">
+			<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+		</video>
 	</div>
 
 	<div class="contacts_link">
@@ -51,16 +57,22 @@
 		<div class="header-main-bar">
 			<div class="header-logo">
 				<a href="index.html">
-					<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					<video class="logo-video" muted playsinline webkit-playsinline>
+						<source
+							src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+							type="video/mp4">
+						<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					</video>
 				</a>
 			</div>
 			<div class="navbar-toggle">
 				<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
 			</div>
+
+
+
 			<div class="menu-bar">
-				<div class="navbar-toggle">
-					<span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-				</div>
+
 				<ul class="menu-list">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="about-us.html">About Us</a></li>
@@ -68,6 +80,8 @@
 					<li><a href="exports.html">Exports</a></li>
 					<li class="active"><a href="industries-we-serve.html">Industries We Serve</a></li>
 					<li><a href="contact-us.html">Contact Us</a></li>
+					<li class="language-selector"><a href="#" id="lang-selector-btn"><i
+								class="fas fa-globe me-2"></i>Translate</a></li>
 				</ul>
 			</div>
 		</div>
@@ -83,35 +97,314 @@
 
 		<section class="category-section">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-4 mb-4">
-						<div class="product-card p-4 text-center">
-							<h4>Edible Oil Industry</h4>
-							<p>Supplying premium seeds for oil extraction.</p>
+				<!-- Service 1: Agro Commodities Export-Import -->
+				<div class="service-card" data-aos="fade-up">
+					<div class="service-bg-image">
+						<img src="images/ChatGPT Image Feb 7, 2026, 05_48_24 PM.png" alt="Background">
+					</div>
+					<div class="service-icon">
+						<i class="fas fa-globe-americas"></i>
+					</div>
+					<div class="service-content">
+						<h3>Agro Commodities Export–Import</h3>
+						<p class="service-intro">We operate at the forefront of the agricultural export and
+							import industry, supplying key food and farming products to markets across six
+							continents. Our extensive network connects farmers, processors, and end-users in a
+							seamless global supply chain.</p>
+
+						<div class="service-details">
+							<h4>Our Export Capabilities</h4>
+							<ul class="capability-list">
+								<li><i class="fas fa-check-circle"></i> <strong>Volume Flexibility:</strong>
+									From 20-foot containers to bulk vessel shipments</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Quality Assurance:</strong>
+									Pre-shipment inspection and lab testing for all consignments</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Custom Specifications:</strong>
+									Tailored grading, sorting, and packaging per buyer requirements</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Regulatory Compliance:</strong>
+									Full adherence to importing country standards (FDA, EU, FSSAI)</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Competitive Pricing:</strong>
+									Direct sourcing from origin ensures best market rates</li>
+							</ul>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-4 mb-4">
-						<div class="product-card p-4 text-center">
-							<h4>Spices & Seasoning</h4>
-							<p>Providing essential spices for flavor and preservation.</p>
+				</div>
+
+				<!-- Service 2: Procurement & Supply Chain Coordination -->
+				<div class="service-card reverse" data-aos="fade-up">
+					<div class="service-bg-image">
+						<img src="images/ChatGPT Image Feb 7, 2026, 05_48_44 PM.png" alt="Background">
+					</div>
+					<div class="service-icon">
+						<i class="fas fa-network-wired"></i>
+					</div>
+					<div class="service-content">
+						<h3>Procurement & Supply Chain Coordination</h3>
+						<p class="service-intro">Acting as a strategic bridge between suppliers and global
+							buyers, we coordinate complex multi-country procurement operations. Our presence in
+							major producing regions ensures consistent supply and quality control throughout the
+							value chain.</p>
+
+						<div class="service-details">
+							<h4>Global Sourcing Network</h4>
+							<div class="region-grid">
+								<div class="region-item">
+									<i class="fas fa-map-marker-alt"></i>
+									<strong>India</strong>
+									<span>Primary hub for spices, pulses, and oil seeds</span>
+								</div>
+								<div class="region-item">
+									<i class="fas fa-map-marker-alt"></i>
+									<strong>Africa</strong>
+									<span>Sesame seeds, cashews, and specialty grains</span>
+								</div>
+								<div class="region-item">
+									<i class="fas fa-map-marker-alt"></i>
+									<strong>Southeast Asia</strong>
+									<span>Rice, coconut products, and tropical spices</span>
+								</div>
+								<div class="region-item">
+									<i class="fas fa-map-marker-alt"></i>
+									<strong>Latin America</strong>
+									<span>Maize, soybeans, and feed ingredients</span>
+								</div>
+							</div>
+
+							<h4>Supply Chain Services</h4>
+							<ul class="capability-list">
+								<li><i class="fas fa-check-circle"></i> <strong>Vendor Management:</strong>
+									Curated network of 200+ verified suppliers across 15 countries</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Quality Gatekeeping:</strong>
+									On-ground inspection teams at origin points</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Inventory Planning:</strong>
+									Demand forecasting and buffer stock management</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Risk Mitigation:</strong>
+									Multi-source strategy to avoid supply disruptions</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Traceability:</strong>
+									Farm-to-port tracking for complete transparency</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Consolidation:</strong>
+									Combining smaller lots for cost-effective shipping</li>
+							</ul>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-4 mb-4">
-						<div class="product-card p-4 text-center">
-							<h4>Animal Feed</h4>
-							<p>High-nutrition ingredients for livestock feed production.</p>
+				</div>
+
+				<!-- Service 3: End-to-End Export Services -->
+				<div class="service-card" data-aos="fade-up">
+					<div class="service-bg-image">
+						<img src="images/ChatGPT Image Feb 7, 2026, 05_48_47 PM.png" alt="Background">
+					</div>
+					<div class="service-icon">
+						<i class="fas fa-shipping-fast"></i>
+					</div>
+					<div class="service-content">
+						<h3>End-to-End Export Services</h3>
+						<p class="service-intro">We manage every aspect of the export process, from initial
+							sourcing to final delivery at the buyer's warehouse. Our integrated approach
+							eliminates coordination hassles and ensures smooth, on-time shipments.</p>
+
+						<div class="service-details">
+							<h4>Complete Export Management</h4>
+							<div class="process-steps">
+								<div class="step-item">
+									<div class="step-number">1</div>
+									<strong>Product Sourcing & Selection</strong>
+									<p>Identifying optimal suppliers, negotiating terms, and securing the best
+										quality at competitive prices</p>
+								</div>
+								<div class="step-item">
+									<div class="step-number">2</div>
+									<strong>Quality Control & Testing</strong>
+									<p>Pre-shipment sampling, laboratory analysis, moisture testing, and
+										certification</p>
+								</div>
+								<div class="step-item">
+									<div class="step-number">3</div>
+									<strong>Logistics Coordination</strong>
+									<p>Container booking, freight forwarding, customs clearance, and port
+										handling</p>
+								</div>
+								<div class="step-item">
+									<div class="step-number">4</div>
+									<strong>Documentation & Compliance</strong>
+									<p>Bill of Lading, Certificate of Origin, Phytosanitary certificates, and
+										all regulatory paperwork</p>
+								</div>
+								<div class="step-item">
+									<div class="step-number">5</div>
+									<strong>Shipment Tracking</strong>
+									<p>Real-time vessel tracking, ETA updates, and proactive communication</p>
+								</div>
+							</div>
+
+							<h4>Logistics Support</h4>
+							<ul class="capability-list">
+								<li><i class="fas fa-check-circle"></i> <strong>Multi-Modal Transport:</strong>
+									Sea freight (FCL/LCL), air cargo, and land transport options</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Packaging Solutions:</strong>
+									Jute bags, PP bags, vacuum packs, and custom branding</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Insurance Coverage:</strong>
+									Comprehensive marine insurance for all shipments</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Incoterms Flexibility:</strong>
+									FOB, CIF, CFR, and DAP delivery terms</li>
+							</ul>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-4 mb-4">
-						<div class="product-card p-4 text-center">
-							<h4>Bakery & Confectionery</h4>
-							<p>Quality grains and nuts for baked goods and sweets.</p>
+				</div>
+
+				<!-- Service 4: Market & Commodity Information -->
+				<div class="service-card reverse" data-aos="fade-up">
+					<div class="service-bg-image">
+						<img src="images/ChatGPT Image Feb 7, 2026, 05_48_50 PM.png" alt="Background">
+					</div>
+					<div class="service-icon">
+						<i class="fas fa-chart-line"></i>
+					</div>
+					<div class="service-content">
+						<h3>Market & Commodity Information</h3>
+						<p class="service-intro">Stay ahead of market trends with our comprehensive information
+							tools and resources. We provide buyers and sellers with critical data to make
+							informed trading decisions and optimize their procurement strategies.</p>
+
+						<div class="service-details">
+							<h4>Information Tools & Resources</h4>
+							<div class="tools-grid">
+								<div class="tool-item">
+									<i class="fas fa-calendar-alt"></i>
+									<strong>Harvest Charts</strong>
+									<span>Seasonal availability calendars for all major commodities across
+										producing regions</span>
+								</div>
+								<div class="tool-item">
+									<i class="fas fa-box"></i>
+									<strong>Container Charts</strong>
+									<span>Load capacity guides, stowage plans, and container type
+										recommendations</span>
+								</div>
+								<div class="tool-item">
+									<i class="fas fa-dollar-sign"></i>
+									<strong>Currency Rates</strong>
+									<span>Live exchange rates and currency conversion tools for international
+										transactions</span>
+								</div>
+								<div class="tool-item">
+									<i class="fas fa-cloud-sun"></i>
+									<strong>Weather Updates</strong>
+									<span>Agricultural weather forecasts affecting crop yields and harvest
+										timing</span>
+								</div>
+								<div class="tool-item">
+									<i class="fas fa-ship"></i>
+									<strong>Shipment Tracking</strong>
+									<span>Real-time vessel location, port schedules, and delivery status
+										monitoring</span>
+								</div>
+								<div class="tool-item">
+									<i class="fas fa-file-alt"></i>
+									<strong>Process Guides</strong>
+									<span>Step-by-step documentation for import procedures in different
+										countries</span>
+								</div>
+							</div>
+
+							<h4>Market Intelligence</h4>
+							<ul class="capability-list">
+								<li><i class="fas fa-check-circle"></i> <strong>Price Trends:</strong> Weekly
+									commodity price reports and analysis</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Demand Forecasts:</strong>
+									Market demand projections based on global consumption patterns</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Crop Reports:</strong>
+									Production estimates and harvest quality assessments</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Trade Policy Updates:</strong>
+									Changes in tariffs, quotas, and import regulations</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Competitor Analysis:</strong>
+									Market positioning and pricing benchmarks</li>
+							</ul>
 						</div>
 					</div>
-					<div class="col-md-6 col-lg-4 mb-4">
-						<div class="product-card p-4 text-center">
-							<h4>Food Processing</h4>
-							<p>Raw materials for snacks, ready-to-eat meals, and more.</p>
+				</div>
+
+				<!-- Service 5: Global Trade Facilitation -->
+				<div class="service-card" data-aos="fade-up">
+					<div class="service-bg-image">
+						<img src="images/ChatGPT Image Feb 7, 2026, 05_48_54 PM.png" alt="Background">
+					</div>
+					<div class="service-icon">
+						<i class="fas fa-handshake"></i>
+					</div>
+					<div class="service-content">
+						<h3>Global Trade Facilitation</h3>
+						<p class="service-intro">Building lasting partnerships through transparency,
+							reliability, and consistent quality. We facilitate seamless
+							international trade by
+							connecting buyers and sellers with trust, clear communication, and
+							market expertise.
+						</p>
+
+						<div class="service-details">
+							<h4>Our Core Values</h4>
+							<div class="values-grid">
+								<div class="value-item">
+									<i class="fas fa-award"></i>
+									<strong>Quality Consistency</strong>
+									<p>Rigorous quality control ensures every shipment meets agreed
+										specifications</p>
+								</div>
+								<div class="value-item">
+									<i class="fas fa-eye"></i>
+									<strong>Transparency</strong>
+									<p>Open communication on pricing, market trends, and shipment
+										status</p>
+								</div>
+								<div class="value-item">
+									<i class="fas fa-comments"></i>
+									<strong>Reliable Communication</strong>
+									<p>24/7 customer support and dedicated account managers for all
+										clients</p>
+								</div>
+								<div class="value-item">
+									<i class="fas fa-shield-alt"></i>
+									<strong>Trust & Integrity</strong>
+									<p>Ethical business practices and long-term relationship
+										building</p>
+								</div>
+							</div>
+
+							<h4>Partnership Benefits</h4>
+							<ul class="capability-list">
+								<li><i class="fas fa-check-circle"></i> <strong>Flexible Payment
+										Terms:</strong>
+									LC, TT, and customized credit arrangements for established
+									partners</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Market
+										Access:</strong> Connect
+									with verified buyers and suppliers in 50+ countries</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Technical
+										Support:</strong>
+									Guidance on product specifications, quality standards, and
+									compliance</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Dispute
+										Resolution:</strong>
+									Fair and transparent handling of quality claims and commercial
+									issues</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Long-Term
+										Contracts:</strong>
+									Annual supply agreements with price stability mechanisms</li>
+								<li><i class="fas fa-check-circle"></i> <strong>Trade
+										Finance:</strong>
+									Assistance with letters of credit, bank guarantees, and export
+									financing
+								</li>
+							</ul>
+
+							<div class="cta-section">
+								<h4>Ready to Start Trading?</h4>
+								<p>Join our network of global partners and experience seamless
+									agricultural
+									commodity trade.</p>
+								<a href="contact-us.html" class="btn btn-primary btn-lg">Contact Our
+									Team</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -120,8 +413,12 @@
 
 		<footer>
 			<div class="footer-top-image" style="text-align: center; padding: 20px 0;">
-				<a href="index.html" data-aos="fade-up"><img src="images/mark-logo.png" alt="Mark Overseas"
-						style="max-height: 80px; width: auto;" /></a>
+				<a href="index.html" data-aos="fade-up"><video class="logo-video" muted playsinline webkit-playsinline>
+						<source
+							src="images/grok-video-29b235bf-6771-4c9c-8ccd-4c35d317a66a (online-video-cutter.com).mp4"
+							type="video/mp4">
+						<img src="images/mark-logo.png" alt="Mark Overseas" style="max-height: 80px; width: auto;" />
+					</video></a>
 			</div>
 			<div class="footer-top">
 				<div class="container">
@@ -143,14 +440,15 @@
 								<ul class="contact-information">
 									<li>
 										<b>ADDRESS</b>
-										#202 – B, Imperial Heights, 150 Ft. Ring Road, Rajkot – 360005 (Gujarat), India
+										#202 – B, Imperial Heights, 150 Ft. Ring Road, Rajkot – 360005
+										(Gujarat), India
 									</li>
 									<li class="mail">
 										<b>MAIL</b>
 										<a href="mailto:info@mark-overseas.com">info@mark-overseas.com</a>
 									</li>
 									<li class="tel">
-										<b>TEL</b>
+										<b>MOBILE</b>
 										<a href="tel:+919913305996">+91 99133 05996</a>
 									</li>
 								</ul>
@@ -186,6 +484,23 @@
 		AOS.init();
 	</script>
 	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/logo-video.js"></script>
+	<script src="js/language-selector.js"></script>
+
+	<!-- Hidden Google Translate Widget -->
+	<div id="google_translate_element" style="display:none"></div>
+	<script type="text/javascript">
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({
+				pageLanguage: 'en',
+
+				autoDisplay: false
+			}, 'google_translate_element');
+		}
+	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>

@@ -1,0 +1,36 @@
+/* Animated Logo Video Styles */
+.logo-video {
+    max-height: 80px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.header-logo .logo-video {
+    max-height: 80px;
+}
+
+.footer-top-image .logo-video {
+    max-height: 80px;
+}
+
+.page-loader .logo-video {
+    max-height: 100px;
+}
+
+/* Ensure video doesn't show controls */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+    display: none !important;
+}
