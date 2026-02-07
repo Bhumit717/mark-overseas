@@ -1468,9 +1468,9 @@ footer .social-media {
 }
 
 .inner-section-banner-text {
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     text-align: center;
-    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -3164,6 +3164,11 @@ section.export_document_sec .title h2 {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .inner-section-banner {
+        padding-top: 100px !important;
+        padding-bottom: 20px !important;
+    }
+
     .exports-hero h1 {
         font-size: 2.2rem;
     }
@@ -3172,9 +3177,15 @@ section.export_document_sec .title h2 {
         font-size: 1.1rem;
     }
 
+    .hero-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
     .hero-btn-outline {
-        margin-left: 0;
-        margin-top: 20px;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
         display: block;
         width: 100%;
     }
@@ -3182,7 +3193,7 @@ section.export_document_sec .title h2 {
     .hero-btn {
         display: block;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 0 !important;
     }
 }
 
@@ -3834,6 +3845,8 @@ section.export_document_sec .title h2 {
         padding: 35px;
         text-align: center;
         align-items: center;
+        width: 100%;
+        max-width: 100%;
     }
 
     .service-content h3::after {
@@ -3869,7 +3882,7 @@ section.export_document_sec .title h2 {
 @media (max-width: 768px) {
     .service-card {
         padding: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 30px !important;
     }
 
     .service-icon {
@@ -3883,10 +3896,22 @@ section.export_document_sec .title h2 {
 
     .service-content h3 {
         font-size: 1.4rem;
+        padding-bottom: 10px;
+    }
+
+    .service-content h3::after {
+        width: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .service-bg-image {
+        display: none;
     }
 
     .service-intro {
         font-size: 1rem;
+        margin-bottom: 25px;
     }
 
     .cta-section {

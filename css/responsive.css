@@ -1272,8 +1272,8 @@
     }
 
     .inner-section-banner {
-        padding-top: 115px;
-        padding-bottom: 10px;
+        padding-top: 100px !important;
+        padding-bottom: 20px !important;
     }
 
     .form-feild label {
