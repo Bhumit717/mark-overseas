@@ -3174,7 +3174,7 @@ section.export_document_sec .title h2 {
 
     .hero-btn-outline {
         margin-left: 0;
-        margin-top: 10px;
+        margin-top: 20px;
         display: block;
         width: 100%;
     }
@@ -3182,6 +3182,7 @@ section.export_document_sec .title h2 {
     .hero-btn {
         display: block;
         width: 100%;
+        margin-bottom: 10px;
     }
 }
 
@@ -3233,22 +3234,22 @@ section.export_document_sec .title h2 {
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 100%;
     height: 100%;
     overflow: hidden;
-    opacity: 0.15;
+    opacity: 0.1;
     pointer-events: none;
     z-index: 0;
 }
 
 .service-bg-image img {
     position: absolute;
-    right: -20%;
+    right: -10%;
     top: 50%;
     transform: translateY(-50%);
-    height: 120%;
+    height: 100%;
     width: auto;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .service-card.reverse .service-bg-image {
@@ -3258,7 +3259,7 @@ section.export_document_sec .title h2 {
 
 .service-card.reverse .service-bg-image img {
     right: auto;
-    left: -20%;
+    left: -10%;
 }
 
 .service-card:hover {
@@ -3831,6 +3832,13 @@ section.export_document_sec .title h2 {
     .service-card.reverse {
         flex-direction: column;
         padding: 35px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .service-content h3::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .service-icon {
@@ -3846,6 +3854,10 @@ section.export_document_sec .title h2 {
         font-size: 1.6rem;
     }
 
+    .capability-list {
+        text-align: left;
+    }
+
     .category-grid,
     .region-grid,
     .tools-grid,
@@ -3856,7 +3868,7 @@ section.export_document_sec .title h2 {
 
 @media (max-width: 768px) {
     .service-card {
-        padding: 25px;
+        padding: 20px;
         margin-bottom: 40px;
     }
 
