@@ -65,7 +65,7 @@ This document outlines the complete product catalog from the Mark Overseas websi
    - Description: Red chilli peppers, powder, flakes
    
 6. **Cinnamon** (product-cinnamon.html)
-   - Description: Inner bark of tropical evergreen tree
+   - Description: Inner bark of tropical everrgb(8, 175, 8) tree
    
 7. **Cloves** (product-cloves.html)
    - Description: Dried unopened flower buds

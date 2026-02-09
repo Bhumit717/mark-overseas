@@ -43,7 +43,7 @@ foreach ($page in $productPages) {
     $filePath = $page
     
     if (Test-Path $filePath) {
-        Write-Host "Processing $page..." -ForegroundColor Green
+        Write-Host "Processing $page..." -ForegroundColor rgb(8, 175, 8)
         
         $content = Get-Content $filePath -Raw
         
@@ -68,4 +68,4 @@ foreach ($page in $productPages) {
     }
 }
 
-Write-Host "`nAll product pages updated successfully!" -ForegroundColor Green
+Write-Host "`nAll product pages updated successfully!" -ForegroundColor rgb(8, 175, 8)

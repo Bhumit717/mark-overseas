@@ -16,7 +16,7 @@ products_data = {
         },
         "cassia": {
             "name": "Cassia",
-            "desc": "Cassia is the dried bark of a small evergreen tree. Similar to cinnamon, it's widely used as a flavoring agent in foods, beverages, perfumery, and cosmetics.",
+            "desc": "Cassia is the dried bark of a small everrgb(8, 175, 8) tree. Similar to cinnamon, it's widely used as a flavoring agent in foods, beverages, perfumery, and cosmetics.",
             "uses": "Flavoring for foods, beverages, perfumes, cosmetics",
             "image": "cassia.png"
         },
@@ -34,7 +34,7 @@ products_data = {
         },
         "cinnamon": {
             "name": "Cinnamon",
-            "desc": "Cinnamon is the inner bark of a tropical evergreen tree. Highly prized since ancient times, it's used in desserts, chocolate, spicy candies, tea, hot cocoa, and liqueurs.",
+            "desc": "Cinnamon is the inner bark of a tropical everrgb(8, 175, 8) tree. Highly prized since ancient times, it's used in desserts, chocolate, spicy candies, tea, hot cocoa, and liqueurs.",
             "uses": "Desserts, beverages, savory dishes, medicinal",
             "image": "cinnamon.png"
         },

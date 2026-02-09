@@ -66,10 +66,10 @@
 
 /* WhatsApp Button */
 .whatsapp-enquiry-btn {
-    background: #25d366;
+    background: #2de104b3;
     color: #fff;
     padding: 12px 30px;
-    border-radius: 50px;
+    border-radius: 10px;
     display: inline-flex;
     align-items: center;
     font-weight: 600;

@@ -2,11 +2,11 @@
 
 :root {
     --primary: #8bc34a;
-    /* Light Green from Logo */
+    /* Light rgb(8, 175, 8) from Logo */
     --secondary: #ff9800;
     /* Orange from Logo */
-    --danger: #33691e;
-    /* Dark Green from Leaf/Text */
+    --danger: rgb(8, 175, 8);
+    /* Dark rgb(8, 175, 8) from Leaf/Text */
     --dark: #1b1b1b;
     --light: #FFF;
     --text: #6D6D6D;
@@ -354,7 +354,8 @@ header {
 .menu-bar ul.menu-list li a {
     color: #fff;
     display: inline-block;
-    font-family: var(--font2);
+    font-family: 'Italiana', serif;
+    font-weight: 700;
 }
 
 .menu-bar ul.menu-list li a:hover {
@@ -416,8 +417,9 @@ header {
 
 .product-menu ul li a {
     color: #fff;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Prata', serif;
+    font-weight: 700;
     display: inline-block;
     position: relative;
     padding-left: 18px;
@@ -634,10 +636,12 @@ header {
 }
 
 .about-us-text .title h2 {
-    font-size: 46px;
+    font-family: 'MonteCarlo', cursive !important;
+    font-size: 68px;
     color: var(--dark);
-    line-height: 53px;
-    margin-bottom: 18px;
+    line-height: normal;
+    margin-bottom: 25px;
+    font-weight: 400;
 }
 
 .about-us-text .text {
@@ -645,6 +649,9 @@ header {
 }
 
 .about-us-text .text p {
+    font-family: 'Fondamento', cursive;
+    font-size: 1.15rem;
+    /* Slightly larger for readability */
     margin-bottom: 17px;
 }
 
@@ -653,13 +660,15 @@ header {
 }
 
 .brand-tagline {
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--danger);
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: rgb(8, 175, 8);
+    /* Parrot rgb(8, 175, 8) */
     margin-bottom: 25px;
     line-height: 1.1;
     text-transform: uppercase;
-    letter-spacing: -1px;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
@@ -693,13 +702,25 @@ header {
 }
 
 .product-card {
-    padding: 25px 15px;
-    margin: 20px 0;
-    height: 100%;
-    background: transparent;
+    padding: 40px 20px;
+    margin: 15px 0;
+    height: calc(100% - 30px);
+    background: #fff;
     border: none;
-    box-shadow: none;
-    transition: all 0.4s ease;
+    border-radius: 30px;
+    /* More rounded as per screenshot */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    /* Softer shadow */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 .our-product-slider .item {
@@ -838,87 +859,106 @@ header {
     margin-bottom: 18px;
 }
 
+
 .industries-food {
     text-align: center;
     position: relative;
-}
-
-.food-item {
-    background: #FFFFFF;
-    box-shadow: 0px 9px 12px rgba(0, 0, 0, 0.1);
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    padding: 20px 10px;
+    transition: all 0.4s;
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 40px;
+    /* Removed background and shadow from container */
+    background: transparent;
+    box-shadow: none;
 }
 
-.food-item img {
-    width: 60px;
-    height: 60px;
-}
-
-.industries-food .food-name h4 {
-    font-weight: 600;
-    font-size: 18px;
-    text-align: center;
-    color: var(--dark);
-    font-family: 'Inter';
+.industries-food:hover {
+    transform: translateY(-5px);
 }
 
 .industries-food .food-background {
-    background: #FFB804;
-    border-radius: 60px 60px 0px 0px;
-    width: 100%;
-    height: 80px;
+    display: block;
     position: absolute;
-    top: 70px;
-    z-index: -1;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    /* Reduced width to match reference better */
+    height: 40px;
+    /* Reduced height to look like a plate */
+    background-image: url('../images/stand-plate.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.food-item {
+    background: transparent;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 45px;
+    /* Adjusted to sit on the thinner plate */
+    position: relative;
+    z-index: 10;
     transition: all 0.4s;
 }
 
-.industries-text .text {
-    margin-bottom: 58px;
+.food-item img {
+    width: 80px;
+    height: 80px;
+}
+
+.food-item i {
+    font-size: 60px;
+    color: #3E2723;
+    /* Dark Brown/Black for contrast, or use natural colors */
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+    /* To make it look like it's SITTING on the tray, we might need to adjust bottom position relative to the tray height */
+    position: relative;
+    bottom: -15px;
+}
+
+.industries-item:hover .food-item i {
+    color: #000;
+    transform: scale(1.1) translateY(-5px);
+}
+
+.industries-food .food-name {
+    margin-top: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.industries-food .food-name h4 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center;
+    color: #1b1b1b;
+    font-family: 'Prata', serif;
+    margin: 0;
 }
 
 .industries-item:hover .industries-food .food-background {
-    background: #30762D;
+    /* Optional hover effect for tray */
+    background: #FFD54F;
+    box-shadow: 0 8px 0 #FF8F00, 0 20px 30px rgba(0, 0, 0, 0.25);
 }
 
 .industries-food .border-circle {
-    position: absolute;
-    width: 143px;
-    height: 143px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: -13px;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.4s;
-    animation-name: rotate;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.industries-item:hover .industries-food .border-circle {
-    visibility: visible;
-    opacity: 1;
+    display: none;
 }
 
 .footer-top {
@@ -955,9 +995,10 @@ header {
 }
 
 .footer-menu h4 {
+    font-family: 'Graduate', serif;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 28px;
+    line-height: normal;
     color: #F0F0F0;
     margin-bottom: 25px;
 }
@@ -977,9 +1018,10 @@ header {
 }
 
 .footer-menu ul li a {
+    font-family: 'Graduate', serif;
     color: var(--light);
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
     display: inline-block;
     position: relative;
     padding-left: 18px;
@@ -1010,9 +1052,10 @@ header {
 }
 
 .contact-detail h4 {
+    font-family: 'Graduate', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 28px;
     color: var(--light);
     margin-bottom: 25px;
 }
@@ -1024,8 +1067,9 @@ ul.contact-information {
 }
 
 ul.contact-information li b {
+    font-family: 'Graduate', serif;
     display: block;
-    font-size: 15px;
+    font-size: 18px;
     text-transform: uppercase;
     color: var(--light);
     margin: 0;
@@ -1037,10 +1081,13 @@ ul.contact-information li a {
 }
 
 ul.contact-information li {
+    font-family: 'Graduate', serif;
     margin-bottom: 20px;
     position: relative;
     padding-left: 40px;
     color: var(--light);
+    font-size: 16px;
+    /* Slightly larger base for address text */
 }
 
 ul.contact-information li:before {
@@ -1099,6 +1146,7 @@ footer .text {
 }
 
 .footer-bottom {
+    font-family: 'Graduate', serif;
     color: var(--dark);
     background-color: var(--light);
     padding: 15px 0;
@@ -1295,6 +1343,15 @@ footer .social-media {
     background: var(--primary);
     z-index: 9;
     padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.globe-bar-section {
+    background-color: rgb(8, 175, 8);
+    padding: 20px 0;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1502,10 +1559,12 @@ footer .social-media {
 }
 
 .inner-section-banner h2 {
+    font-family: 'Bowlby One SC', cursive;
     font-size: 50px;
-    line-height: 100%;
+    line-height: normal;
     color: var(--dark);
     margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 .inner-section-banner p {
@@ -2491,7 +2550,7 @@ section.export_document_sec .title h2 {
 .demo-product-card:hover .image-container::before {
     animation-duration: 3s;
     border-color: #8bc34a;
-    /* Parrot Green */
+    /* Parrot rgb(8, 175, 8) */
 }
 
 .demo-product-card:hover .image-container::after {
@@ -2529,7 +2588,7 @@ section.export_document_sec .title h2 {
     object-fit: contain;
 }
 
-/* Green Arrow Button in Circle */
+/* rgb(8, 175, 8) Arrow Button in Circle */
 .demo-product-card .arrow-btn {
     position: absolute;
     bottom: 0px;
@@ -2572,7 +2631,7 @@ section.export_document_sec .title h2 {
 .demo-product-card .read-more-btn {
     display: inline-block;
     background: #8bc34a !important;
-    /* Parrot Green */
+    /* Parrot rgb(8, 175, 8) */
     color: #fff !important;
     padding: 0 35px;
     line-height: 44px;
@@ -2741,7 +2800,8 @@ section.export_document_sec .title h2 {
 }
 
 .about-theme-section .section-tag {
-    font-size: 14px;
+    font-family: 'Italiana', serif;
+    font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -2750,8 +2810,9 @@ section.export_document_sec .title h2 {
 }
 
 .about-theme-section h2 {
+    font-family: 'Bowlby One SC', cursive;
     font-size: 72px;
-    font-weight: 900;
+    font-weight: normal;
     text-transform: uppercase;
     line-height: 1;
     margin-bottom: 35px;
@@ -2764,17 +2825,33 @@ section.export_document_sec .title h2 {
     max-width: 550px;
 }
 
+.about-text em,
+.about-text .highlight {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 1.6rem;
+    color: var(--secondary);
+    font-style: normal;
+}
+
+.about-text em,
+.about-text .highlight {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 1.4rem;
+    color: var(--secondary);
+}
+
 .about-btn {
+    font-family: 'Fredericka the Great', cursive;
     display: inline-block;
     padding: 14px 45px;
     border-radius: 5px;
     /* Boxy like references */
-    font-weight: 800;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 /* Yellow Theme: Worldwide Delivery style */
@@ -2952,6 +3029,19 @@ section.export_document_sec .title h2 {
     overflow: hidden;
 }
 
+.exports-hero h1 {
+    font-family: 'Bowlby One SC', cursive;
+}
+
+.dashboard-card h3 {
+    font-family: 'Italiana', serif;
+}
+
+.hero-btn,
+.hero-btn-outline {
+    font-family: 'Fredericka the Great', cursive;
+}
+
 .exports-bg-img {
     width: 100%;
     height: 100%;
@@ -3086,7 +3176,7 @@ section.export_document_sec .title h2 {
 
 .feature-list i {
     color: #4ade80;
-    /* Green check */
+    /* rgb(8, 175, 8) check */
 }
 
 /* Portfolio Grid */
@@ -3808,7 +3898,7 @@ section.export_document_sec .title h2 {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(135deg, #ED3237 0%, #ff4d52 50%, #c91f24 100%);
+    background: linear-gradient(135deg, #2E7D32 0%, #43A047 50%, #1B5E20 100%);
     background-size: 200% 200%;
     padding: 40px;
     border-radius: 15px;
@@ -3850,8 +3940,8 @@ section.export_document_sec .title h2 {
 }
 
 .cta-section .btn {
-    background: #fff;
-    color: #ED3237;
+    background: var(--secondary);
+    color: #fff;
     font-weight: 600;
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -3862,7 +3952,9 @@ section.export_document_sec .title h2 {
 }
 
 .cta-section .btn:hover {
-    background: #f8f9fa;
+    background: #FF9800;
+    /* Lighter orange */
+    color: #fff;
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
@@ -3948,4 +4040,129 @@ section.export_document_sec .title h2 {
     .cta-section {
         padding: 30px 20px;
     }
+}
+
+/* Footer Globe Implementation */
+.footer-globe-col {
+    background-color: rgb(8, 175, 8);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.footer-globe-video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .footer-globe-col {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .footer-globe-col {
+        display: none !important;
+    }
+}
+
+/* Simplify Product Card Design */
+.product-card {
+    position: relative;
+    padding: 40px 20px;
+    margin: 15px 0;
+    height: calc(100% - 30px);
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    border-color: #ff9800;
+    /* Solid Orange Border */
+}
+
+.product-card .image img {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.product-card:hover .image img {
+    transform: scale(1.05);
+}
+
+/* ======================================== INDUSTRIES WE SERVE PAGE - PREMIUM FONTS ======================================== */
+
+/* Main Banner Heading */
+.inner-section-banner h2 {
+    font-family: 'Bowlby One SC', cursive !important;
+}
+
+/* Service Card Main Titles */
+.service-content h3 {
+    font-family: 'Italiana', serif !important;
+}
+
+/* Service Card Sub-Headings */
+.service-details h4 {
+    font-family: 'Prata', serif !important;
+}
+
+/* Service Introduction Paragraphs */
+.service-intro {
+    font-family: 'Fondamento', cursive !important;
+}
+
+/* Additional Exports Page Fonts */
+.hero-subtitle {
+    font-family: 'Fondamento', cursive !important;
+}
+
+.small-note {
+    font-family: 'La Belle Aurore', cursive !important;
+}
+
+.portfolio-item strong {
+    font-family: 'Prata', serif !important;
+}
+
+.feature-list li {
+    font-family: 'Fondamento', cursive !important;
+}
+
+.highlight-card p {
+    font-family: 'La Belle Aurore', cursive !important;
+    font-size: 1.2rem !important;
+}
+
+/* About Us Page - Additional Fonts */
+.about-text p {
+    font-family: 'Fondamento', cursive !important;
+    line-height: 1.8 !important;
+}
+
+.about-text p:first-child {
+    font-size: 1.1rem !important;
+}
+
+.about-theme-section .section-tag {
+    font-family: 'Prata', serif !important;
+    letter-spacing: 2px !important;
+}
+
+/* Emphasized quotes in about sections */
+.about-text p:contains('essence') {
+    font-family: 'La Belle Aurore', cursive !important;
+    font-size: 1.15rem !important;
 }

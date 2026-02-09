@@ -640,7 +640,7 @@
     display: inline-block !important;
 }
 
-/* Add the green dot before like other menu items */
+/* Add the rgb(8, 175, 8) dot before like other menu items */
 .language-selector::before {
     content: "";
     display: inline-block;

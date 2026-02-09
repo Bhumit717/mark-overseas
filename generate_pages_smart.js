@@ -90,7 +90,7 @@ const PRODUCT_DB = {
     "bay-leaves": {
         desc: "Indian Bay Leaves (Tej Patta) are aromatic leaves from the Cinnamomum tamala tree. They have a fragrance and taste similar to cinnamon bark but milder. They are essential in biryanis and rich curries.",
         uses: "Flavoring soups, stews, biryanis, and meat dishes.",
-        specs: { "Type": "Machine Cleaned", "Color": "Greenish", "Moisture": "13% Max", "Broken": "2% Max", "Packaging": "Compressed Bales / Bags" }
+        specs: { "Type": "Machine Cleaned", "Color": "rgb(8, 175, 8)ish", "Moisture": "13% Max", "Broken": "2% Max", "Packaging": "Compressed Bales / Bags" }
     },
     "bishops-weed": { // Slug might vary, handled by key matching
         desc: "Bishop's Weed, commonly known as Ajwain, contains thymol which gives it a thyme-like flavor. It is a potent spice used in small quantities for its strong aroma and digestive benefits.",
@@ -98,9 +98,9 @@ const PRODUCT_DB = {
         specs: { "Purity": "99% / 99.5%", "Moisture": "10% Max", "Admixture": "1% Max", "Origin": "Gujarat/Rajasthan", "Packaging": "25/50 Kg PP Bags" }
     },
     "cardamom": {
-        desc: "Known as the 'Queen of Spices', Green Cardamom has a complex flavor profile—floral, sweet, and spicy. It is the third most expensive spice in the world and indispensable in desserts and chai.",
+        desc: "Known as the 'Queen of Spices', rgb(8, 175, 8) Cardamom has a complex flavor profile—floral, sweet, and spicy. It is the third most expensive spice in the world and indispensable in desserts and chai.",
         uses: "Sweets, tea, savory curries, mouth freshener.",
-        specs: { "Grade": "AGEB / AGB / AGS", "Size": "6mm / 7mm / 8mm+", "Color": "Deep Green", "Origin": "Kerala, India", "Moisture": "11% Max" }
+        specs: { "Grade": "AGEB / AGB / AGS", "Size": "6mm / 7mm / 8mm+", "Color": "Deep rgb(8, 175, 8)", "Origin": "Kerala, India", "Moisture": "11% Max" }
     },
     "cassia": {
         desc: "Cassia bark is similar to cinnamon but has a stronger, more pungent flavor. It is widely used in spice blends (garam masala) and as a flavoring agent in heavy meat dishes.",
@@ -140,7 +140,7 @@ const PRODUCT_DB = {
     "curry-leaf": {
         desc: "Curry leaves are aromatic herbs used in South Indian and Sri Lankan cooking. They have a distinct, complex citrusy flavor that cannot be replicated by any other spice.",
         uses: "Tempering dals, chutneys, soups.",
-        specs: { "Form": "Fresh / Dry", "Color": "Dark Green", "Aroma": "Intense Citrusy", "Moisture": "Standard", "Packaging": "Vacuum Pack" }
+        specs: { "Form": "Fresh / Dry", "Color": "Dark rgb(8, 175, 8)", "Aroma": "Intense Citrusy", "Moisture": "Standard", "Packaging": "Vacuum Pack" }
     },
     "dill": {
         desc: "Dill seeds are used as a spice, with a flavor that is like a combination of caraway and fennel. They are essential in pickling and fish dishes.",
@@ -148,9 +148,9 @@ const PRODUCT_DB = {
         specs: { "Purity": "99%", "Admixture": "1% Max", "Moisture": "10% Max", "Origin": "India", "Packaging": "25/50 Kg Bags" }
     },
     "fennel": {
-        desc: "Fennel seeds are pale green with a sweet, anise-like flavor. They are widely used as a mouth freshener after meals and as a key spice in curries and bakery products.",
+        desc: "Fennel seeds are pale rgb(8, 175, 8) with a sweet, anise-like flavor. They are widely used as a mouth freshener after meals and as a key spice in curries and bakery products.",
         uses: "Mouth freshener (Mukhwas), bakery, confectionery, digestion.",
-        specs: { "Type": "Lucknow / Thin / Thick", "Purity": "99% / 99.5%", "Color": "Bright Green", "Moisture": "10% Max", "Origin": "Gujarat" }
+        specs: { "Type": "Lucknow / Thin / Thick", "Purity": "99% / 99.5%", "Color": "Bright rgb(8, 175, 8)", "Moisture": "10% Max", "Origin": "Gujarat" }
     },
     "fenugreek": {
         desc: "Fenugreek seeds are cuboid yellow-brown seeds with a bitter, maple-like taste. They are used in curry powders, pickles, and for their antidiabetic medicinal properties.",
@@ -170,7 +170,7 @@ const PRODUCT_DB = {
     "hyssop": {
         desc: "Hyssop is an herbaceous plant used for its aromatic properties. It has a slightly bitter, minty flavor and is used in liqueurs and medicinal tea blends.",
         uses: "Medicinal tea, respiratory aid, flavoring liqueurs.",
-        specs: { "Form": "Dried Herbs", "Color": "Greenish", "Moisture": "12% Max", "Purity": "99%", "Origin": "Himalayan Region" }
+        specs: { "Form": "Dried Herbs", "Color": "rgb(8, 175, 8)ish", "Moisture": "12% Max", "Purity": "99%", "Origin": "Himalayan Region" }
     },
     "juniper-berry": {
         desc: "Juniper berries are the primary flavoring agent in gin. They have a tart, pine-like flavor with a hint of pepper. They are also used to flavor game meats.",
@@ -190,7 +190,7 @@ const PRODUCT_DB = {
     "mint": {
         desc: "Dried Mint leaves are aromatic and refreshing. They retain their flavor well and are used in teas, chutneys, and savory dishes across Middle Eastern and Indian cuisines.",
         uses: "Tea blends, chutneys, garnish, breath freshener.",
-        specs: { "Form": "Whole Leaves / Powder", "Color": "Green", "Moisture": "8% Max", "Aroma": "Strong Menthol", "Origin": "Uttar Pradesh" }
+        specs: { "Form": "Whole Leaves / Powder", "Color": "rgb(8, 175, 8)", "Moisture": "8% Max", "Aroma": "Strong Menthol", "Origin": "Uttar Pradesh" }
     },
     "nutmeg": {
         desc: "Nutmeg is the seed kernel inside the fruit. It offers a warm, nutty, and slightly sweet flavor used in béchamel sauce, puddings, and baked goods.",
@@ -260,7 +260,7 @@ const PRODUCT_DB = {
         specs: { "Fat Content": "65% Min (High Fat)", "Moisture": "3% Max", "Grade": "Fine / Medium", "Color": "Snow White", "Origin": "South India" }
     },
     "raisins": {
-        desc: "Indian Raisins (Kishmish) are sweet, golden-green dried grapes. They are produced from seedless grapes and are soft and fleshy.",
+        desc: "Indian Raisins (Kishmish) are sweet, golden-rgb(8, 175, 8) dried grapes. They are produced from seedless grapes and are soft and fleshy.",
         uses: "Bakery, desserts, trail mix, direct consumption.",
         specs: { "Type": "Golden / Malayar / Black", "Size": "Bold / Medium", "Moisture": "15% Max", "Origin": "Nashik, India", "Packaging": "10 Kg Box" }
     },
