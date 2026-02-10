@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Inter:wght@400;500;600&display=swap');
+
 /* Product Detail Page Styles */
 
 /* Product Detail Section */
@@ -227,7 +229,69 @@
     color: var(--dark);
     margin-bottom: 30px;
     font-weight: 800;
-    font-size: 28px;
+    font-size: 32px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+}
+
+.tab-pane p {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    color: #444;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.spec-table tr td:first-child {
+    font-weight: 700;
+    width: 35%;
+    color: var(--dark);
+    background: #f9f9ff;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.spec-table tr td:last-child {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    font-size: 15px;
+}
+
+.premium-description {
+    font-family: 'Inter', sans-serif;
+    color: #444;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+.premium-description h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: var(--dark);
+    font-size: 20px;
+}
+
+.premium-description ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.premium-description ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+.premium-description ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
 }
 
 @media (max-width: 991px) {

@@ -1,0 +1,365 @@
+{
+    "chilli": {
+        "description": "Indian Red Chilli is globally celebrated for its unique pungency, vibrant color, and medicinal properties. Primarily grown in the fertile soils of Guntur (Andhra Pradesh) and Byadgi (Karnataka), these chillies are a staple in international cuisines. We offer premium varieties including S17 Teja for extreme heat and Byadgi for deep natural color. Our chillies are carefully sun-dried, machine-cleaned, and Sortex-graded to meet global safety standards (IPM and Non-IPM).",
+        "specs": [
+            [
+                "Variety",
+                "S17 (Teja), Byadgi, Guntur Sannam"
+            ],
+            [
+                "SHU (Pungency)",
+                "8,000 - 100,000 SHU"
+            ],
+            [
+                "Color (ASTA)",
+                "60 - 160 ASTA"
+            ],
+            [
+                "Moisture",
+                "10-12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Guntur / Byadgi, India"
+            ],
+            [
+                "Form",
+                "Whole (With/Without Stem), Flakes, Powder"
+            ]
+        ]
+    },
+    "cumin": {
+        "description": "Indian Cumin Seeds (Cuminum cyminum) are world-renowned for their high essential oil content, intense earthy aroma, and sharp flavor. Cultivated mainly in Gujarat and Rajasthan, India is the leading global producer. Our Cumin Seeds are processed through advanced Sortex cleaning technology (99% to 99.9% purity) to ensure they are free from dust, stones, and weed seeds. They are highly sought after for culinary spice blends, essential oil extraction, and herbal pharmaceuticals.",
+        "specs": [
+            [
+                "Purity",
+                "99% / 99.5% / 99.9% (Sortex Cleaned)"
+            ],
+            [
+                "Moisture",
+                "9-10% Max"
+            ],
+            [
+                "Total Ash",
+                "9.5% Max"
+            ],
+            [
+                "Volatile Oil",
+                "2.0% - 4.5% Min"
+            ],
+            [
+                "Foreign Matter",
+                "0.1% - 0.5% Max"
+            ],
+            [
+                "Origin",
+                "Gujarat / Rajasthan, India"
+            ],
+            [
+                "Flavor",
+                "Warm, earthy, slightly peppery"
+            ]
+        ]
+    },
+    "turmeric": {
+        "description": "Indian Turmeric is synonymous with premium quality, high curcumin content, and vibrant golden hue. We export varieties like Alleppey (high curcumin), Nizamabad, and Erode. Known for its powerful anti-inflammatory properties and distinct earthy flavor, it is used extensively in food processing, nutraceuticals, and cosmetics. Our Turmeric Fingers are sun-dried, polished (single/double), and checked for lead-free purity to comply with USFDA and EU norms.",
+        "specs": [
+            [
+                "Variety",
+                "Alleppey, Nizamabad, Erode (GI Tagged)"
+            ],
+            [
+                "Curcumin",
+                "2.5% - 5.5% Min"
+            ],
+            [
+                "Moisture",
+                "10-12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Defective Rhizomes",
+                "3% Max"
+            ],
+            [
+                "Origin",
+                "Kerala / Telangana / Tamil Nadu, India"
+            ],
+            [
+                "Processing",
+                "Sun-dried & Polished (Single/Double)"
+            ]
+        ]
+    },
+    "rice": {
+        "description": "India is the global leader in rice production, offering the finest Basmati and Non-Basmati varieties. Our Basmati Rice, known as the 'Scented Pearl', features extra-long grains that elongate twice their size upon cooking with a heavenly aroma. Non-Basmati varieties like IR64 and Sona Masoori offer excellent texture for daily consumption. All our rice is well-milled, 100% Sortex cleaned, and free from polishing agents, ensuring nutritional integrity and superior taste.",
+        "specs": [
+            [
+                "Type",
+                "1121 Basmati, 1509 Sella, IR64, Parboiled"
+            ],
+            [
+                "Grain Length",
+                "6.6 mm - 8.35 mm (Basmati)"
+            ],
+            [
+                "Purity",
+                "95% - 100%"
+            ],
+            [
+                "Moisture",
+                "12-14% Max"
+            ],
+            [
+                "Broken",
+                "1% - 5% Max"
+            ],
+            [
+                "Admixture",
+                "2% Max"
+            ],
+            [
+                "Milling Grinding",
+                "Well Milled & Sortex Cleaned"
+            ]
+        ]
+    },
+    "sesame": {
+        "description": "Indian Sesame Seeds are highly valued for their rich oil content (up to 50%) and distinct nutty flavor. We offer Natural, Hulled, and Black Sesame seeds, all processed in state-of-the-art facilities. Our Hulled Sesame is processed using both chemical-free mechanical hulling and salt-water methods. These seeds are a rich source of calcium, iron, and antioxidants, and are widely used in bakery products, tahini, and oil extraction.",
+        "specs": [
+            [
+                "Type",
+                "Natural, Hulled, Black (99.9% Purity)"
+            ],
+            [
+                "Oil Content",
+                "48% - 52% Min"
+            ],
+            [
+                "Moisture",
+                "5-6% Max"
+            ],
+            [
+                "FFA",
+                "1% - 2% Max"
+            ],
+            [
+                "Purity",
+                "99.9% - 99.95% (Sortex)"
+            ],
+            [
+                "Origin",
+                "Gujarat / West Bengal, India"
+            ],
+            [
+                "Size",
+                "Uniform Bold Seeds"
+            ]
+        ]
+    },
+    "mustard": {
+        "description": "Yellow and Brown Mustard seeds from India are prized for their pungent flavor and oil-rich properties. Yellow (Sinapis alba) is milder and preferred for condiments, while Brown (Brassica juncea) has medium-high heat. Our seeds are machine-cleaned and handpicked (HPS) to ensure zero foreign matter. They are an essential ingredient in spice blends, mustard pastes, and traditional pickling.",
+        "specs": [
+            [
+                "Variety",
+                "Yellow Mustard, Brown Mustard, Black"
+            ],
+            [
+                "Oil Content",
+                "38% - 42% Min"
+            ],
+            [
+                "Purity",
+                "99% - 99.9% Max"
+            ],
+            [
+                "Moisture",
+                "8-9% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Gujarat, India"
+            ],
+            [
+                "Harvest",
+                "Feb / March (Rabi Crop)"
+            ]
+        ]
+    },
+    "groundnut": {
+        "description": "Indian Groundnuts (Peanuts) are known for their sweet flavor and high nutritional content. We supply both Bold (Runner) and Java (Spanish) varieties, shelled or in-shell. The Bold variety is larger and ideal for roasting, while Java is smaller and preferred for confectionery. Our groundnuts are strictly tested for Aflatoxin (B1/B2/G1/G2) to meet stringent EU and USA standards.",
+        "specs": [
+            [
+                "Variety",
+                "Bold / Java (HPS Shelling)"
+            ],
+            [
+                "Counts per Oz",
+                "Bold: 35/40 - 70/80 | Java: 50/60 - 140/160"
+            ],
+            [
+                "Moisture",
+                "6-8% Max"
+            ],
+            [
+                "Oil Content",
+                "42% - 52% Min"
+            ],
+            [
+                "Aflatoxin",
+                "< 4 PPB (or as per buyer)"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Origin",
+                "Gujarat (Saurashtra), India"
+            ]
+        ]
+    },
+    "pulses": {
+        "description": "Indian Pulses are a vital source of protein and essential minerals. We export a wide range including Kabuli Chickpeas, Desi Chickpeas, Red Lentils (Masoor), and Black Matpe (Urad). Our pulses are processed in modern milling units where they are graded, cleaned, and sorted. We ensure uniform size, high germination power (for whole pulses), and freedom from insect infestation.",
+        "specs": [
+            [
+                "Items",
+                "Chickpeas, Lentils, Black Matpe, Peas"
+            ],
+            [
+                "Count/Size",
+                "8 mm - 14 mm (Kabuli) / 4 mm (Lentils)"
+            ],
+            [
+                "Moisture",
+                "10-12% Max"
+            ],
+            [
+                "Purity",
+                "99.5% Min (Sortex Clear)"
+            ],
+            [
+                "Broken/Damaged",
+                "1-2% Max"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Origin",
+                "Madhya Pradesh / Maharashtra, India"
+            ]
+        ]
+    },
+    "nuts": {
+        "description": "We supply premium quality Indian Cashews, Almonds, and Pistachios. Our Cashews (W180 to W450) are world-famous for their ivory color and buttery taste. Our almonds and raisins are sourced from the best orchards and processed using advanced drying and sorting tech. These nuts are packed in vacuum-sealed tins or nitrogen-filled bags to maintain freshness and prevent oxidation during long-range transport.",
+        "specs": [
+            [
+                "Items",
+                "Cashews, Almonds, Pistachios, Raisins"
+            ],
+            [
+                "Cashew Grade",
+                "W180, W210, W240, W320"
+            ],
+            [
+                "Purity",
+                "99.5% Min"
+            ],
+            [
+                "Moisture",
+                "5-8% Max (Nuts) / 15% (Raisins)"
+            ],
+            [
+                "Damaged Kernels",
+                "0.5% Max"
+            ],
+            [
+                "Packaging",
+                "Vacuum Tins / CO2 Filled Bags"
+            ],
+            [
+                "Origin",
+                "Pan India (Goa/Mangalore for Cashew)"
+            ]
+        ]
+    },
+    "oilcake": {
+        "description": "Indian De-Oiled Cakes (DOC) and Oil Cakes are premium ingredients for the global animal feed industry. Rich in bypass protein and nutrients, our Cottonseed, Groundnut, Soya, and Rapeseed meals are processed under hygienic conditions. They provide excellent energy and amino acid profiles for poultry, cattle, and aquaculture. Our High-Pro Soya Meal is particularly valued for its digestibility.",
+        "specs": [
+            [
+                "Type",
+                "Soya, Cottonseed, Groundnut, Rapeseed"
+            ],
+            [
+                "Protein",
+                "46% (Soya) / 25% (Cotton) / 45% (G'nut)"
+            ],
+            [
+                "Moisture",
+                "10-12% Max"
+            ],
+            [
+                "Fiber",
+                "4% - 15% Max (varies by type)"
+            ],
+            [
+                "Fat/Oil",
+                "1% - 6% (Expeller/De-Oiled)"
+            ],
+            [
+                "Sand/Silica",
+                "1-2% Max"
+            ],
+            [
+                "Form",
+                "Flakes / Powder / Pallets"
+            ]
+        ]
+    },
+    "default": {
+        "description": "Our premium grade botanical products are sourced directly from the best cultivation regions in India. We employ rigorous quality control, from field selection to final packaging, ensuring every shipment meets international safety standards. Our products are machine-cleaned, handpicked, and Sortex-sorted to provide maximum purity, rich aroma, and authentic taste for our global clientele.",
+        "specs": [
+            [
+                "Appearance",
+                "Uniform Color & Size"
+            ],
+            [
+                "Quality",
+                "Machine Cleaned / Sortex Grade"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Shelf Life",
+                "12 - 24 Months"
+            ],
+            [
+                "Storage",
+                "Store in Cool, Dry Place"
+            ],
+            [
+                "Origin",
+                "India"
+            ]
+        ]
+    }
+}
