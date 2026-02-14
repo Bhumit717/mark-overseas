@@ -41,7 +41,8 @@
 	<meta name="twitter:title" content="Contact Us | Mark Overseas" />
 	<meta name="twitter:description" content="Agro Commodities Exporter & Supplier" />
 	<meta name="twitter:image" content="https://www.mark-overseas.com/images/mark-logo.png" />
-    	<meta name="keywords" content="agro commodities, mark overseas, export import, india exporter, gujarat exporter, oil seeds, spices, grains" />
+	<meta name="keywords"
+		content="agro commodities, mark overseas, export import, india exporter, gujarat exporter, oil seeds, spices, grains" />
 </head>
 
 <body class="contact_us-page">
@@ -261,8 +262,66 @@
 	</script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/logo-video.js"></script>
-	<script src="js/contact.min.js"></script>
 	<script src="js/language-selector.js"></script>
+
+	<!-- Firebase SDK Integration -->
+	<script type="module">
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+		import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+		const firebaseConfig = {
+			apiKey: "AIzaSyAtWGC2M5CqAhDK1O7mVqYvkhCqXhv0Ii0",
+			authDomain: "mark-overseas.firebaseapp.com",
+			projectId: "mark-overseas",
+			storageBucket: "mark-overseas.firebasestorage.app",
+			messagingSenderId: "558178626256",
+			appId: "1:558178626256:web:c543cdd71c3e29019cccd5",
+			measurementId: "G-48YT3FTPSP"
+		};
+
+		const app = initializeApp(firebaseConfig);
+		const db = getFirestore(app);
+
+		document.getElementById('contact_form').addEventListener('submit', async (e) => {
+			e.preventDefault();
+
+			const btn = document.getElementById('btn_submit');
+			const originalText = btn.innerText;
+			btn.disabled = true;
+			btn.innerText = "Sending...";
+
+			const formData = {
+				name: document.getElementById('name').value,
+				email: document.getElementById('email').value,
+				phone: document.getElementById('phone').value,
+				subject: document.getElementById('subject').value,
+				message: document.getElementById('message').value,
+				status: 'new',
+				createdAt: serverTimestamp()
+			};
+
+			try {
+				// 1. Save to Firebase Database (Free)
+				await addDoc(collection(db, "inquiries"), formData);
+
+				// 2. Trigger Gmail Notification via Vercel API (Free)
+				await fetch('/api/send-email', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(formData)
+				});
+
+				alert("Thank you! Your inquiry has been submitted successfully and team is notified.");
+				document.getElementById('contact_form').reset();
+			} catch (error) {
+				console.error("Error submitting inquiry: ", error);
+				alert("Submission failed. Please try again later or contact us directly via email.");
+			} finally {
+				btn.disabled = false;
+				btn.innerText = originalText;
+			}
+		});
+	</script>
 
 	<!-- Hidden Google Translate Widget -->
 	<div id="google_translate_element" style="display:none"></div>

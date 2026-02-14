@@ -1,0 +1,8 @@
+{
+    "name": "mark-overseas",
+    "version": "1.0.0",
+    "description": "Mark Overseas Web",
+    "dependencies": {
+        "nodemailer": "^6.9.3"
+    }
+}
