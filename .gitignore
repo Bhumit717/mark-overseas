@@ -5,7 +5,7 @@
 generation_log.txt
 temp_files.txt
 audit_log.txt
-fix_categories_log.txt
+fix_categories_log.txt  
 add_tabs_log.txt
 *.py
 *.js
