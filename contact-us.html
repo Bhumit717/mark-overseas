@@ -300,9 +300,20 @@
 				createdAt: serverTimestamp()
 			};
 
+			let firestoreSuccess = false;
+
 			try {
 				// 1. Save to Firebase Database (Free)
-				await addDoc(collection(db, "inquiries"), formData);
+				try {
+					await addDoc(collection(db, "inquiries"), formData);
+					firestoreSuccess = true;
+					console.log("Firestore success");
+				} catch (firestoreError) {
+					console.error("Firestore Error:", firestoreError);
+					// Continue to try sending email even if database fails, or stop? 
+					// Usually if DB fails, we might still want email. But let's warn.
+					alert("Note: Database storage failed (" + firestoreError.message + "), but attempting to send email...");
+				}
 
 				// 2. Trigger Gmail Notification via Vercel API (Free)
 				const emailRes = await fetch('/api/send-email', {
@@ -314,14 +325,18 @@
 				if (!emailRes.ok) {
 					const errLog = await emailRes.json();
 					console.error("Email API failed:", errLog);
-					alert("Database saved, but email notification failed: " + (errLog.details || "Unknown Error"));
+					alert("System Alert: Email notification failed. " + (errLog.error || "Unknown error"));
 				} else {
-					alert("Success! Your inquiry has been submitted and the team has been notified.");
+					if (firestoreSuccess) {
+						alert("Success! Your inquiry has been submitted and the team has been notified.");
+					} else {
+						alert("Inquiry sent via email, but database record failed.");
+					}
+					document.getElementById('contact_form').reset();
 				}
 
-				document.getElementById('contact_form').reset();
 			} catch (error) {
-				console.error("Submission Error: ", error);
+				console.error("General Submission Error: ", error);
 				alert("Something went wrong. Please check your connection or contact us directly via email.");
 			} finally {
 				btn.disabled = false;

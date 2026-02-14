@@ -13,6 +13,7 @@ add_tabs_log.txt
 !js/custom.js
 !js/logo-video.js
 !js/language-selector.js
+!api/*.js
 node_modules/
 dist/
 build/
