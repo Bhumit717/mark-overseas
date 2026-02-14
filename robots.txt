@@ -17,3 +17,4 @@ Disallow: /*.md
 Disallow: /mark-overseas-react/
 
 Sitemap: https://www.mark-overseas.com/sitemap.xml
+Host: www.mark-overseas.com
