@@ -305,17 +305,24 @@
 				await addDoc(collection(db, "inquiries"), formData);
 
 				// 2. Trigger Gmail Notification via Vercel API (Free)
-				await fetch('/api/send-email', {
+				const emailRes = await fetch('/api/send-email', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(formData)
 				});
 
-				alert("Thank you! Your inquiry has been submitted successfully and team is notified.");
+				if (!emailRes.ok) {
+					const errLog = await emailRes.json();
+					console.error("Email API failed:", errLog);
+					alert("Database saved, but email notification failed: " + (errLog.details || "Unknown Error"));
+				} else {
+					alert("Success! Your inquiry has been submitted and the team has been notified.");
+				}
+
 				document.getElementById('contact_form').reset();
 			} catch (error) {
-				console.error("Error submitting inquiry: ", error);
-				alert("Submission failed. Please try again later or contact us directly via email.");
+				console.error("Submission Error: ", error);
+				alert("Something went wrong. Please check your connection or contact us directly via email.");
 			} finally {
 				btn.disabled = false;
 				btn.innerText = originalText;
