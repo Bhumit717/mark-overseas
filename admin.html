@@ -202,7 +202,11 @@
                 }
             } catch (err) {
                 console.error("Login Error:", err);
-                alert("Error connecting to database. check console.");
+                if (err.code === "permission-denied") {
+                    alert("Permission Denied: Please update your Firestore Security Rules in the Firebase Console to allow reads/writes.");
+                } else {
+                    alert("Error: " + err.message);
+                }
                 btn.disabled = false;
                 btn.innerText = "Login";
             }
