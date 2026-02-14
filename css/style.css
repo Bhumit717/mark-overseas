@@ -636,8 +636,6 @@ header {
 }
 
 .about-us-text .title h2 {
-    font-family: 'MonteCarlo', cursive !important;
-    font-size: 68px;
     color: var(--dark);
     line-height: normal;
     margin-bottom: 25px;
@@ -1146,7 +1144,7 @@ footer .text {
 }
 
 .footer-bottom {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Graduate', serif;
     color: var(--dark);
     background-color: var(--light);
     padding: 15px 0;
