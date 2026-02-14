@@ -2,8 +2,27 @@ const nodemailer = require("nodemailer");
 
 module.exports = async (req, res) => {
     // Enable CORS
+    // Secure CORS Configuration
+    const allowedOrigins = [
+        'https://www.mark-overseas.com',
+        'https://mark-overseas.vercel.app',
+        'http://localhost:3000',
+        'http://127.0.0.1:5500',
+        'http://localhost:5500'
+    ];
+
+    const origin = req.headers.origin;
+
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
+        // Fallback for tools like Postman or server-to-server calls if necessary, 
+        // but for security we restrict it.
+        // Uncomment below to allow all (NOT RECOMMENDED for production)
+        // res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+
     res.setHeader('Access-Control-Allow-Credentials', true)
-    res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     res.setHeader(
         'Access-Control-Allow-Headers',
@@ -21,11 +40,17 @@ module.exports = async (req, res) => {
 
     const { name, email, phone, subject, message } = req.body;
 
+    // Check for required environment variables
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
+        console.error("Missing GMAIL_USER or GMAIL_PASS environment variables.");
+        return res.status(500).json({ error: "Server configuration error." });
+    }
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: "markoverseas28@gmail.com",
-            pass: "aoppwbdcykkytxwl"
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS
         },
         // Increase timeout for serverless
         connectionTimeout: 10000,
@@ -34,8 +59,8 @@ module.exports = async (req, res) => {
     });
 
     const mailOptions = {
-        from: `"Mark Overseas Support" <markoverseas28@gmail.com>`,
-        to: "markoverseas28@gmail.com",
+        from: `"Mark Overseas Support" <${process.env.GMAIL_USER}>`,
+        to: process.env.GMAIL_USER, // Send to self
         replyTo: email,
         subject: `New Inquiry: ${subject || "No Subject"}`,
         html: `
