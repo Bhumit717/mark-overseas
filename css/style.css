@@ -660,7 +660,7 @@ header {
 }
 
 .brand-tagline {
-    font-family: 'Fredericka the Great', cursive;
+    font-family: 'Bowlby One SC', cursive;
     font-size: 3.5rem;
     font-weight: 400;
     color: rgb(8, 175, 8);
@@ -995,7 +995,7 @@ header {
 }
 
 .footer-menu h4 {
-    font-family: 'Graduate', serif;
+    font-family: 'Outfit', sans-serif;
     font-weight: 400;
     font-size: 28px;
     line-height: normal;
@@ -1018,7 +1018,7 @@ header {
 }
 
 .footer-menu ul li a {
-    font-family: 'Graduate', serif;
+    font-family: 'Outfit', sans-serif;
     color: var(--light);
     font-size: 18px;
     font-weight: 400;
@@ -1052,7 +1052,7 @@ header {
 }
 
 .contact-detail h4 {
-    font-family: 'Graduate', serif;
+    font-family: 'Outfit', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 28px;
@@ -1067,7 +1067,7 @@ ul.contact-information {
 }
 
 ul.contact-information li b {
-    font-family: 'Graduate', serif;
+    font-family: 'Outfit', sans-serif;
     display: block;
     font-size: 18px;
     text-transform: uppercase;
@@ -1081,7 +1081,7 @@ ul.contact-information li a {
 }
 
 ul.contact-information li {
-    font-family: 'Graduate', serif;
+    font-family: 'Outfit', sans-serif;
     margin-bottom: 20px;
     position: relative;
     padding-left: 40px;
@@ -1146,7 +1146,7 @@ footer .text {
 }
 
 .footer-bottom {
-    font-family: 'Graduate', serif;
+    font-family: 'Outfit', sans-serif;
     color: var(--dark);
     background-color: var(--light);
     padding: 15px 0;
