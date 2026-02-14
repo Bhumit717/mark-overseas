@@ -71,9 +71,31 @@
             box-shadow: 0 15px 30px rgba(8, 175, 8, 0.3);
         }
 
-        .lottie-container {
-            max-width: 400px;
+        .error-image-wrap {
+            max-width: 450px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .floating-agro-img {
+            width: 100%;
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+
+            50% {
+                transform: translatey(-20px);
+            }
+
+            100% {
+                transform: translatey(0px);
+            }
         }
 
         .page-loader {
@@ -127,11 +149,10 @@
         <section class="error-section">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="lottie-container">
-                            <dotlottie-wc
-                                src="https://lottie.host/8e894b96-4e56-4c4f-a492-96020586e395/zR4TfG7E1f.lottie"
-                                autoplay loop></dotlottie-wc>
+                    <div class="col-lg-6" data-aos="zoom-in">
+                        <div class="error-image-wrap">
+                            <img src="images/products/roasted-peas.png" alt="Mark Overseas Agro"
+                                class="floating-agro-img">
                         </div>
                     </div>
                     <div class="col-lg-6 text-center text-lg-start" data-aos="fade-left">
