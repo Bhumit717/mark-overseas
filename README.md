@@ -17,7 +17,7 @@ The project combines the speed of **Static HTML** with the power of **Serverless
 - **⚡ SEO Optimized**: Unique meta tags, descriptions, and structured data for every product.
 
 ## 🏗️ System Architecture
-See the full architecture diagram: [architecture_diagram.svg](./architecture_diagram.svg)
+See the detailed architecture documentation: [ARCHITECTURE.md](./ARCHITECTURE.md)
 
 **Core Stack:**
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla + jQuery), Bootstrap 5.
