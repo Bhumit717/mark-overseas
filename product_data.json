@@ -3,8 +3,12 @@
         "description": "Indian Red Chilli is globally celebrated for its unique pungency, vibrant color, and medicinal properties. Primarily grown in the fertile soils of Guntur (Andhra Pradesh) and Byadgi (Karnataka), these chillies are a staple in international cuisines. We offer premium varieties including S17 Teja for extreme heat and Byadgi for deep natural color. Our chillies are carefully sun-dried, machine-cleaned, and Sortex-graded to meet global safety standards (IPM and Non-IPM).",
         "specs": [
             [
+                "HS Code",
+                "09042110 / 09042211"
+            ],
+            [
                 "Variety",
-                "S17 (Teja), Byadgi, Guntur Sannam"
+                "S17 (Teja), Byadgi, Guntur Sannam, 334"
             ],
             [
                 "SHU (Pungency)",
@@ -24,17 +28,29 @@
             ],
             [
                 "Origin",
-                "Guntur / Byadgi, India"
+                "Guntur (Andhra Pradesh) / Byadgi (Karnataka), India"
             ],
             [
                 "Form",
                 "Whole (With/Without Stem), Flakes, Powder"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg New Jute/PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "7-14 MT (20ft FCL) depending on variety"
             ]
         ]
     },
     "cumin": {
         "description": "Indian Cumin Seeds (Cuminum cyminum) are world-renowned for their high essential oil content, intense earthy aroma, and sharp flavor. Cultivated mainly in Gujarat and Rajasthan, India is the leading global producer. Our Cumin Seeds are processed through advanced Sortex cleaning technology (99% to 99.9% purity) to ensure they are free from dust, stones, and weed seeds. They are highly sought after for culinary spice blends, essential oil extraction, and herbal pharmaceuticals.",
         "specs": [
+            [
+                "HS Code",
+                "09093129"
+            ],
             [
                 "Purity",
                 "99% / 99.5% / 99.9% (Sortex Cleaned)"
@@ -60,8 +76,12 @@
                 "Gujarat / Rajasthan, India"
             ],
             [
-                "Flavor",
-                "Warm, earthy, slightly peppery"
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "13-14 MT (20ft FCL)"
             ]
         ]
     },
@@ -69,8 +89,12 @@
         "description": "Indian Turmeric is synonymous with premium quality, high curcumin content, and vibrant golden hue. We export varieties like Alleppey (high curcumin), Nizamabad, and Erode. Known for its powerful anti-inflammatory properties and distinct earthy flavor, it is used extensively in food processing, nutraceuticals, and cosmetics. Our Turmeric Fingers are sun-dried, polished (single/double), and checked for lead-free purity to comply with USFDA and EU norms.",
         "specs": [
             [
+                "HS Code",
+                "09103020 / 09103030"
+            ],
+            [
                 "Variety",
-                "Alleppey, Nizamabad, Erode (GI Tagged)"
+                "Alleppey, Nizamabad, Erode, Salem"
             ],
             [
                 "Curcumin",
@@ -90,11 +114,360 @@
             ],
             [
                 "Origin",
-                "Kerala / Telangana / Tamil Nadu, India"
+                "Erode (Tamil Nadu) / Nizamabad (Telangana), India"
             ],
             [
                 "Processing",
                 "Sun-dried & Polished (Single/Double)"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg New Jute/PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "18-19 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "ginger": {
+        "description": "Indian Dried Ginger (Sonth) is prized for its warm, spicy flavor and medicinal benefits. Sourced from Kerala and North-Eastern India, our ginger is thoroughly washed, sun-dried, and graded. It is available in whole, cracked, and powder forms. Indian ginger is preferred globally for its high gingerol content and sharp aroma, making it ideal for tea blends, confectionery, and pharmaceuticals.",
+        "specs": [
+            [
+                "HS Code",
+                "09101120"
+            ],
+            [
+                "Appearance",
+                "Bleached / Unbleached (Whole/Sliced)"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1-2% Max"
+            ],
+            [
+                "Purity",
+                "98-99% Min"
+            ],
+            [
+                "Origin",
+                "Kerala / Assam, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Jute/PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "12-13 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "garlic": {
+        "description": "Indian Garlic is known for its strong, pungent flavor and numerous health benefits. We supply fresh, dried flakes, and garlic powder. Our dehydrated garlic products are processed in hygienic facilities to retain the natural oils and aroma. Sourced mainly from Rajasthan and Madhya Pradesh, Indian garlic is highly valued in the global food industry for seasoning and medicinal extracts.",
+        "specs": [
+            [
+                "HS Code",
+                "07129030 (Dehydrated)"
+            ],
+            [
+                "Form",
+                "Whole Bulbs, Flakes, Minced, Powder"
+            ],
+            [
+                "Moisture",
+                "6-8% Max (Dehydrated)"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Color",
+                "White to Off-White"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Madhya Pradesh, India"
+            ],
+            [
+                "Packing",
+                "25kg Corrugated Boxes / PP Bags"
+            ],
+            [
+                "Shelf Life",
+                "12 Months (Dehydrated)"
+            ]
+        ]
+    },
+    "coriander": {
+        "description": "Indian Coriander Seeds (Dhania) are celebrated for their mild, woody fragrance and citrusy undertones. Grown primarily in Rajasthan and Gujarat, we offer Badami and Eagle varieties. Our Sortex-cleaned seeds ensure maximum purity and consistent flavor. Widely used in spice mixes and essential oil production, our coriander meets international standards for pesticide residues and moisture.",
+        "specs": [
+            [
+                "HS Code",
+                "09092110 / 09092190"
+            ],
+            [
+                "Variety",
+                "Badami, Eagle, Scooter, Single Parrot"
+            ],
+            [
+                "Moisture",
+                "9% Max"
+            ],
+            [
+                "Purity",
+                "99% - 99.5% Min"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% - 1% Max"
+            ],
+            [
+                "Splits",
+                "5% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Gujarat, India"
+            ],
+            [
+                "Packing",
+                "25kg / 40kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "9-10 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "black_pepper": {
+        "description": "Often called the 'King of Spices', Indian Black Pepper is world-famous for its bold heat and complex aroma. Sourced from the Malabar coast, we offer grades like Tellicherry Extra Bold (TGSEB) and MG1. Our pepper is carefully sun-dried and machine-graded to ensure uniform berry size and high piperine content, delivering the authentic spicy punch desired by gourmets globally.",
+        "specs": [
+            [
+                "HS Code",
+                "09041110 / 09041130"
+            ],
+            [
+                "Grades",
+                "TGSEB, TGEB, MG1, 500GL, 550GL"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% - 1% Max"
+            ],
+            [
+                "Light Berries",
+                "2-5% Max (varies by grade)"
+            ],
+            [
+                "Piperine Content",
+                "4% - 6% Min"
+            ],
+            [
+                "Origin",
+                "Malabar Coast (Kerala / Karnataka), India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Jute/PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "12-14 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "cinnamon_cassia": {
+        "description": "Indian Cassia (Cinnamon) is known for its strong, sweet aroma and deep flavor. We provide whole sticks, quills, and powder. Sourced from sustainable farms in South India, our cinnamon is processed to maintain its natural essential oils. It is an essential ingredient in baking, savory spice blends, and traditional medicine.",
+        "specs": [
+            [
+                "HS Code",
+                "09061110 / 09061190"
+            ],
+            [
+                "Form",
+                "Whole Sticks, Quills, Powder"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Volatile Oil",
+                "1.5% - 2.5% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Color",
+                "Reddish Brown"
+            ],
+            [
+                "Origin",
+                "South India"
+            ],
+            [
+                "Packing",
+                "10kg / 25kg Carton Boxes / PP Bags"
+            ]
+        ]
+    },
+    "cloves": {
+        "description": "Selected Indian Cloves are prized for their intense fragrance and warming flavor. harvested from the hills of South India, our cloves are handpicked and sun-dried. We ensure the buds are rich in eugenol, providing the characteristic medicinal aroma and sharp taste essential for spice rubs, sauces, and dental hygiene products.",
+        "specs": [
+            [
+                "HS Code",
+                "09071010"
+            ],
+            [
+                "Appearance",
+                "Whole, Unbroken Buds"
+            ],
+            [
+                "Moisture",
+                "10-12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Eugenol Content",
+                "15% - 20% Min"
+            ],
+            [
+                "Color",
+                "Dark Brown / Reddish"
+            ],
+            [
+                "Origin",
+                "Tamil Nadu / Kerala, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags / Carton Boxes"
+            ]
+        ]
+    },
+    "cardamom": {
+        "description": "Indian Green Cardamom, the 'Queen of Spices', is renowned for its intoxicating aroma and sweet-spicy flavor. Sourced from the Western Ghats (Idukki, Kerala), we offer premium grades like 6mm to 8mm+ bold pods. Our cardamom is processed in climate-controlled environments to preserve its vibrant green color and high essential oil content, ensuring a luxury culinary experience.",
+        "specs": [
+            [
+                "HS Code",
+                "09083110 / 09083120"
+            ],
+            [
+                "Grades",
+                "8mm+ Extra Bold, 7-8mm Bold, 6-7mm Medium"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Empty/Malfed Pods",
+                "2% Max"
+            ],
+            [
+                "Color",
+                "Deep Green / Pale Green"
+            ],
+            [
+                "Origin",
+                "Idukki (Kerala) / Karnataka, India"
+            ],
+            [
+                "Packing",
+                "5kg / 10kg Vacuum Packs in Carton Boxes"
+            ]
+        ]
+    },
+    "fennel": {
+        "description": "Indian Fennel Seeds (Saunf) are distinguished by their sweet, anise-like flavor and cooling properties. Grown mainly in Gujarat and Rajasthan, we provide Lucknowi (Thin) and Bold varieties. Our seeds are machine-cleaned and Sortex-sorted to ensure zero impurities. They are widely used as a digestif, culinary spice, and in the formulation of herbal medicines.",
+        "specs": [
+            [
+                "HS Code",
+                "09096139"
+            ],
+            [
+                "Variety",
+                "Lucknowi (Thin), Bold, Singapore Quality"
+            ],
+            [
+                "Purity",
+                "98% - 99.5% Min (Sortex)"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Gujarat / Rajasthan, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "13-14 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "fenugreek": {
+        "description": "Indian Fenugreek Seeds (Methi) are a powerhouse of minerals and essential oils. Cultivated in the fertile plains of North India, our seeds are known for their bitter-sweet taste and maple-like aroma. We offer high-purity Sortex-cleaned seeds suitable for culinary spice blends, nutraceuticals, and traditional Ayurvedic remedies.",
+        "specs": [
+            [
+                "HS Code",
+                "09109912"
+            ],
+            [
+                "Purity",
+                "99% - 99.5% Min"
+            ],
+            [
+                "Moisture",
+                "9-10% Max"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% - 1% Max"
+            ],
+            [
+                "Total Ash",
+                "7% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Gujarat / MP, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "22-24 MT (20ft FCL)"
             ]
         ]
     },
@@ -102,8 +475,12 @@
         "description": "India is the global leader in rice production, offering the finest Basmati and Non-Basmati varieties. Our Basmati Rice, known as the 'Scented Pearl', features extra-long grains that elongate twice their size upon cooking with a heavenly aroma. Non-Basmati varieties like IR64 and Sona Masoori offer excellent texture for daily consumption. All our rice is well-milled, 100% Sortex cleaned, and free from polishing agents, ensuring nutritional integrity and superior taste.",
         "specs": [
             [
+                "HS Code",
+                "10063020 (Basmati) / 10063010 (Non-Basmati)"
+            ],
+            [
                 "Type",
-                "1121 Basmati, 1509 Sella, IR64, Parboiled"
+                "1121 Basmati, 1509 Sella, IR64, Sona Masoori, Parboiled"
             ],
             [
                 "Grain Length",
@@ -126,8 +503,16 @@
                 "2% Max"
             ],
             [
-                "Milling Grinding",
+                "Processing",
                 "Well Milled & Sortex Cleaned"
+            ],
+            [
+                "Packing",
+                "10kg, 20kg, 25kg, 50kg PP/Jute/Non-Woven Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24-25 MT (20ft FCL)"
             ]
         ]
     },
@@ -135,8 +520,12 @@
         "description": "Indian Sesame Seeds are highly valued for their rich oil content (up to 50%) and distinct nutty flavor. We offer Natural, Hulled, and Black Sesame seeds, all processed in state-of-the-art facilities. Our Hulled Sesame is processed using both chemical-free mechanical hulling and salt-water methods. These seeds are a rich source of calcium, iron, and antioxidants, and are widely used in bakery products, tahini, and oil extraction.",
         "specs": [
             [
+                "HS Code",
+                "12074090"
+            ],
+            [
                 "Type",
-                "Natural, Hulled, Black (99.9% Purity)"
+                "Natural, Hulled (99.98% Purity), Black"
             ],
             [
                 "Oil Content",
@@ -152,21 +541,29 @@
             ],
             [
                 "Purity",
-                "99.9% - 99.95% (Sortex)"
+                "99% - 99.95% (Sortex)"
             ],
             [
                 "Origin",
-                "Gujarat / West Bengal, India"
+                "Gujarat / West Bengal / UP, India"
             ],
             [
-                "Size",
-                "Uniform Bold Seeds"
+                "Packing",
+                "25kg / 50kg PP/Paper Bags"
+            ],
+            [
+                "FCL Loadability",
+                "19-20 MT (20ft FCL)"
             ]
         ]
     },
     "mustard": {
         "description": "Yellow and Brown Mustard seeds from India are prized for their pungent flavor and oil-rich properties. Yellow (Sinapis alba) is milder and preferred for condiments, while Brown (Brassica juncea) has medium-high heat. Our seeds are machine-cleaned and handpicked (HPS) to ensure zero foreign matter. They are an essential ingredient in spice blends, mustard pastes, and traditional pickling.",
         "specs": [
+            [
+                "HS Code",
+                "12075000"
+            ],
             [
                 "Variety",
                 "Yellow Mustard, Brown Mustard, Black"
@@ -185,21 +582,29 @@
             ],
             [
                 "Foreign Matter",
-                "1% Max"
+                "0.5% - 1% Max"
             ],
             [
                 "Origin",
                 "Rajasthan / Gujarat, India"
             ],
             [
-                "Harvest",
-                "Feb / March (Rabi Crop)"
+                "Packing",
+                "25kg / 50kg New PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "22-24 MT (20ft FCL)"
             ]
         ]
     },
     "groundnut": {
         "description": "Indian Groundnuts (Peanuts) are known for their sweet flavor and high nutritional content. We supply both Bold (Runner) and Java (Spanish) varieties, shelled or in-shell. The Bold variety is larger and ideal for roasting, while Java is smaller and preferred for confectionery. Our groundnuts are strictly tested for Aflatoxin (B1/B2/G1/G2) to meet stringent EU and USA standards.",
         "specs": [
+            [
+                "HS Code",
+                "12024210 (Kernels)"
+            ],
             [
                 "Variety",
                 "Bold / Java (HPS Shelling)"
@@ -227,19 +632,191 @@
             [
                 "Origin",
                 "Gujarat (Saurashtra), India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Jute/Vacuum Bags"
+            ],
+            [
+                "FCL Loadability",
+                "19-20 MT (20ft FCL)"
             ]
         ]
     },
-    "pulses": {
-        "description": "Indian Pulses are a vital source of protein and essential minerals. We export a wide range including Kabuli Chickpeas, Desi Chickpeas, Red Lentils (Masoor), and Black Matpe (Urad). Our pulses are processed in modern milling units where they are graded, cleaned, and sorted. We ensure uniform size, high germination power (for whole pulses), and freedom from insect infestation.",
+    "maize": {
+        "description": "Indian Yellow Maize (Corn) is a leading source of energy for both humans and livestock. Grown across India, it is preferred for its high starch content and nutritional value. We export food-grade and feed-grade maize, thoroughly cleaned and graded. Our maize is free from pests and harmful chemicals, meeting rigorous international quality standards for export.",
         "specs": [
             [
-                "Items",
-                "Chickpeas, Lentils, Black Matpe, Peas"
+                "HS Code",
+                "10059011 / 10059013"
             ],
             [
-                "Count/Size",
-                "8 mm - 14 mm (Kabuli) / 4 mm (Lentils)"
+                "Variety",
+                "Yellow Maize, White Maize"
+            ],
+            [
+                "Moisture",
+                "12% - 14% Max"
+            ],
+            [
+                "Protein Content",
+                "8% - 10% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% - 2% Max"
+            ],
+            [
+                "Shriveled/Immature",
+                "2% - 3% Max"
+            ],
+            [
+                "Origin",
+                "Karnataka / Bihar / MP / Maharashtra, India"
+            ],
+            [
+                "Packing",
+                "50kg / 100kg Jute/PP Bags / Bulk in Cont."
+            ],
+            [
+                "FCL Loadability",
+                "24-25 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "barley": {
+        "description": "Indian Barley is highly sought after for malting, brewing, and animal feed. Cultivated in the fertile Indo-Gangetic plains, it is rich in dietary fiber and essential minerals. We offer premium six-row barley varieties, cleaned and graded. Our barley is tested for protein content and germination power to meet the specific requirements of the global brewing industry.",
+        "specs": [
+            [
+                "HS Code",
+                "10039000"
+            ],
+            [
+                "Type",
+                "6-Row Barley, Malting Grade, Feed Grade"
+            ],
+            [
+                "Moisture",
+                "12% - 14% Max"
+            ],
+            [
+                "Protein",
+                "10% - 12% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% - 2% Max"
+            ],
+            [
+                "Admixture",
+                "2% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Haryana / Punjab, India"
+            ],
+            [
+                "Packing",
+                "50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "22 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "sorghum": {
+        "description": "Indian Sorghum (Jowar) is a versatile gluten-free cereal used for food, feed, and ethanol production. we supply Creamy White and Yellow Sorghum. Grown in semi-arid regions, our sorghum is drought-resistant and nutrient-dense. It is Sortex-cleaned to ensure maximum purity, making it suitable for healthy snacks, flour, and poultry feed.",
+        "specs": [
+            [
+                "HS Code",
+                "10079000"
+            ],
+            [
+                "Type",
+                "Creamy White / Yellow"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Shriveled Kernels",
+                "3% Max"
+            ],
+            [
+                "Origin",
+                "Maharashtra / Karnataka / AP, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24-25 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "millet": {
+        "description": "India is the global hub for Millets like Bajra (Pearl Millet). These 'Superfoods' are prized for their high nutritional profile and gluten-free status. Our millets are sourced from organic-practicing regions and processed carefully to maintain their wholesome goodness. We offer Sortex-cleaned millets that are free from dust and stones, ready for global health-conscious markets.",
+        "specs": [
+            [
+                "HS Code",
+                "10082920 (Pearl Millet/Bajra)"
+            ],
+            [
+                "Type",
+                "Pearl Millet (Bajra), Finger Millet (Ragi)"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min (Sortex)"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Gujarat / Maharashtra, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24-25 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "kabuli_chickpeas": {
+        "description": "Indian Kabuli Chickpeas (Garbanzo Beans) are world-famous for their large size, creamy color, and nutty flavor. Sourced from the black soils of Central India, we offer various sizes ranging from 8mm to 14mm. Our chickpeas are Sortex-cleaned and hand-picked to ensure zero defects, making them ideal for Middle Eastern and Western cuisines.",
+        "specs": [
+            [
+                "HS Code",
+                "07132010"
+            ],
+            [
+                "Size (mm)",
+                "8mm, 9mm, 10mm, 11mm, 12mm, 14mm"
+            ],
+            [
+                "Count (per oz)",
+                "38/40, 40/42, 42/44, 44/46, 58/60"
             ],
             [
                 "Moisture",
@@ -247,11 +824,303 @@
             ],
             [
                 "Purity",
-                "99.5% Min (Sortex Clear)"
+                "99.5% Min (Sortex)"
             ],
             [
-                "Broken/Damaged",
-                "1-2% Max"
+                "Foreign Matter",
+                "0.2% Max"
+            ],
+            [
+                "Origin",
+                "Madhya Pradesh / Maharashtra, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags / Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "desi_chickpeas": {
+        "description": "Indian Desi Chickpeas (Bengal Gram) are smaller, darker, and more nutrient-dense than the Kabuli variety. Grown primarily in Rajasthan and Madhya Pradesh, they are a staple protein source. We offer high-quality, uniform seeds that are cleaned and graded, widely used for making Besan (Gram Flour) and specialized dishes in Southeast Asian markets.",
+        "specs": [
+            [
+                "HS Code",
+                "07132020"
+            ],
+            [
+                "Variety",
+                "Small (Regular), Large"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Purity",
+                "98% - 99% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / MP / Gujarat, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "lentils": {
+        "description": "Indian Lentils, including Red Lentils (Masoor), are globally recognized for their fast cooking and high protein content. cultivated in the fertile plains, our lentils feature uniform size and vibrant color. We ensure they are free from foreign matter and pests, making them perfect for soups, stews, and split lentil preparation for international food industries.",
+        "specs": [
+            [
+                "HS Code",
+                "07134000"
+            ],
+            [
+                "Variety",
+                "Red Lentils (Masoor), Whole / Polished"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "UP / Bihar / MP, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24-25 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "black_matpe": {
+        "description": "Indian Black Matpe (Urad) is highly valued for its sticky texture and robust flavor when cooked. It is an essential ingredient in various Asian cuisines. We source premium Urad from central and southern India, ensuring the beans are well-dried and free from insect infestation. Available in whole and split forms for global distribution.",
+        "specs": [
+            [
+                "HS Code",
+                "07133110 / 07133190"
+            ],
+            [
+                "Variety",
+                "Black Matpe (Whole), FAQ / SQ / Polished"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Maharashtra / MP / Andhra Pradesh, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Jute/PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "yellow_peas": {
+        "description": "Indian Yellow Peas are a cost-effective and nutritious protein source used for flour and snacking. Sourced from North India, our yellow peas are well-graded and cleaned. They provide a smooth texture and mild flavor, meeting the quality standards required for global pulse markets and institutional food services.",
+        "specs": [
+            [
+                "HS Code",
+                "07131010"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "98% Min"
+            ],
+            [
+                "Foreign Matter",
+                "2% Max"
+            ],
+            [
+                "Damaged/Broken",
+                "2% Max"
+            ],
+            [
+                "Origin",
+                "UP / Punjab, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "24-25 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "almonds": {
+        "description": "Selected Indian Almonds are sourced from the best orchards and processed to retain their crunchy texture and sweet taste. Rich in Vitamin E and antioxidants, our almonds are graded by size and quality. We ensure they are free from aflatoxins and chemical residues, providing a premium health snack and a high-quality ingredient for the confectionery industry.",
+        "specs": [
+            [
+                "HS Code",
+                "08021100 / 08021200"
+            ],
+            [
+                "Type",
+                "Hard Shell, Soft Shell, Kernels"
+            ],
+            [
+                "Moisture",
+                "6% Max"
+            ],
+            [
+                "Purity",
+                "99.5% Min (Sortex)"
+            ],
+            [
+                "Aflatoxin",
+                "< 5 PPB"
+            ],
+            [
+                "Origin",
+                "Kashmir / Himachal, India"
+            ],
+            [
+                "Packing",
+                "10kg / 25kg / 50kg Bags / Cartons"
+            ],
+            [
+                "FCL Loadability",
+                "18-20 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "cashews": {
+        "description": "Indian Cashews are globally renowned for their ivory-white color and rich buttery flavor. We supply various grades like W180 to W450. Our cashews are processed in modern units with strict control on roasting and peeling to ensure whole, blemish-free kernels. They are vacuum-packed to maintain freshness and aroma throughout the international shipping process.",
+        "specs": [
+            [
+                "HS Code",
+                "08013210 / 08013220"
+            ],
+            [
+                "Grade",
+                "W180, W210, W240, W320, W450, Pieces"
+            ],
+            [
+                "Moisture",
+                "3-5% Max"
+            ],
+            [
+                "Broken Pieces",
+                "2-5% Max"
+            ],
+            [
+                "Color",
+                "White / Pale Ivory"
+            ],
+            [
+                "Origin",
+                "Goa / Mangalore / Vijayawada, India"
+            ],
+            [
+                "Packing",
+                "11.34kg Vacuum Tins / Flexible Packs"
+            ],
+            [
+                "FCL Loadability",
+                "15-16 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "pistachios": {
+        "description": "Indian Pistachios are prized for their unique green kernels and delicate nutty flavor. Sourced from select high-altitude regions, our pistachios are graded for size and shell opening. We ensure they are roasted and salted to perfection or supplied raw as per buyer requirements, meeting all international food safety certifications.",
+        "specs": [
+            [
+                "HS Code",
+                "08025100 / 08025200"
+            ],
+            [
+                "Type",
+                "In-shell, Kernels"
+            ],
+            [
+                "Moisture",
+                "5-7% Max"
+            ],
+            [
+                "Purity",
+                "99.5% Min"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Shape",
+                "Round / Long"
+            ],
+            [
+                "Origin",
+                "North India (Sourced/Grown)"
+            ],
+            [
+                "Packing",
+                "10kg / 25kg PP Bags / Cartons"
+            ]
+        ]
+    },
+    "raisins": {
+        "description": "Indian Raisins (Kishmish) are sun-dried and Sortex-cleaned to provide a sweet, tender experience. We offer Golden, Green, and Black varieties. Sourced from the vineyards of Nasik and Sangli, our raisins are processed without harmful preservatives, retaining their natural goodness and high fiber content for healthy snacking and baking.",
+        "specs": [
+            [
+                "HS Code",
+                "08062010"
+            ],
+            [
+                "Variety",
+                "Golden, Green, Black, Brown"
+            ],
+            [
+                "Moisture",
+                "15% - 18% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
             ],
             [
                 "Foreign Matter",
@@ -259,79 +1128,1190 @@
             ],
             [
                 "Origin",
-                "Madhya Pradesh / Maharashtra, India"
+                "Maharashtra (Nasik/Sangli), India"
+            ],
+            [
+                "Packing",
+                "5kg, 10kg, 15kg Corrugated Boxes"
+            ],
+            [
+                "FCL Loadability",
+                "20-22 MT (20ft FCL)"
             ]
         ]
     },
-    "nuts": {
-        "description": "We supply premium quality Indian Cashews, Almonds, and Pistachios. Our Cashews (W180 to W450) are world-famous for their ivory color and buttery taste. Our almonds and raisins are sourced from the best orchards and processed using advanced drying and sorting tech. These nuts are packed in vacuum-sealed tins or nitrogen-filled bags to maintain freshness and prevent oxidation during long-range transport.",
+    "desiccated_coconut": {
+        "description": "Our Desiccated Coconut is made from the finest selected coconuts, processed under strict hygienic conditions. It is available in Fine and Medium grades. Naturally sweet and rich in healthy fats, it is perfect for the bakery, confectionery, and savory food industries. We ensure zero chemical bleaching, providing an authentic tropical flavor and pure white appearance.",
         "specs": [
             [
-                "Items",
-                "Cashews, Almonds, Pistachios, Raisins"
+                "HS Code",
+                "08011100"
             ],
             [
-                "Cashew Grade",
-                "W180, W210, W240, W320"
+                "Grades",
+                "Fine, Medium"
             ],
             [
-                "Purity",
-                "99.5% Min"
+                "Oil Content",
+                "60% - 65% Min"
             ],
             [
                 "Moisture",
-                "5-8% Max (Nuts) / 15% (Raisins)"
+                "3% Max"
             ],
             [
-                "Damaged Kernels",
-                "0.5% Max"
+                "Purity",
+                "100% (No artificial flavor)"
             ],
             [
-                "Packaging",
-                "Vacuum Tins / CO2 Filled Bags"
+                "Color",
+                "Pure White"
             ],
             [
                 "Origin",
-                "Pan India (Goa/Mangalore for Cashew)"
+                "Karnataka / Tamil Nadu / Kerala, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Multi-wall Paper/PP Bags"
+            ],
+            [
+                "FCL Loadability",
+                "12-14 MT (20ft FCL)"
             ]
         ]
     },
-    "oilcake": {
-        "description": "Indian De-Oiled Cakes (DOC) and Oil Cakes are premium ingredients for the global animal feed industry. Rich in bypass protein and nutrients, our Cottonseed, Groundnut, Soya, and Rapeseed meals are processed under hygienic conditions. They provide excellent energy and amino acid profiles for poultry, cattle, and aquaculture. Our High-Pro Soya Meal is particularly valued for its digestibility.",
+    "pomegranate_seeds": {
+        "description": "Indian Dried Pomegranate Seeds (Anardana) are used as a souring agent in various cuisines. Sourced from premium pomegranates, the seeds are sun-dried to a deep reddish-black color. They provide a tangy, fruity punch and are rich in antioxidants. Our Anardana is Sortex-cleaned and free from extraneous matter, ensuring a clean and consistent product.",
         "specs": [
             [
-                "Type",
-                "Soya, Cottonseed, Groundnut, Rapeseed"
+                "HS Code",
+                "08134010"
             ],
             [
-                "Protein",
-                "46% (Soya) / 25% (Cotton) / 45% (G'nut)"
+                "Appearance",
+                "Reddish Black Seeds"
             ],
             [
                 "Moisture",
                 "10-12% Max"
             ],
             [
-                "Fiber",
-                "4% - 15% Max (varies by type)"
+                "Purity",
+                "99% Min"
             ],
             [
-                "Fat/Oil",
-                "1% - 6% (Expeller/De-Oiled)"
+                "Acidity",
+                "10% - 15% Min"
+            ],
+            [
+                "Origin",
+                "Gujarat / Maharashtra, India"
+            ],
+            [
+                "Packing",
+                "25kg PP/Jute Bags"
+            ],
+            [
+                "Shelf Life",
+                "12-24 Months"
+            ]
+        ]
+    },
+    "soya_doc": {
+        "description": "Indian Soya De-Oiled Cake (DOC) is a premium protein source for the global animal feed industry. Extracted from Non-GMO soybeans, it boasts high digestibility and an excellent amino acid profile. We ensure the meal is processed under optimal temperature to eliminate anti-nutritional factors while preserving protein integrity for poultry and livestock.",
+        "specs": [
+            [
+                "HS Code",
+                "23040020 / 23040030"
+            ],
+            [
+                "Protein",
+                "46% - 48% Min"
+            ],
+            [
+                "Oil Content",
+                "0.5% - 1.25% Max (DOC)"
+            ],
+            [
+                "Moisture",
+                "10% - 12% Max"
+            ],
+            [
+                "Crude Fiber",
+                "6% Max"
             ],
             [
                 "Sand/Silica",
-                "1-2% Max"
+                "1.5% Max"
+            ],
+            [
+                "Urease Activity",
+                "0.05 - 0.50 mgN/gm (at 30C)"
+            ],
+            [
+                "Origin",
+                "Madhya Pradesh / Maharashtra, India"
+            ],
+            [
+                "Packing",
+                "50kg PP Bags / Bulk in Container"
+            ]
+        ]
+    },
+    "rapeseed_meal": {
+        "description": "Indian Rapeseed Meal (De-Oiled) is highly valued for its high protein and mineral content. We provide high-quality meal with low glucosinolate levels, making it safe and nutritious for cattle and aquaculture. Our meal is free from chemical residues and pests, processed in modern solvent extraction plants to ensure consistent quality for global exports.",
+        "specs": [
+            [
+                "HS Code",
+                "23064100 / 23064900"
+            ],
+            [
+                "Protein (Profat)",
+                "38% Min"
+            ],
+            [
+                "Oil Content",
+                "1% Max"
+            ],
+            [
+                "Moisture",
+                "10% - 12% Max"
+            ],
+            [
+                "Crude Fiber",
+                "10% - 12% Max"
+            ],
+            [
+                "Sand/Silica",
+                "2.5% Max"
+            ],
+            [
+                "Origin",
+                "Rajasthan / Gujarat, India"
+            ],
+            [
+                "Packing",
+                "50kg PP Bags / Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "21-22 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "cottonseed_doc": {
+        "description": "Indian Cottonseed De-Oiled Cake is a rich source of bypass protein for dairy animals. Extracted from premium cottonseeds, our meal is processed to ensure cleanliness and high nutritional value. It helps in improving milk yield and quality. We provide high-pro cottonseed meal that is free from contaminants and stored in hygienic conditions.",
+        "specs": [
+            [
+                "HS Code",
+                "23061020"
+            ],
+            [
+                "Protein",
+                "38% - 40% Min"
+            ],
+            [
+                "Oil Content",
+                "1% - 1.5% Max"
+            ],
+            [
+                "Moisture",
+                "10% - 11% Max"
+            ],
+            [
+                "Crude Fiber",
+                "10% - 12% Max"
+            ],
+            [
+                "Sand/Silica",
+                "1% - 2% Max"
+            ],
+            [
+                "Origin",
+                "Gujarat / Maharashtra / Telangana, India"
+            ],
+            [
+                "Packing",
+                "50kg PP Bags / Jute Bags"
+            ]
+        ]
+    },
+    "groundnut_oil_cake": {
+        "description": "Indian Groundnut Oil Cake is a classic, highly palatable protein supplement for livestock. Sourced from the oil-rich groundnuts of Gujarat, our cake is available in expeller and de-oiled forms. It is rich in energy and provides essential fatty acids. We ensure our oil cakes are tested for aflatoxin levels to meet international safety standards for animal nutrition.",
+        "specs": [
+            [
+                "HS Code",
+                "23050000"
+            ],
+            [
+                "Protein",
+                "45% - 48% Min"
+            ],
+            [
+                "Oil Content",
+                "0.5% - 1.5% Max (DOC) / 5-7% (Expeller)"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Crude Fiber",
+                "10% Max"
+            ],
+            [
+                "Sand/Silica",
+                "2% Max"
+            ],
+            [
+                "Origin",
+                "Gujarat, India"
+            ],
+            [
+                "Packing",
+                "50kg PP/Jute Bags"
+            ]
+        ]
+    },
+    "rice_bran_doc": {
+        "description": "Indian Rice Bran De-Oiled Cake (DOC) is a valuable byproduct of the rice milling industry, widely used in animal feed and as a biofuel. It is rich in protein and fiber. Our meal is processed through solvent extraction to remove the oil while retaining the fiber and minerals. It is an economical and effective ingredient for poultry, cattle, and fish feed.",
+        "specs": [
+            [
+                "HS Code",
+                "23069090"
+            ],
+            [
+                "Protein",
+                "14% - 16% Min"
+            ],
+            [
+                "Oil Content",
+                "0.5% - 0.8% Max"
+            ],
+            [
+                "Moisture",
+                "10% - 12% Max"
+            ],
+            [
+                "Crude Fiber",
+                "12% - 15% Max"
+            ],
+            [
+                "Sand/Silica",
+                "4% - 5% Max"
+            ],
+            [
+                "Origin",
+                "Pan India (Rice Growing Belts)"
+            ],
+            [
+                "Packing",
+                "50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "14-15 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "asafoetida": {
+        "description": "Indian Asafoetida (Hing) is known for its strong, unique aroma and flavor-enhancing properties, especially in vegetarian cuisine. We provide premium compounded Hing in powder and lump forms. Sourced and processed under strict quality control, our Asafoetida is 100% authentic, free from synthetic colors, and highly valued for its digestive benefits and culinary depth.",
+        "specs": [
+            [
+                "HS Code",
+                "13019013"
             ],
             [
                 "Form",
-                "Flakes / Powder / Pallets"
+                "Powder, Lumps, Tablet"
+            ],
+            [
+                "Purity",
+                "High Quality Compounded"
+            ],
+            [
+                "Appearance",
+                "Brownish / Milky White"
+            ],
+            [
+                "Origin",
+                "India (Processed/Sourced)"
+            ],
+            [
+                "Packing",
+                "10g to 1kg Bottles / Tins / Pouches"
+            ],
+            [
+                "Shelf Life",
+                "24 Months"
+            ]
+        ]
+    },
+    "basil": {
+        "description": "Indian Basil Seeds (Sabja) and Dried Basil Leaves are prized for their refreshing aroma and health benefits. Our Basil Seeds are 100% natural, rich in fiber, and known for their cooling properties. Sourced from the best farms, they are thoroughly cleaned and Sortex-graded to ensure high purity and excellent swelling power for beverages and health foods.",
+        "specs": [
+            [
+                "HS Code",
+                "12119094 / 12119099"
+            ],
+            [
+                "Type",
+                "Basil Seeds (Sabja), Dried Leaves"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Origin",
+                "UP / Bihar / MP, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags / Jute Bags"
+            ]
+        ]
+    },
+    "bay_leaves": {
+        "description": "Indian Bay Leaves (Tejpatta) are highly aromatic and offer a sweet, cinnamon-like fragrance. Harvested from the foothills of the Himalayas, our leaves are carefully sun-dried to preserve their natural oils and vibrant green-brown color. They are an essential flavoring agent in biryanis, stews, and herbal teas, meeting premium international grades for export.",
+        "specs": [
+            [
+                "HS Code",
+                "09109929"
+            ],
+            [
+                "Appearance",
+                "Large, Dry, Unbroken Leaves"
+            ],
+            [
+                "Color",
+                "Olive Green / Brownish"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Origin",
+                "North East India / Himalayas"
+            ],
+            [
+                "Packing",
+                "10kg / 20kg Jute/PP Bags / Carton Boxes"
+            ]
+        ]
+    },
+    "ajwain": {
+        "description": "Indian Ajwain (Bishop's Weed) is famous for its sharp, thyme-like flavor and powerful medicinal properties. Growing primarily in Gujarat and Rajasthan, our Ajwain is machine-cleaned and Sortex-processed. It is highly valued in the global market for its high thymol content, aiding in digestion and used extensively in spice blends and pharmaceuticals.",
+        "specs": [
+            [
+                "HS Code",
+                "09109914"
+            ],
+            [
+                "Purity",
+                "99% - 99.5% Min (Sortex)"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Total Ash",
+                "9% Max"
+            ],
+            [
+                "Volatile Oil",
+                "2.5% - 3.5% Min"
+            ],
+            [
+                "Origin",
+                "Gujarat / Rajasthan, India"
+            ],
+            [
+                "Packing",
+                "25kg / 40kg / 50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "12 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "celery": {
+        "description": "Indian Celery Seeds are prized for their strong, savory flavor and medicinal extracts. Sourced from the Punjab region, our seeds are thoroughly cleaned and graded. They are a significant source of essential oils used in the perfume industry, savory spice mixes, and traditional medicine, meeting all global standards for purity and aroma.",
+        "specs": [
+            [
+                "HS Code",
+                "09109915"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Total Ash",
+                "10% Max"
+            ],
+            [
+                "Origin",
+                "Punjab / Haryana, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
+            ]
+        ]
+    },
+    "curry_leaf": {
+        "description": "Indian Curry Leaves are renowned for their distinct, warm aroma and nutty flavor. We provide fresh and hygienically dehydrated curry leaves. Sourced from South India, our leaves are processed to retain their dark green color and essential nutritional profile. They are a staple in Southeast Asian cooking and are increasingly used in nutraceuticals.",
+        "specs": [
+            [
+                "HS Code",
+                "07099990 / 09109100"
+            ],
+            [
+                "Form",
+                "Fresh / Dehydrated Leaves / Powder"
+            ],
+            [
+                "Appearance",
+                "Dark Green Leaf"
+            ],
+            [
+                "Moisture",
+                "8-10% Max (Dehydrated)"
+            ],
+            [
+                "Origin",
+                "South India"
+            ],
+            [
+                "Packing",
+                "Vacuum Packs / Corrugated Boxes"
+            ]
+        ]
+    },
+    "dill": {
+        "description": "Indian Dill Seeds (Suva) are characterized by their pungent, tangy flavor and are a key ingredient in pickling and spice mixes. Grown in Gujarat and Rajasthan, our dill seeds are Sortex-cleaned to ensure maximum purity. They are rich in essential oils and are highly sought after by international condiments and health food manufacturers.",
+        "specs": [
+            [
+                "HS Code",
+                "09109913"
+            ],
+            [
+                "Purity",
+                "99% - 99.5% Min"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Total Ash",
+                "10% Max"
+            ],
+            [
+                "Origin",
+                "Gujarat / Rajasthan, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "13 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "hyssop": {
+        "description": "Indian Hyssop is a medicinal herb known for its minty aroma and therapeutic benefits. Sourced from high-altitude regions, it is used in herbal teas, essential oils, and traditional medicine. Our Hyssop is carefully dried and processed to ensure the retention of its natural bioactive compounds, meeting European and American botanical standards.",
+        "specs": [
+            [
+                "HS Code",
+                "12119094"
+            ],
+            [
+                "Form",
+                "Dried Leaves / Flowers"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Moisture",
+                "10% Max"
+            ],
+            [
+                "Foreign Matter",
+                "1% Max"
+            ],
+            [
+                "Origin",
+                "Himalayan Region, India"
+            ],
+            [
+                "Packing",
+                "10kg / 25kg Bags / Cartons"
+            ]
+        ]
+    },
+    "juniper_berry": {
+        "description": "Selected Indian Juniper Berries are known for their sharp, piney aroma and sweet-tangy taste. harvested from the Himalayan forests, these berries are aged and dried to concentrate their flavor. They are an essential botanical for gin production, culinary rubs, and essential oils, sourced with respect for forest sustainability.",
+        "specs": [
+            [
+                "HS Code",
+                "12119033"
+            ],
+            [
+                "Appearance",
+                "Uniform Dark Blue / Blackish"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Origin",
+                "Himalayan Mountains, India"
+            ],
+            [
+                "Packing",
+                "25kg PP/Jute Bags / Boxes"
+            ]
+        ]
+    },
+    "kokam": {
+        "description": "Indian Kokam (Garcinia indica) is a unique fruit from the Konkan coast prized for its tangy flavor and cooling properties. We supply dried kokam skins (Amsul) and flowers. Naturally processed without synthetic additives, our kokam is rich in antioxidants and is a key ingredient in traditional health drinks and culinary sauces.",
+        "specs": [
+            [
+                "HS Code",
+                "12129910 / 12079940"
+            ],
+            [
+                "Form",
+                "Dried Skins (Halves), Flowers"
+            ],
+            [
+                "Appearance",
+                "Deep Purple / Blackish Red"
+            ],
+            [
+                "Moisture",
+                "12-14% Max"
+            ],
+            [
+                "Purity",
+                "100% Natural"
+            ],
+            [
+                "Origin",
+                "Konkan Coast (Maharashtra / Goa), India"
+            ],
+            [
+                "Packing",
+                "10kg / 25kg Bags / Vacuum Packs"
+            ]
+        ]
+    },
+    "long_pepper": {
+        "description": "Indian Long Pepper (Pipli) is a unique spice with a complex, sweet-hot flavor compared to black pepper. Sourced from the moist evergreen forests, it is highly valued in Ayurvedic medicine and gourmet cooking. Our Pipli is thoroughly dried and graded for size and potency, delivering the authentic spicy punch desired for premium extracts.",
+        "specs": [
+            [
+                "HS Code",
+                "09041110"
+            ],
+            [
+                "Appearance",
+                "Whole, Unbroken Spikes"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Origin",
+                "Assam / Kerala / South India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Jute/PP Bags"
+            ]
+        ]
+    },
+    "mace": {
+        "description": "Indian Mace (Javitri), the lacy covering of the nutmeg, is world-famous for its delicate, warm flavor and bright orange-red color. Sourced from South Indian plantations, our mace is hand-picked and sun-dried. We provide high-pro mace rich in volatile oils, perfect for luxury spice blends, perfumes, and high-end culinary applications.",
+        "specs": [
+            [
+                "HS Code",
+                "090821 / 090822"
+            ],
+            [
+                "Appearance",
+                "Whole Blades / Broken / Powder"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Foreign Matter",
+                "0.5% Max"
+            ],
+            [
+                "Volatile Oil",
+                "5% Min"
+            ],
+            [
+                "Color",
+                "Bright Orange / Reddish"
+            ],
+            [
+                "Origin",
+                "Kerala, India"
+            ],
+            [
+                "Packing",
+                "10kg / 25kg Corrugated Boxes / Multi-wall Bags"
+            ]
+        ]
+    },
+    "mint": {
+        "description": "Indian Mint (Pudina) is globally recognized for its high menthol content and refreshing aroma. We supply premium dried mint leaves and powder. Sourced from the northern plains, our mint is processed in hygienic facilities to retain its vibrant green color and cooling flavor, ideal for beverages, condiments, and the pharmaceutical industry.",
+        "specs": [
+            [
+                "HS Code",
+                "12119099"
+            ],
+            [
+                "Form",
+                "Dried Leaves / Crushed / Powder"
+            ],
+            [
+                "Moisture",
+                "8-10% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Appearance",
+                "Greenish Grey Leaves"
+            ],
+            [
+                "Origin",
+                "North India"
+            ],
+            [
+                "Packing",
+                "10kg / 20kg Jute/PP Bags / Boxes"
+            ]
+        ]
+    },
+    "nutmeg": {
+        "description": "Indian Nutmeg is highly prized for its sweet, spicy aroma and rich essential oils. harvested from the spice gardens of Kerala, our nuts are graded by size and density (ABCD/Shor grades). We ensure zero mold (Aflatoxin-free) through proper drying techniques, providing a premium spice for the global food, cosmetic, and medicinal industries.",
+        "specs": [
+            [
+                "HS Code",
+                "09081100 / 09081200"
+            ],
+            [
+                "Type",
+                "With Shell / Without Shell"
+            ],
+            [
+                "Moisture",
+                "10-12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Appearance",
+                "Uniform Oval Seeds"
+            ],
+            [
+                "Origin",
+                "Kerala (Malabar Coast), India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP Bags / Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "10-12 MT (20ft FCL)"
+            ]
+        ]
+    },
+    "star_anise": {
+        "description": "Indian Star Anise is world-renowned for its beautiful star shape and intense licorice-like aroma. harvested from the north-eastern regions, our star anise is carefully dried to preserve its eight-pointed structure and rich anethole content. It is a key ingredient in garam masala, traditional Asian dishes, and herbal infusions.",
+        "specs": [
+            [
+                "HS Code",
+                "090961"
+            ],
+            [
+                "Appearance",
+                "Whole 8-Pointed Stars"
+            ],
+            [
+                "Moisture",
+                "12% - 14% Max"
+            ],
+            [
+                "Broken Pieces",
+                "5% - 10% Max"
+            ],
+            [
+                "Origin",
+                "North East India"
+            ],
+            [
+                "Packing",
+                "10kg / 20kg Carton Boxes / PP Sacks"
+            ]
+        ]
+    },
+    "sweet_flag": {
+        "description": "Indian Sweet Flag (Vacha/Acorus calamus) is a powerful medicinal rhizome known for its aromatic properties and cognitive-enhancing benefits. Sourced from traditional herbal farms, our Vacha is thoroughly cleaned and dried. It is used extensively in Ayurvedic formulations, essential oils, and as a botanical flavoring in various industries.",
+        "specs": [
+            [
+                "HS Code",
+                "13021990 / 12119099"
+            ],
+            [
+                "Form",
+                "Whole Dried Rhizomes / Sliced / Powder"
+            ],
+            [
+                "Moisture",
+                "12% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Origin",
+                "South India / Himalayan Foothills"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Bags / Jute Bags"
+            ]
+        ]
+    },
+    "tamarind": {
+        "description": "Indian Tamarind is globally celebrated for its unique sweet-sour flavor and rich pulp content. We provide Seedless, With-Seed, and Concentrated Paste forms. Sourced from South and Central India, our tamarind is hygienically processed to remove fiber and dirt, offering a consistent and high-quality ingredient for sauces, confections, and industrial applications.",
+        "specs": [
+            [
+                "HS Code",
+                "08134010 / 08109020"
+            ],
+            [
+                "Type",
+                "Seedless, With Seeds, Paste"
+            ],
+            [
+                "Appearance",
+                "Brown / Dark Brown / Blackish"
+            ],
+            [
+                "Moisture",
+                "15% - 20% Max (Dried Case)"
+            ],
+            [
+                "Purity",
+                "99% Min (Fiber-less available)"
+            ],
+            [
+                "Origin",
+                "South India / Chhattisgarh, India"
+            ],
+            [
+                "Packing",
+                "250g to 1kg Blocks / 25kg Bulk Sacks"
+            ]
+        ]
+    },
+    "fruits_vegetables": {
+        "description": "Mark Overseas specializes in the export of premium Indian Fresh Fruits and Vegetables, sourced from the most fertile agricultural belts. Our range includes world-famous Nashik Onions, Potatoes from Gujarat/UP, and seasonal delights like Alphonso and Kesar Mangoes. We maintain a robust cold chain and rapid logistics to ensure 'farm-to-table' freshness. Additionally, we provide top-grade dehydrated vegetables that retain all natural flavors and nutrients for food processing industries.",
+        "specs": [
+            [
+                "HS Code (Onion)",
+                "07031010"
+            ],
+            [
+                "HS Code (Potato)",
+                "07019000"
+            ],
+            [
+                "HS Code (Mango)",
+                "080450"
+            ],
+            [
+                "HS Code (Banana)",
+                "08039010"
+            ],
+            [
+                "Origin",
+                "Nashik, Gujarat, UP, India"
+            ],
+            [
+                "Quality",
+                "A-Grade / Export Quality"
+            ],
+            [
+                "Processing",
+                "Manual Sorting & Grading"
+            ],
+            [
+                "Packing",
+                "Mesh Bags, Corrugated Boxes, Vacuum Packs"
+            ],
+            [
+                "FCL Loadability",
+                "Varies (20-28 MT Reefers)"
+            ]
+        ]
+    },
+    "onion": {
+        "description": "Indian Red Onions (Nashik/Gujarat) are highly preferred globally for their sharp pungency and long shelf life. We supply premium-grade Fresh Red Onions, consistently graded by size. They are harvested and cured properly to prevent moisture damage. Available in various sizes from 30mm to 65mm+ to meet the specific culinary and industrial requirements of our international buyers.",
+        "specs": [
+            [
+                "HS Code",
+                "07031010"
+            ],
+            [
+                "Size",
+                "30mm+, 45mm+, 55mm+, 60mm+"
+            ],
+            [
+                "Color",
+                "Dark Red / Pinkish Red"
+            ],
+            [
+                "Moisture",
+                "15-18% Approx"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Origin",
+                "Nashik (Maharashtra) / Gujarat, India"
+            ],
+            [
+                "Packing",
+                "5kg, 10kg, 20kg, 25kg, 50kg Mesh Bags"
+            ],
+            [
+                "FCL Loadability",
+                "28-30 MT (40ft Reefer/Dry)"
+            ]
+        ]
+    },
+    "potato": {
+        "description": "We export premium Indian Potatoes, including the popular 'Jyoti' and 'Santana' varieties, known for their low sugar content and excellent frying properties. Sourced from the best farms in Gujarat and Uttar Pradesh, our potatoes are free from soil residue and diseases. They are carefully sorted for uniform size and shape, ensuring they reach international markets in prime condition.",
+        "specs": [
+            [
+                "HS Code",
+                "07019000"
+            ],
+            [
+                "Variety",
+                "Jyoti, Santana, LR, Pukhraj"
+            ],
+            [
+                "Size",
+                "45mm+, 50mm+, 60mm+"
+            ],
+            [
+                "Condition",
+                "Free from soft Rot / Fungus"
+            ],
+            [
+                "Origin",
+                "Gujarat / Punjab / UP, India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg Mesh Bags / Jute Bags"
+            ],
+            [
+                "FCL Loadability",
+                "26-28 MT (40ft Reefer)"
+            ]
+        ]
+    },
+    "mango": {
+        "description": "Experience the authentic taste of the 'King of Fruits' with our premium Alphonso (Hapus) and Kesar mangoes from the Konkan and Saurashtra regions. Handpicked at the peak of maturity, our mangoes are naturally ripened and treated as per international phytosanitary standards. Known for their rich aroma, sweet pulp, and vibrant color, they are the gold standard of Indian fruit exports.",
+        "specs": [
+            [
+                "HS Code",
+                "080450"
+            ],
+            [
+                "Variety",
+                "Alphonso, Kesar, Banganapalli, Totapuri"
+            ],
+            [
+                "Weight",
+                "250g - 400g per fruit"
+            ],
+            [
+                "Skin",
+                "Clean, Smooth, No Blemishes"
+            ],
+            [
+                "Treatment",
+                "Vapour Heat Treatment (VHT) / Irradiation (if req)"
+            ],
+            [
+                "Origin",
+                "Ratnagiri / Valsad / Junagadh, India"
+            ],
+            [
+                "Packing",
+                "3kg / 5kg Corrugated Boxes"
+            ],
+            [
+                "Shelf Life",
+                "10-15 Days (when ripe)"
+            ]
+        ]
+    },
+    "banana": {
+        "description": "We supply premium Cavendish (G9) Bananas, harvested under strict quality supervision in the fertile plains of India. Our bananas are uniform in size, free from bruises, and packed at a specific maturity level to ensure they ripen perfectly upon reaching the destination. With advanced temperature control, we guarantee the delivery of fresh, greenish-yellow bananas to our global customers.",
+        "specs": [
+            [
+                "HS Code",
+                "08039010"
+            ],
+            [
+                "Variety",
+                "Cavendish G9"
+            ],
+            [
+                "Size",
+                "Min 18cm Length"
+            ],
+            [
+                "Calibre",
+                "39mm to 47mm"
+            ],
+            [
+                "Temperature",
+                "13 - 15 Degrees Celsius (Transit)"
+            ],
+            [
+                "Origin",
+                "Gujarat / Maharashtra / Tamil Nadu, India"
+            ],
+            [
+                "Packing",
+                "7kg / 13kg / 13.5kg / 18.5kg Bottom 5-Ply Box"
+            ],
+            [
+                "FCL Loadability",
+                "1540 Boxes (13.5kg) per 40ft Reefer"
+            ]
+        ]
+    },
+    "grapes": {
+        "description": "Indian Fresh Grapes are renowned for their sweetness and firm texture. We export premium Thompson Seedless (White) and Flame Seedless (Black) varieties. Our grapes are pre-cooled and packed in punnets to preserve their freshness during sea transit. They comply with strict MRL (Maximum Residue Limit) standards for European and Middle Eastern markets, ensuring a safe and premium consumer experience.",
+        "specs": [
+            [
+                "HS Code",
+                "08061000"
+            ],
+            [
+                "Variety",
+                "Thompson Seedless, Sonaka, Sharad, Flame"
+            ],
+            [
+                "Berry Size",
+                "16mm - 18mm+"
+            ],
+            [
+                "Brix",
+                "16% - 18% Min"
+            ],
+            [
+                "Origin",
+                "Nashik / Sangli (Maharashtra), India"
+            ],
+            [
+                "Packing",
+                "500g Punnets / 4.5kg, 5kg, 8.2kg Boxes"
+            ],
+            [
+                "FCL Loadability",
+                "12-14 MT (40ft Reefer)"
+            ]
+        ]
+    },
+    "pomegranate": {
+        "description": "Indian 'Bhagwa' Pomegranates are among the best in the world, characterized by their deep red arils and soft seeds. Sourced from the arid regions of Maharashtra and Gujarat, our pomegranates are hand-selected for size and skin quality. They are rich in antioxidants and offer a long shelf life, making them a favorite in premium retail markets globally.",
+        "specs": [
+            [
+                "HS Code",
+                "08109010"
+            ],
+            [
+                "Variety",
+                "Bhagwa, Ganesh, Arakta"
+            ],
+            [
+                "Weight per fruit",
+                "250g - 400g+"
+            ],
+            [
+                "Arils",
+                "Deep Red & Sweet"
+            ],
+            [
+                "Origin",
+                "Maharashtra / Gujarat, India"
+            ],
+            [
+                "Packing",
+                "3kg / 3.5kg / 5kg Cartons"
+            ],
+            [
+                "FCL Loadability",
+                "16-17 MT (40ft Reefer)"
+            ]
+        ]
+    },
+    "dehydrated_onion_garlic": {
+        "description": "We offer top-quality Dehydrated Onion and Garlic products in various forms like Flakes, Minced, Chopped, and Powder. Our dehydration process uses low-temperature air drying to preserve the natural pungency, aroma, and nutritional value. These products are ideal for spice blends, canned soups, meat products, and fast food industries, providing convenient and shelf-stable flavor solutions.",
+        "specs": [
+            [
+                "HS Code (Onion)",
+                "07122000"
+            ],
+            [
+                "HS Code (Garlic)",
+                "07129030 / 07129020"
+            ],
+            [
+                "Forms",
+                "Flakes, Kibbled, Minced, Grits, Powder"
+            ],
+            [
+                "Moisture",
+                "6% Max (Garlic) / 5% Max (Onion)"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Microbiological",
+                "Salmonella Absent / Low TPC"
+            ],
+            [
+                "Origin",
+                "Gujarat (Mahuva), India"
+            ],
+            [
+                "Packing",
+                "20kg / 25kg / 50kg Bags / Cartons"
+            ],
+            [
+                "Shelf Life",
+                "12-24 Months"
+            ]
+        ]
+    },
+    "roasted_peas": {
+        "description": "Indian Roasted Peas are a popular, healthy snack known for their crunch and nutritional value. Specifically made from high-quality Yellow or Green peas, they are dry-roasted to perfection, preserving their natural fiber and protein content. They are available in salted, spiced, or plain varieties, catering to the global health-conscious snacking market.",
+        "specs": [
+            [
+                "HS Code",
+                "19041090 / 07132000"
+            ],
+            [
+                "Type",
+                "Roasted Yellow Peas, Roasted Green Peas"
+            ],
+            [
+                "Flavor",
+                "Plain, Salted, Spiced"
+            ],
+            [
+                "Moisture",
+                "7% Max"
+            ],
+            [
+                "Purity",
+                "99% Min"
+            ],
+            [
+                "Origin",
+                "India"
+            ],
+            [
+                "Packing",
+                "1kg, 2kg, 5kg, 10kg, 25kg, 50kg PP Bags / Packets"
+            ],
+            [
+                "Shelf Life",
+                "6-12 Months"
             ]
         ]
     },
     "default": {
         "description": "Our premium grade botanical products are sourced directly from the best cultivation regions in India. We employ rigorous quality control, from field selection to final packaging, ensuring every shipment meets international safety standards. Our products are machine-cleaned, handpicked, and Sortex-sorted to provide maximum purity, rich aroma, and authentic taste for our global clientele.",
         "specs": [
+            [
+                "HS Code",
+                "Varies by Product"
+            ],
             [
                 "Appearance",
                 "Uniform Color & Size"
@@ -342,7 +2322,7 @@
             ],
             [
                 "Moisture",
-                "12% Max"
+                "10-12% Max"
             ],
             [
                 "Purity",
@@ -359,6 +2339,10 @@
             [
                 "Origin",
                 "India"
+            ],
+            [
+                "Packing",
+                "25kg / 50kg PP/Jute Bags"
             ]
         ]
     }
