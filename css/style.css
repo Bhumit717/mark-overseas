@@ -635,7 +635,9 @@ header {
     font-family: 'Leckerli One';
 }
 
-.about-us-text .title h2 {
+.about-us-text .title h1 {
+    font-family: 'MonteCarlo', cursive !important;
+    font-size: 68px;
     color: var(--dark);
     line-height: normal;
     margin-bottom: 25px;
