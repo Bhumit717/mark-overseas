@@ -1,15 +1,19 @@
-# Robots.txt for Mark Overseas
-# https://www.mark-overseas.com
-
 User-agent: *
 Allow: /
 
-# Disallow admin or private directories (if any)
-Disallow: /admin/
-Disallow: /private/
+# Prevent crawling of internal search results
+Disallow: /?s=
+Disallow: /search/
 
-# Sitemap location
+# Prevent crawling of sensitive/system files
+Disallow: /.git/
+Disallow: /.agent/
+Disallow: /*.py
+Disallow: /*.ps1
+Disallow: /*.lock
+Disallow: /*.md
+
+# Block duplicate/staging build (only if not production)
+Disallow: /mark-overseas-react/
+
 Sitemap: https://www.mark-overseas.com/sitemap.xml
-
-# Crawl-delay (optional, helps prevent server overload)
-Crawl-delay: 1
