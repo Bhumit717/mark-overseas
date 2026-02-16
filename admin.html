@@ -2,264 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-
     <title>Admin Dashboard | Mark Overseas</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
     <style>
         :root {
-            --primary-color: #08af08;
-            --primary-hover: #068f06;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border-color: #e5e7eb;
+            --primary: #08af08;
+            --bg: #f8fafc;
         }
 
         body {
-            background-color: var(--bg-color);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: var(--text-main);
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: var(--card-bg);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .navbar-brand img {
-            height: 40px;
-        }
-
-        .btn-logout {
-            color: var(--text-muted);
-            border: 1px solid var(--border-color);
-            padding: 6px 16px;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            background: white;
-            text-decoration: none;
-        }
-
-        .btn-logout:hover {
-            background-color: #f9fafb;
-            color: #ef4444;
-            border-color: #ef4444;
-        }
-
-        /* Main Container */
-        .admin-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Stats & Header */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #111827;
-            margin: 0;
-        }
-
-        .stat-badge {
-            background-color: #ecfdf5;
-            color: var(--primary-color);
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        /* Card & Table */
-        .data-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-
-        .table-toolbar {
-            padding: 1.25rem;
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .table {
-            margin-bottom: 0;
-        }
-
-        .table thead th {
-            background-color: #f9fafb;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .table tbody td {
-            padding: 1rem 1.25rem;
-            vertical-align: middle;
-            font-size: 0.875rem;
-        }
-
-        /* Badges */
-        .status-badge {
-            padding: 2px 8px;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .status-new {
-            background-color: #dcfce7;
-            color: #166534;
-        }
-
-        /* Action Buttons */
-        .btn-action {
-            padding: 6px;
-            border-radius: 6px;
-            color: var(--text-muted);
-            transition: all 0.2s;
-            border: 1px solid transparent;
-            background: transparent;
-        }
-
-        .btn-action:hover {
-            color: #ef4444;
-            background: #fef2f2;
-        }
-
-        /* Login Screen */
-        .login-view {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f9fafb;
+            background-color: var(--bg);
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
         .login-card {
-            width: 100%;
             max-width: 400px;
-            padding: 2.5rem;
+            margin: 100px auto;
+            padding: 30px;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
 
-        .login-card h2 {
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-align: center;
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(8, 175, 8, 0.1);
+        .data-card {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
         }
 
-        .btn-primary-custom {
-            background-color: var(--primary-color);
-            border: none;
-            padding: 10px;
-            font-weight: 600;
-            transition: 0.2s;
-            color: white;
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .btn-primary-custom:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
+        .table thead th {
+            background: #f1f5f9;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #64748b;
         }
 
         #dashboard-section {
             display: none;
+            padding: 20px;
         }
 
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
+        .mobile-label {
+            display: none;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 12px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .table-toolbar {
-                flex-wrap: wrap;
-            }
-
             .table thead {
                 display: none;
             }
 
-            .table td {
-                display: block;
-                text-align: right;
-                padding: 0.5rem 1rem;
-                border: none;
-            }
-
-            .table td::before {
-                content: attr(data-label);
-                float: left;
-                font-weight: 600;
-                color: var(--text-muted);
-            }
-
             .table tr {
                 display: block;
-                border-bottom: 1px solid var(--border-color);
-                padding: 1rem 0;
+                margin-bottom: 15px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 10px;
+            }
+
+            .table td {
+                display: block;
+                text-align: left;
+                border: none;
+                padding: 5px 0;
+            }
+
+            .mobile-label {
+                display: inline-block;
+                width: 80px;
             }
         }
     </style>
@@ -267,265 +89,130 @@
 
 <body>
 
-    <!-- Login Section -->
-    <div id="login-section" class="login-view">
-        <div class="login-card">
-            <div class="text-center mb-4">
-                <img src="images/mark-logo.png" alt="Logo" style="height: 60px;">
+    <!-- Login -->
+    <div id="login-section" class="container">
+        <div class="login-card text-center">
+            <img src="images/mark-logo.png" alt="Logo" style="height: 50px; margin-bottom: 20px;">
+            <h4>Admin Login</h4>
+            <p class="text-muted small">Enter your master password</p>
+            <input type="password" id="admin-password" class="form-control mb-3" placeholder="Password">
+            <button id="btn-login" class="btn btn-success w-100" style="background: var(--primary);">Sign In</button>
+            <div id="login-error" class="text-danger mt-3 small" style="display:none;">Access Denied: Incorrect Password
             </div>
-            <h2>Admin Login</h2>
-            <p class="text-center text-muted mb-4">Enter your credentials to access the dashboard</p>
-
-            <div class="mb-4">
-                <label class="form-label">Password</label>
-                <input type="password" id="admin-password" class="form-control" placeholder="••••••••">
-            </div>
-            <button id="btn-login" class="btn btn-primary-custom">Sign In</button>
-            <div id="login-error" class="text-danger mt-3 text-center small" style="display:none;"></div>
         </div>
     </div>
 
-    <!-- Dashboard Section -->
+    <!-- Dashboard -->
     <div id="dashboard-section">
-        <nav class="navbar">
-            <div class="container-fluid px-4">
-                <a class="navbar-brand" href="#">
-                    <img src="images/mark-logo.png" alt="Logo">
-                    <span class="d-none d-sm-inline">Mark Overseas Admin</span>
-                </a>
-                <div class="d-flex align-items-center gap-3">
-                    <button class="btn btn-logout" onclick="logout()">
-                        <i class="bi bi-box-arrow-right me-1"></i> Sign Out
-                    </button>
-                </div>
+        <nav class="navbar mb-4">
+            <div class="container-fluid">
+                <span class="navbar-brand fw-bold"><img src="images/mark-logo.png" height="30" class="me-2">
+                    Admin</span>
+                <button class="btn btn-outline-danger btn-sm" onclick="logout()">Sign Out</button>
             </div>
         </nav>
 
-        <div class="admin-container">
-            <div class="page-header">
-                <div>
-                    <h1 class="page-title">Website Inquiries</h1>
-                    <p class="text-muted small mb-0">Manage and respond to client requests</p>
-                </div>
-                <div class="d-flex gap-2">
-                    <span class="stat-badge" id="inquiry-count">0 Total Inquiries</span>
-                </div>
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Inquiries</h5>
+                <button class="btn btn-sm btn-primary" onclick="fetchData()">Refresh</button>
             </div>
 
             <div class="data-card">
-                <div class="table-toolbar">
-                    <button class="btn btn-light btn-sm border" onclick="fetchSubmissions()">
-                        <i class="bi bi-arrow-clockwise me-1"></i> Refresh
-                    </button>
-                    <button class="btn btn-light btn-sm border" onclick="downloadPDF()">
-                        <i class="bi bi-file-earmark-pdf me-1"></i> Export PDF
-                    </button>
-                    <div class="ms-auto d-flex gap-2">
-                        <button class="btn btn-outline-danger btn-sm border" onclick="deleteAllSubmissions()">
-                            <i class="bi bi-trash me-1"></i> Clear All
-                        </button>
-                    </div>
-                </div>
-
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Client Name</th>
-                                <th>Contact Info</th>
-                                <th>Subject</th>
+                                <th>Client</th>
+                                <th>Contact</th>
                                 <th>Message</th>
-                                <th>Actions</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="submissions-table-body">
-                            <!-- Data will be loaded here -->
-                        </tbody>
+                        <tbody id="table-body"></tbody>
                     </table>
-                </div>
-                <div id="empty-state" class="p-5 text-center text-muted" style="display:none;">
-                    <i class="bi bi-inbox fs-1 d-block mb-3"></i>
-                    No inquiries found.
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
-
-    <!-- Firebase SDK (Professional Secure Version) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { firebaseConfig } from "./js/firebase-config.js";
 
-        // Initialize
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
 
-        let allInquiriesData = [];
+        let MASTER_PWD = localStorage.getItem('master_key') || '';
 
-        // Auth Monitor
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
+        if (MASTER_PWD) {
+            showDashboard();
+        }
+
+        document.getElementById('btn-login').addEventListener('click', () => {
+            const pwd = document.getElementById('admin-password').value;
+            if (!pwd) return alert("Enter Password");
+            MASTER_PWD = pwd;
+            fetchData(true);
+        });
+
+        window.logout = () => {
+            localStorage.removeItem('master_key');
+            location.reload();
+        };
+
+        async function fetchData(isLogin = false) {
+            const tbody = document.getElementById('table-body');
+            const error = document.getElementById('login-error');
+
+            try {
+                // We try to fetch from the "Secret Path"
+                // If the password is wrong, Firebase Rules will block this and throw an error.
+                const q = query(collection(db, "inquiry_vault", MASTER_PWD, "data"), orderBy("createdAt", "desc"));
+                const snap = await getDocs(q);
+
+                localStorage.setItem('master_key', MASTER_PWD);
                 showDashboard();
-            } else {
-                showLogin();
-            }
-        });
 
-        // Login Handler
-        document.getElementById('btn-login').addEventListener('click', async () => {
-            const email = "markoverseas28@gmail.com";
-            const password = document.getElementById('admin-password').value;
-            const btn = document.getElementById('btn-login');
-            const errorMsg = document.getElementById('login-error');
-
-            if (!password) {
-                alert("Please enter the password.");
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerText = "Verifying...";
-            errorMsg.style.display = 'none';
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-            } catch (err) {
-                console.error(err);
-                errorMsg.style.display = 'block';
-                errorMsg.innerText = "Invalid credentials or unauthorized access.";
-                btn.disabled = false;
-                btn.innerText = "Sign In";
-            }
-        });
-
-        window.logout = () => signOut(auth);
-
-        // Fetch Data
-        async function fetchSubmissions() {
-            const tbody = document.getElementById('submissions-table-body');
-            const emptyState = document.getElementById('empty-state');
-            const countBadge = document.getElementById('inquiry-count');
-
-            tbody.innerHTML = '<tr><td colspan="6" class="text-center p-5"><div class="spinner-border text-success" role="status"></div></td></tr>';
-
-            try {
-                const q = query(collection(db, "inquiries"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-
-                allInquiriesData = [];
                 tbody.innerHTML = '';
-
-                if (querySnapshot.empty) {
-                    emptyState.style.display = 'block';
-                    countBadge.innerText = '0 Inquiries';
-                    return;
-                }
-
-                emptyState.style.display = 'none';
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    allInquiriesData.push({ id: doc.id, ...data });
-
+                snap.forEach(d => {
+                    const data = d.data();
                     const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
-
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td data-label="Date" class="text-muted small">${date}</td>
-                        <td data-label="Client"><strong>${data.name}</strong></td>
-                        <td data-label="Contact">
-                            <div class="small">${data.email}</div>
-                            <div class="text-muted extra-small">${data.phone}</div>
-                        </td>
-                        <td data-label="Subject"><span class="status-badge status-new">${data.subject}</span></td>
-                        <td data-label="Message"><div style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onclick="alert(this.innerText)">${data.message}</div></td>
-                        <td data-label="Actions">
-                            <button class="btn-action" onclick="deleteSubmission('${doc.id}')" title="Delete">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
+                        <td><span class="mobile-label">Date:</span>${date}</td>
+                        <td><span class="mobile-label">Name:</span><strong>${data.name}</strong></td>
+                        <td><span class="mobile-label">Contact:</span>${data.email}<br><small>${data.phone}</small></td>
+                        <td><span class="mobile-label">Message:</span><small>${data.message}</small></td>
+                        <td><button class="btn btn-sm text-danger" onclick="deleteItem('${d.id}')"><i class="bi bi-trash"></i></button></td>
                     `;
                     tbody.appendChild(tr);
                 });
-
-                countBadge.innerText = `${allInquiriesData.length} Total Inquiries`;
-            } catch (error) {
-                console.error("Fetch error:", error);
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-danger">Error loading data. Make sure you are authorized.</td></tr>`;
+            } catch (e) {
+                console.error(e);
+                if (isLogin) {
+                    error.style.display = 'block';
+                } else {
+                    alert("Session expired or invalid password.");
+                    logout();
+                }
             }
         }
 
-        window.deleteSubmission = async (id) => {
-            if (!confirm("Are you sure you want to delete this inquiry?")) return;
-            try {
-                await deleteDoc(doc(db, "inquiries", id));
-                fetchSubmissions();
-            } catch (err) {
-                alert("Only authorized admins can delete records.");
-            }
-        };
-
-        window.deleteAllSubmissions = async () => {
-            if (!confirm("CRITICAL: This will delete ALL inquiries from the database. Continue?")) return;
-
-            const password = prompt("Type 'DELETE ALL' to confirm:");
-            if (password !== 'DELETE ALL') return;
-
-            try {
-                const q = collection(db, "inquiries");
-                const snapshot = await getDocs(q);
-                const batch = writeBatch(db);
-                snapshot.docs.forEach((doc) => batch.delete(doc.ref));
-                await batch.commit();
-                fetchSubmissions();
-                alert("Database cleared.");
-            } catch (err) {
-                alert("Operation failed. Unauthorized.");
-            }
-        };
-
-        window.downloadPDF = () => {
-            if (allInquiriesData.length === 0) return alert("No data to export");
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            doc.text("Mark Overseas Inquiry Report", 14, 15);
-            doc.autoTable({
-                head: [['Date', 'Name', 'Email', 'Phone', 'Subject', 'Message']],
-                body: allInquiriesData.map(item => [
-                    item.createdAt ? new Date(item.createdAt.seconds * 1000).toLocaleDateString() : 'N/A',
-                    item.name,
-                    item.email,
-                    item.phone,
-                    item.subject,
-                    item.message
-                ]),
-                startY: 20,
-            });
-            doc.save(`mark_overseas_inquiries_${new Date().toISOString().split('T')[0]}.pdf`);
+        window.deleteItem = async (id) => {
+            if (!confirm("Delete this?")) return;
+            await deleteDoc(doc(db, "inquiry_vault", MASTER_PWD, "data", id));
+            fetchData();
         };
 
         function showDashboard() {
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('dashboard-section').style.display = 'block';
-            fetchSubmissions();
         }
 
-        function showLogin() {
-            document.getElementById('login-section').style.display = 'flex';
-            document.getElementById('dashboard-section').style.display = 'none';
-        }
-
-        window.fetchSubmissions = fetchSubmissions;
-
+        window.fetchData = fetchData;
     </script>
 </body>
 

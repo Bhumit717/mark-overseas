@@ -292,8 +292,12 @@
 			};
 
 			try {
-				// 1. Save to Firebase Database
-				await addDoc(collection(db, "inquiries"), formData);
+				// 1. Save to Firebase Secret Vault (Matches Admin Password)
+				// Path: inquiry_vault / Mark@Overseas321 / data
+				await addDoc(collection(db, "inquiry_vault", "Mark@Overseas321", "data"), {
+					...formData,
+					createdAt: serverTimestamp()
+				});
 
 				// 2. Try Vercel API first
 				let emailSent = false;

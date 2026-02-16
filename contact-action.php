@@ -1,7 +1,6 @@
 <?php
 /**
- * ROBUST GMAIL SMTP BRIDGE
- * Mobile-Friendly Clean Theme
+ * ROBUST EMAIL BRIDGE (Mobile-Perfect Theme)
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -24,81 +23,97 @@ if (!$data) {
     exit;
 }
 
-$name    = htmlspecialchars($data['name']);
-$email   = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
-$phone   = htmlspecialchars($data['phone']);
-$subject = htmlspecialchars($data['subject']);
-$message = nl2br(htmlspecialchars($data['message']));
+$name = strip_tags($data['name']);
+$email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+$phone = strip_tags($data['phone']);
+$subject = strip_tags($data['subject']);
+$message = nl2br(strip_tags($data['message']));
 
+// MOBILE-PERFECT HTML THEME
 $email_html = "
 <!DOCTYPE html>
-<html lang='en'>
+<html>
 <head>
-    <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 10px; background-color: #f7f7f7; }
-        .container { max-width: 100%; width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 8px; overflow: hidden; }
-        .header { background-color: #08af08; padding: 20px; text-align: center; color: #ffffff; }
-        .header img { max-width: 120px; height: auto; display: block; margin: 0 auto 10px; }
-        .header h1 { margin: 0; font-size: 20px; }
-        .content { padding: 20px; color: #333333; line-height: 1.5; }
-        .field { margin-bottom: 15px; border-bottom: 1px solid #eeeeee; padding-bottom: 10px; }
-        .label { font-weight: bold; color: #08af08; display: block; margin-bottom: 5px; font-size: 14px; }
-        .value { font-size: 16px; word-break: break-all; }
-        .message-box { background-color: #f9f9f9; padding: 15px; border-radius: 5px; border-left: 4px solid #08af08; margin-top: 20px; }
-        .footer { background-color: #f1f1f1; padding: 15px; text-align: center; color: #777777; font-size: 12px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f4f7f6; }
+        .wrapper { width: 100%; padding: 20px 0; }
+        .content { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e1e4e8; }
+        .header { background: #08af08; padding: 25px; text-align: center; color: #ffffff; }
+        .header h1 { margin: 0; font-size: 20px; font-weight: 600; }
+        .body { padding: 20px; color: #444; }
+        .item { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
+        .label { font-size: 12px; color: #08af08; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .value { font-size: 16px; color: #222; word-break: break-all; }
+        .msg-box { background: #f9fbfb; padding: 15px; border-radius: 6px; border-left: 4px solid #08af08; margin-top: 10px; }
+        .footer { text-align: center; padding: 20px; font-size: 12px; color: #888; }
+        @media screen and (max-width: 600px) {
+            .wrapper { padding: 10px; }
+            .header { padding: 15px; }
+        }
     </style>
 </head>
 <body>
-    <div class='container'>
-        <div class='header'>
-            <img src='https://mark-overseas.com/images/mark-logo.png' alt='Mark Overseas'>
-            <h1>New Website Inquiry</h1>
-        </div>
+    <div class='wrapper'>
         <div class='content'>
-            <div class='field'><span class='label'>Name:</span><span class='value'>$name</span></div>
-            <div class='field'><span class='label'>Email:</span><span class='value'><a href='mailto:$email' style='color: #08af08; text-decoration: none;'>$email</a></span></div>
-            <div class='field'><span class='label'>Phone:</span><span class='value'>$phone</span></div>
-            <div class='field'><span class='label'>Subject:</span><span class='value'>$subject</span></div>
-            <div class='message-box'><span class='label'>Message:</span><div class='value'>$message</div></div>
+            <div class='header'><h1>New Website Inquiry</h1></div>
+            <div class='body'>
+                <div class='item'><div class='label'>Client Name</div><div class='value'>$name</div></div>
+                <div class='item'><div class='label'>Email Address</div><div class='value'>$email</div></div>
+                <div class='item'><div class='label'>Phone Number</div><div class='value'>$phone</div></div>
+                <div class='item'><div class='label'>Subject</div><div class='value'>$subject</div></div>
+                <div class='msg-box'>
+                    <div class='label'>Message</div>
+                    <div class='value' style='font-size: 15px;'>$message</div>
+                </div>
+            </div>
+            <div class='footer'>Sent from Mark Overseas Administration</div>
         </div>
-        <div class='footer'><p>&copy; 2026 Mark Overseas</p></div>
     </div>
 </body>
 </html>";
 
-function send_gmail_smtp($to, $subject, $body, $creds, $replyTo) {
-    $socket = fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
-    if (!$socket) return false;
-    $commands = [
-        "EHLO " . $_SERVER['HTTP_HOST'] => 250,
-        "AUTH LOGIN" => 334,
-        base64_encode($creds['user']) => 334,
-        base64_encode($creds['pass']) => 235,
-        "MAIL FROM: <{$creds['user']}>" => 250,
-        "RCPT TO: <$to>" => 250,
-        "DATA" => 354,
-        "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas <{$creds['user']}>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
-        "QUIT" => 221
-    ];
-    foreach ($commands as $cmd => $code) {
-        fputs($socket, $cmd . "\r\n");
-        $res = fgets($socket, 1024);
-        if ((int)substr($res, 0, 3) !== $code) return false;
+// SMTP socket handler (Generic reliable version)
+function send_smtp($to, $subject, $body, $creds, $replyTo) {
+    // Try standard ports if custom ones fail
+    $hosts = ["ssl://smtp.gmail.com:465", "tls://smtp.gmail.com:587"];
+    
+    foreach ($hosts as $h) {
+        $parts = explode(":", $h);
+        $socket = @fsockopen($parts[0], $parts[1], $errno, $errstr, 10);
+        if ($socket) {
+            $commands = [
+                "EHLO " . $_SERVER['HTTP_HOST'] => 250,
+                "AUTH LOGIN" => 334,
+                base64_encode($creds['user']) => 334,
+                base64_encode($creds['pass']) => 235,
+                "MAIL FROM: <{$creds['user']}>" => 250,
+                "RCPT TO: <$to>" => 250,
+                "DATA" => 354,
+                "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas <{$creds['user']}>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+                "QUIT" => 221
+            ];
+            foreach ($commands as $cmd => $code) {
+                fputs($socket, $cmd . "\r\n");
+                $res = fgets($socket, 1024);
+                if ((int)substr($res, 0, 3) !== $code) { fclose($socket); continue 2; }
+            }
+            fclose($socket);
+            return true;
+        }
     }
-    fclose($socket);
-    return true;
+    return false;
 }
 
-if (send_gmail_smtp($creds['to'], "[Web] $subject - from $name", $email_html, $creds, $email)) {
+if (send_smtp($creds['to'], "Mark Overseas: $subject", $email_html, $creds, $email)) {
     echo json_encode(['success' => true]);
 } else {
+    // Ultimate Fallback: PHP Mail
     $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";
-    if (mail($creds['to'], "[Web Fallback] $subject", $email_html, $headers)) {
+    if (mail($creds['to'], "[Fallback] $subject", $email_html, $headers)) {
         echo json_encode(['success' => true, 'note' => 'fallback']);
     } else {
-        echo json_encode(['success' => false, 'error' => 'Delivery failed']);
+        echo json_encode(['success' => false, 'error' => 'Mail delivery failed. Please check host configuration.']);
     }
 }
 ?>

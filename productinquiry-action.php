@@ -1,7 +1,6 @@
 <?php
 /**
- * PREMIUM PRODUCT INQUIRY BRIDGE
- * Simplified Mobile Theme
+ * PRODUCT INQUIRY BRIDGE (Mobile-Perfect Theme)
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -21,76 +20,85 @@ $creds = include($creds_file);
 $data = $_POST;
 if (empty($data)) $data = json_decode(file_get_contents('php://input'), true);
 
-$name = htmlspecialchars($data['name'] ?? 'Unknown');
-$product = htmlspecialchars($data['productname'] ?? 'Product');
+$name = strip_tags($data['name'] ?? 'Unknown');
+$product = strip_tags($data['productname'] ?? 'Product');
 $email = filter_var($data['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$phone = htmlspecialchars($data['phone'] ?? '');
-$message = nl2br(htmlspecialchars($data['message'] ?? ''));
+$phone = strip_tags($data['phone'] ?? '');
+$message = nl2br(strip_tags($data['message'] ?? ''));
 
 $email_html = "
 <!DOCTYPE html>
-<html lang='en'>
+<html>
 <head>
-    <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 10px; background-color: #f7f7f7; }
-        .container { max-width: 100%; width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 8px; overflow: hidden; }
-        .header { background-color: #08af08; padding: 20px; text-align: center; color: #ffffff; }
-        .header img { max-width: 120px; height: auto; display: block; margin: 0 auto 10px; }
-        .header h1 { margin: 0; font-size: 20px; }
-        .content { padding: 20px; color: #333333; line-height: 1.5; }
-        .field { margin-bottom: 15px; border-bottom: 1px solid #eeeeee; padding-bottom: 10px; }
-        .label { font-weight: bold; color: #08af08; display: block; margin-bottom: 5px; font-size: 14px; }
-        .value { font-size: 16px; word-break: break-all; }
-        .message-box { background-color: #f9f9f9; padding: 15px; border-radius: 5px; border-left: 4px solid #08af08; margin-top: 20px; }
-        .footer { background-color: #f1f1f1; padding: 15px; text-align: center; color: #777777; font-size: 12px; }
+        body { font-family: sans-serif; margin: 0; padding: 0; background: #f8fafc; }
+        .wrapper { width: 100%; padding: 20px 0; }
+        .content { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .header { background: #08af08; padding: 25px; text-align: center; color: white; }
+        .body { padding: 20px; color: #334155; }
+        .item { margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid #f1f5f9; }
+        .label { font-size: 11px; color: #08af08; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+        .value { font-size: 16px; color: #0f172a; }
+        .msg-box { background: #fdfdfd; padding: 15px; border-radius: 6px; border: 1px dashed #e2e8f0; margin-top: 15px; }
+        @media screen and (max-width: 600px) { .wrapper { padding: 10px; } }
     </style>
 </head>
 <body>
-    <div class='container'>
-        <div class='header'>
-            <img src='https://mark-overseas.com/images/mark-logo.png' alt='Mark Overseas'>
-            <h1>New Product Inquiry</h1>
-        </div>
+    <div class='wrapper'>
         <div class='content'>
-            <div class='field'><span class='label'>Product:</span><span class='value' style='font-weight:bold;'>$product</span></div>
-            <div class='field'><span class='label'>Client Name:</span><span class='value'>$name</span></div>
-            <div class='field'><span class='label'>Email:</span><span class='value'><a href='mailto:$email' style='color: #08af08; text-decoration: none;'>$email</a></span></div>
-            <div class='field'><span class='label'>Phone:</span><span class='value'>$phone</span></div>
-            <div class='message-box'><span class='label'>Inquiry Details:</span><div class='value'>$message</div></div>
+            <div class='header'><h1>Product Inquiry</h1></div>
+            <div class='body'>
+                <div class='item'><div class='label'>Product Name</div><div class='value'><strong>$product</strong></div></div>
+                <div class='item'><div class='label'>Client Name</div><div class='value'>$name</div></div>
+                <div class='item'><div class='label'>Email Address</div><div class='value'>$email</div></div>
+                <div class='item'><div class='label'>Phone Number</div><div class='value'>$phone</div></div>
+                <div class='msg-box'>
+                    <div class='label'>Inquiry Details</div>
+                    <div class='value'>$message</div>
+                </div>
+            </div>
         </div>
-        <div class='footer'><p>&copy; 2026 Mark Overseas</p></div>
     </div>
 </body>
 </html>";
 
-function send_gmail_smtp($to, $subject, $body, $creds) {
-    $socket = fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
-    if (!$socket) return false;
-    $commands = [
-        "EHLO " . $_SERVER['HTTP_HOST'] => 250,
-        "AUTH LOGIN" => 334,
-        base64_encode($creds['user']) => 334,
-        base64_encode($creds['pass']) => 235,
-        "MAIL FROM: <{$creds['user']}>" => 250,
-        "RCPT TO: <$to>" => 250,
-        "DATA" => 354,
-        "Subject: $subject\r\nTo: $to\r\nFrom: Product Inquiry <{$creds['user']}>\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
-        "QUIT" => 221
-    ];
-    foreach ($commands as $cmd => $code) {
-        fputs($socket, $cmd . "\r\n");
-        $res = fgets($socket, 1024);
-        if ((int)substr($res, 0, 3) !== $code) return false;
+function send_smtp($to, $subject, $body, $creds) {
+    // Robust multi-port retry logic
+    $targets = [["ssl://smtp.gmail.com", 465], ["tls://smtp.gmail.com", 587]];
+    foreach ($targets as $t) {
+        $socket = @fsockopen($t[0], $t[1], $errno, $errstr, 10);
+        if ($socket) {
+            $commands = [
+                "EHLO " . $_SERVER['HTTP_HOST'] => 250,
+                "AUTH LOGIN" => 334,
+                base64_encode($creds['user']) => 334,
+                base64_encode($creds['pass']) => 235,
+                "MAIL FROM: <{$creds['user']}>" => 250,
+                "RCPT TO: <$to>" => 250,
+                "DATA" => 354,
+                "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas <{$creds['user']}>\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+                "QUIT" => 221
+            ];
+            foreach ($commands as $cmd => $code) {
+                fputs($socket, $cmd . "\r\n");
+                if ((int)substr(fgets($socket, 1024), 0, 3) !== $code) { fclose($socket); continue 2; }
+            }
+            fclose($socket);
+            return true;
+        }
     }
-    fclose($socket);
-    return true;
+    return false;
 }
 
-if (send_gmail_smtp($creds['to'], "[Product Inquiry] $product - $name", $email_html, $creds)) {
+if (send_smtp($creds['to'], "Inquiry for $product - $name", $email_html, $creds)) {
     echo json_encode(['success' => true]);
 } else {
-    echo json_encode(['success' => false, 'error' => 'Delivery failed']);
+    $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";
+    if (mail($creds['to'], "[Product] $product", $email_html, $headers)) {
+        echo json_encode(['success' => true, 'note' => 'fallback']);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Delivery failed.']);
+    }
 }
 ?>
