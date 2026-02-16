@@ -1,40 +1,41 @@
-# Mark Overseas - Secure Cloud-Flow Website
+# Mark Overseas - Firebase-Only Architecture
 
-This project is a professional business website for **Mark Overseas**, featuring a secure admin dashboard and inquiry management system.
-
-It is designed with **Zero Credentials in Files**. All sensitive data lives securely in the Firebase Cloud, making it 100% scraper-proof (HTTrack cannot see your passwords).
+This project is built using a **Firebase-First** architecture. It has **Zero SMTP secrets in the codebase**, making it 100% scraper-proof and highly secure.
 
 ---
 
 ## 🚀 Key Features
-- **Zero Secrets in Files**: No passwords or App Passwords are stored in the source code.
-- **Cloud-Config Model**: SMTP settings are fetched from Firebase at runtime.
-- **100% Free**: No Blaze plan required. Works on free Vercel or any PHP host.
-- **Scraper-Proof**: All sensitive logic happens server-side (PHP or Vercel API).
+- **Zero Secrets in Files**: No passwords, App Passwords, or secrets exist in any file.
+- **Firebase Native**: Submissions go directly to Firestore from the browser.
+- **Automated Emails**: A Firebase Cloud Function (Node.js) triggers on new inquiries and sends the email.
+- **Scraper-Proof**: HTTrack only sees your Public Firebase Config, which is protected by Domain Lock.
 
 ---
 
-## 🛡️ CRITICAL: One-Click Automated Setup (REQUIRED)
+## 🛡️ Setup Instructions (Required)
 
-To make everything work without manual console entry, follow these steps:
+Because there are **no secrets in the code**, you must set them in the Firebase Console:
 
-1.  **Open your Website**: Visit `https://[your-domain].vercel.app/api/setup` in your browser.
-2.  **Verify Success**: You should see a "✅ SUCCESS" message. This automatically creates the `config/smtp` document in your Firebase.
-3.  **Maximum Security**: For the highest security, you can now **delete** the `api/setup.js` file from your project so nobody else can change your settings.
+### 1. Set SMTP Secrets
+Run these commands in your terminal (using Firebase CLI) to store your Gmail password securely in the cloud:
+```bash
+firebase functions:secrets:set GMAIL_USER
+# Enter: markoverseas28@gmail.com
 
----
+firebase functions:secrets:set GMAIL_PASS
+# Enter: your-gmail-app-password
+```
+*Wait ~30 seconds for the secrets to propagate.*
 
-### 2. Firestore Rules (Security Lockdown)
-Paste these in the **Rules** tab. These rules allow the system to read the config and users to submit inquiries while keeping your data safe:
-
+### 2. Firestore Rules
+Paste these in the **Rules** tab in the Firebase Console:
 ```javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // 🛡️ Lock down SMTP config
+    // 🛡️ Lock down SMTP config (if you use it)
     match /config/smtp {
-      allow read: if true; // The secure server bridge reads this
-      allow write: if false; 
+      allow read, write: if false; 
     }
     // 🛡️ Inquiry Management
     match /inquiries/{id} {
@@ -45,18 +46,17 @@ service cloud.firestore {
 }
 ```
 
-### 3. Admin Account
-Go to **Authentication > Users** and add:
-- **Email**: `markoverseas28@gmail.com`
-- **Password**: (Your chosen password)
+### 3. Deploy
+```bash
+firebase deploy --only functions
+```
 
 ---
 
 ## 📂 Project Structure
+- `functions/index.js`: The "Brain". Handles secure email sending.
 - `admin.html`: Secure dashboard using Firebase Auth.
-- `contact-us.html`: Inquiry form with smart hosting auto-detection.
-- `contact-action.php`: Universal PHP Bridge (Zero Secrets).
-- `api/send-email.js`: Vercel Serverless Bridge (Zero Secrets).
+- `contact-us.html`: Inquiry form using Firebase SDK.
 
 © 2026 Mark Overseas. All Rights Reserved.
 Developed by **Antigravity AI**.
