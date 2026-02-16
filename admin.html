@@ -115,12 +115,22 @@
         <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-0">Inquiries</h5>
-                <button class="btn btn-sm btn-primary" onclick="fetchData()">Refresh</button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-primary" onclick="downloadPDF()">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> PDF
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteAllSubmissions()">
+                        <i class="bi bi-trash me-1"></i> Delete All
+                    </button>
+                    <button class="btn btn-sm btn-primary" onclick="fetchData()">
+                        <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+                    </button>
+                </div>
             </div>
 
             <div class="data-card">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover align-middle">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -137,6 +147,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 
     <script type="module">
         // --- DOMAIN LOCK SYSTEM ---
@@ -155,13 +168,14 @@
         }
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { firebaseConfig } from "./js/firebase-config.js";
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
         let MASTER_PWD = localStorage.getItem('master_key') || '';
+        let allInquiriesData = []; // Store for PDF
 
         if (MASTER_PWD) {
             showDashboard();
@@ -184,8 +198,6 @@
             const error = document.getElementById('login-error');
 
             try {
-                // We try to fetch from the "Secret Path"
-                // If the password is wrong, Firebase Rules will block this and throw an error.
                 const q = query(collection(db, "inquiry_vault", MASTER_PWD, "data"), orderBy("createdAt", "desc"));
                 const snap = await getDocs(q);
 
@@ -193,9 +205,13 @@
                 showDashboard();
 
                 tbody.innerHTML = '';
+                allInquiriesData = [];
+
                 snap.forEach(d => {
                     const data = d.data();
                     const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
+                    allInquiriesData.push({ ...data, id: d.id, dateStr: date });
+
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td><span class="mobile-label">Date:</span>${date}</td>
@@ -222,6 +238,45 @@
             if (!confirm("Delete this?")) return;
             await deleteDoc(doc(db, "inquiry_vault", MASTER_PWD, "data", id));
             fetchData();
+        };
+
+        window.deleteAllSubmissions = async () => {
+            if (!confirm("Are you sure? This will delete ALL inquiries forever.")) return;
+            const confirmTxt = prompt("Type 'DELETE' to confirm:");
+            if (confirmTxt !== 'DELETE') return;
+
+            try {
+                const q = collection(db, "inquiry_vault", MASTER_PWD, "data");
+                const snapshot = await getDocs(q);
+                const batch = writeBatch(db);
+                snapshot.docs.forEach((d) => batch.delete(d.ref));
+                await batch.commit();
+                fetchData();
+                alert("All inquiries deleted.");
+            } catch (err) {
+                alert("Operation failed. Unauthorized.");
+            }
+        };
+
+        window.downloadPDF = () => {
+            if (allInquiriesData.length === 0) return alert("No data to export");
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Mark Overseas Inquiry Report", 14, 15);
+            doc.autoTable({
+                head: [['Date', 'Name', 'Email', 'Phone', 'Subject', 'Message']],
+                body: allInquiriesData.map(item => [
+                    item.dateStr,
+                    item.name,
+                    item.email,
+                    item.phone,
+                    item.subject,
+                    item.message
+                ]),
+                startY: 20,
+            });
+            doc.save(`mark_overseas_inquiries_${new Date().toISOString().split('T')[0]}.pdf`);
         };
 
         function showDashboard() {
