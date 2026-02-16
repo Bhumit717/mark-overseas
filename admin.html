@@ -441,33 +441,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 
-    <!-- Firebase SDK & Logic (Hacker-Proof Version) -->
+    <!-- Firebase SDK & Logic (Zip-Ready Version) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, getDoc, doc, deleteDoc, orderBy, query, setDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { firebaseConfig } from "./js/firebase-config.js";
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getFirestore(app);
 
         // Global data storage
         let allInquiriesData = [];
 
-        // --- Auth State Monitoring ---
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                showDashboard();
-            } else {
-                showLogin();
-            }
-        });
+        // --- Auth Logic ---
+        const ADMIN_DOC_ID = "admin_config";
+        const SETTINGS_COLLECTION = "settings";
+        const DEFAULT_PASSWORD = "Mark@Overseas321";
+
+        // Check persistent session
+        if (localStorage.getItem('admin_authenticated') === 'true') {
+            showDashboard();
+        }
 
         // --- Functions Exposed to Window ---
-        window.logout = async () => {
-            await signOut(auth);
+        window.logout = () => {
+            localStorage.removeItem('admin_authenticated');
+            showLogin();
         };
         window.fetchSubmissions = fetchSubmissions;
         window.deleteSubmission = deleteSubmission;
@@ -476,13 +476,12 @@
 
         // Login Handler
         document.getElementById('btn-login').addEventListener('click', async () => {
-            const email = "markoverseas28@gmail.com"; // Fixed Admin Email
-            const password = document.getElementById('admin-password').value;
+            const inputPwd = document.getElementById('admin-password').value;
             const btn = document.getElementById('btn-login');
             const errorMsg = document.getElementById('login-error');
 
-            if (!password) {
-                alert("Please enter the admin password.");
+            if (!inputPwd) {
+                alert("Please enter the password.");
                 return;
             }
 
@@ -491,12 +490,28 @@
             errorMsg.style.display = 'none';
 
             try {
-                // Real Firebase Authentication: Standard Security
-                await signInWithEmailAndPassword(auth, email, password);
+                const docRef = doc(db, SETTINGS_COLLECTION, ADMIN_DOC_ID);
+                let docSnap = await getDoc(docRef);
+
+                // Auto-create password if it doesn't exist (First time use)
+                if (!docSnap.exists()) {
+                    await setDoc(docRef, { password: DEFAULT_PASSWORD });
+                    docSnap = await getDoc(docRef);
+                }
+
+                const storedPassword = docSnap.data().password;
+
+                if (inputPwd === storedPassword) {
+                    localStorage.setItem('admin_authenticated', 'true');
+                    showDashboard();
+                } else {
+                    errorMsg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.innerText = "Sign In";
+                }
             } catch (err) {
                 console.error("Login Error:", err);
-                errorMsg.style.display = 'block';
-                errorMsg.innerHTML = `<i class="bi bi-exclamation-circle me-1"></i> ${err.code === 'auth/wrong-password' ? 'Invalid Password' : 'Login failed'}`;
+                alert("System Error: " + err.message);
                 btn.disabled = false;
                 btn.innerText = "Sign In";
             }
