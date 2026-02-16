@@ -1,0 +1,16 @@
+# Enable Clean URLs for Tier.net/Standard Hosting
+RewriteEngine On
+
+# Redirect /admin to /admin.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin$ admin.html [L]
+
+# Redirect /contact to /contact-us.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^contact$ contact-us.html [L]
+
+# Security: Prevent viewing of .env or hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
