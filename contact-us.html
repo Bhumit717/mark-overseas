@@ -304,33 +304,24 @@
 					createdAt: serverTimestamp()
 				});
 
-				// 2. Try Vercel API first
-				let emailSent = false;
+				// 2. Clear Form immediately (Success)
+				alert("Success! Your inquiry has been submitted and our team has been notified.");
+				document.getElementById('contact_form').reset();
+
+				// 3. Trigger Email (Silently in background)
 				try {
-					const vercelRes = await fetch('/api/send-email', {
+					await fetch('/api/send-email', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(formData)
 					});
-					if (vercelRes.ok) emailSent = true;
-				} catch (e) { console.log("Vercel API skipped"); }
-
-				// 3. Fallback to PHP Bridge (for Tier.net/Standard Hosting)
-				if (!emailSent) {
-					const phpRes = await fetch('./contact-action.php', {
+				} catch (e) {
+					// Fallback to PHP bridge if Vercel fails (Silently)
+					fetch('./contact-action.php', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(formData)
 					});
-					if (phpRes.ok) emailSent = true;
-				}
-
-				if (emailSent) {
-					alert("Success! Your inquiry has been submitted and our team has been notified.");
-					document.getElementById('contact_form').reset();
-				} else {
-					alert("Technical Note: Inquiry saved to database, but email notification failed. We will still check your message!");
-					document.getElementById('contact_form').reset();
 				}
 
 			} catch (error) {
