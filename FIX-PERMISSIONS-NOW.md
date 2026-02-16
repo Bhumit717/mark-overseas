@@ -21,9 +21,14 @@ The form is working! The error "Missing or insufficient permissions" means:
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow anyone to create inquiries (contact form submissions)
+    // 🛡️ DOMAIN-RESTRICTED INQUIRIES
     match /inquiries/{id} {
-      allow create: if true;
+      allow create: if request.resource.data.authorizedDomain in [
+        'mark-overseas.com', 
+        'www.mark-overseas.com', 
+        'mark-overseas.vercel.app',
+        'localhost'
+      ];
       allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com';
     }
     
