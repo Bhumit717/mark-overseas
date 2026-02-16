@@ -139,6 +139,21 @@
     </div>
 
     <script type="module">
+        // --- DOMAIN LOCK SYSTEM ---
+        const ALLOWED_DOMAINS = [
+            'mark-overseas.com',
+            'www.mark-overseas.com',
+            'mark-overseas.vercel.app',
+            'www.mark-overseas.vercel.app',
+            'localhost' // Keep for your local testing
+        ];
+
+        if (!ALLOWED_DOMAINS.includes(window.location.hostname)) {
+            document.body.innerHTML = '<div style="text-align:center; padding:100px; font-family:sans-serif;"><h3>403: Forbidden</h3><p>This domain is not authorized to access the Admin Panel.</p><a href="/">Go to Homepage</a></div>';
+            window.stop(); // Stop all further logic
+            throw new Error("Unauthorized Domain Access Blocked.");
+        }
+
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { firebaseConfig } from "./js/firebase-config.js";
