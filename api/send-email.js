@@ -1,23 +1,33 @@
 const nodemailer = require('nodemailer');
 let creds;
 
-// Try to load local credentials if they exist (for Zip deployment)
+// --- DUAL-AUTHENTICATION SYSTEM ---
 try {
+    // 1. Try local file (Best for Zip deployment / Standard Hosting)
     creds = require('./creds');
 } catch (e) {
-    // Fallback to Environment Variables (for Vercel/GitHub deployment)
+    // 2. Fallback to Environment Variables (Best for Vercel/GitHub deploy)
     creds = {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASS
     };
 }
 
+// 3. ULTIMATE FALLBACK (Zero-Config for Vercel)
+// If both above fail, use the master credentials directly.
+const MASTER_USER = 'markoverseas28@gmail.com';
+const MASTER_PASS = 'aopp wbdc ykky txwl';
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    if (!creds.user || !creds.pass) {
+    // Final check: Use env/file if they exist, otherwise use master
+    const user = creds.user || MASTER_USER;
+    const pass = creds.pass || MASTER_PASS;
+
+    if (!user || !pass) {
         return res.status(500).json({ error: 'Server misconfigured: Email credentials missing.' });
     }
 
@@ -33,7 +43,6 @@ export default async function handler(req, res) {
             body { font-family: Arial, sans-serif; margin: 0; padding: 10px; background-color: #f7f7f7; }
             .container { max-width: 100%; width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 8px; overflow: hidden; }
             .header { background-color: #08af08; padding: 20px; text-align: center; color: #ffffff; }
-            .header h1 { margin: 0; font-size: 20px; }
             .content { padding: 20px; color: #333333; line-height: 1.5; }
             .field { margin-bottom: 15px; border-bottom: 1px solid #eeeeee; padding-bottom: 10px; }
             .label { font-weight: bold; color: #08af08; display: block; margin-bottom: 5px; font-size: 14px; }
@@ -49,11 +58,11 @@ export default async function handler(req, res) {
             </div>
             <div class="content">
                 <div class="field"><span class="label">Client Name:</span><span class="value">${name}</span></div>
-                <div class="field"><span class="label">Email Address:</span><span class="value"><a href="mailto:${email}" style="color: #08af08; text-decoration: none;">${email}</a></span></div>
+                <div class="field"><span class="label">Email Address:</span><span class="value">${email}</span></div>
                 <div class="field"><span class="label">Phone Number:</span><span class="value">${phone}</span></div>
                 <div class="field"><span class="label">Subject Line:</span><span class="value">${subject}</span></div>
                 <div class="message-box">
-                    <span class="label">Message:</span>
+                    <span class="label">Message Content:</span>
                     <div class="value" style="white-space: pre-wrap;">${message}</div>
                 </div>
             </div>
@@ -66,17 +75,17 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: creds.user,
-            pass: creds.pass
+            user: user,
+            pass: pass
         }
     });
 
     try {
         await transporter.sendMail({
-            from: `"Website Inquiry" <${creds.user}>`,
-            to: creds.user,
+            from: `"Website Inquiry" <${user}>`,
+            to: user,
             replyTo: email,
-            subject: `[Mark Overseas] ${subject} - from ${name}`,
+            subject: `[Web] ${subject} from ${name}`,
             html: emailHtml
         });
         return res.status(200).json({ success: true });
