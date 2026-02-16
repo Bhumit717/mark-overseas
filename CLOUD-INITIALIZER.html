@@ -50,8 +50,13 @@
     <div class="card">
         <img src="images/mark-logo.png" style="height: 50px; margin-bottom: 20px;">
         <h2>Cloud Initializer</h2>
-        <p>This will automatically set up your <b>config/smtp</b> collection in Firebase for you.</p>
-        <button id="start-btn">Initialize Cloud Now</button>
+        <p><b>⚠️ IMPORTANT:</b> This is <b>only needed if you're using PHP hosting</b> (cPanel, traditional hosting).
+        </p>
+        <p><b>If using Firebase Cloud Functions</b>, you don't need this - use Firebase Secrets instead (see
+            FIREBASE-EMAIL-SETUP.md).</p>
+        <hr style="margin: 20px 0;">
+        <p>This will set up <b>config/smtp</b> in Firestore for the PHP bridge.</p>
+        <button id="start-btn">Initialize Cloud Now (PHP Only)</button>
         <div id="status" class="status"></div>
     </div>
 
@@ -75,8 +80,23 @@
 
                 status.innerHTML = "<span style='color:green'>✅ SUCCESS! Cloud is Ready.</span><br><br><small>You can now delete this file (CLOUD-INITIALIZER.html) for maximum security.</small>";
             } catch (e) {
-                status.innerHTML = "<span style='color:red'>❌ FAILED!</span><br><small>" + e.message + "</small>";
                 console.error(e);
+                if (e.code === 'permission-denied') {
+                    status.innerHTML = `
+                        <div style="color:red; text-align:left; background:#xffdddd; padding:15px; border-radius:8px; margin-top:20px;">
+                            <strong>❌ PERMISSION DENIED</strong><br>
+                            Your Firebase Rules are blocking this write (which is good for security, but blocks setup).<br><br>
+                            <strong>👉 HOW TO FIX:</strong><br>
+                            1. Go to <a href="https://console.firebase.google.com/project/mark-overseas/firestore/rules" target="_blank">Firebase Console -> Firestore -> Rules</a><br>
+                            2. Change: <code>allow write: if false;</code><br>
+                            3. To: <code>allow write: if true;</code><br>
+                            4. Click <strong>Publish</strong><br>
+                            5. Come back here and click the button again.
+                        </div>
+                    `;
+                } else {
+                    status.innerHTML = "<span style='color:red'>❌ FAILED!</span><br><small>" + e.message + "</small>";
+                }
             }
         };
     </script>
