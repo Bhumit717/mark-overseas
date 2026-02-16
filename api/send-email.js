@@ -6,12 +6,13 @@ export default async function handler(req, res) {
 
     // 🛡️ SERVER-SIDE DOMAIN VERIFICATION
     const origin = req.headers.origin || req.headers.referer || "unknown";
-    const cleanOrigin = origin.replace(/^https?:\/\//, '').split('/')[0];
+    let cleanOrigin = origin.replace(/^https?:\/\//, '').split('/')[0];
+    cleanOrigin = cleanOrigin.split(':')[0]; // Remove port for matching
 
     // Check if the domain is in our authorized list
     const isAllowed = creds.allowedDomains.some(d => cleanOrigin.includes(d));
     if (!isAllowed && process.env.NODE_ENV === 'production') {
-        return res.status(403).json({ error: 'Unauthorized Domain' });
+        return res.status(403).json({ error: `Domain Restricted: ${cleanOrigin}` });
     }
 
     const { name, email, phone, subject, message } = req.body;
@@ -38,6 +39,8 @@ export default async function handler(req, res) {
         });
     } catch (e) {
         console.error("DB Error:", e);
+        // Don't stop here, but notify the log
+        return res.status(500).json({ error: "Database Connection Failed: " + e.message });
     }
 
     // 2. SMTP NOTIFICATION

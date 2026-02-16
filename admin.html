@@ -149,6 +149,7 @@
             } catch (e) {
                 console.error(e);
                 error.style.display = 'block';
+                alert("Login Failed: " + e.message + "\n\nMake sure your Admin Account is created in the Firebase Console (Authentication > Users).");
             }
         });
 
@@ -180,7 +181,10 @@
                     `;
                     tbody.appendChild(tr);
                 });
-            } catch (e) { console.error("Database Error:", e); }
+            } catch (e) {
+                console.error("Database Error:", e);
+                alert("Database Error: " + e.message + "\n\nPlease ensure your Firebase Rules are set in the console.");
+            }
         }
 
         window.deleteItem = async (id) => {
