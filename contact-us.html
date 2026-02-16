@@ -264,7 +264,7 @@
 	<script src="js/logo-video.js"></script>
 	<script src="js/language-selector.js"></script>
 
-	<!-- Firebase SDK Integration -->
+	<!-- Cleaned Submission Handler for Tier.net -->
 	<script type="module">
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 		import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -291,44 +291,29 @@
 				createdAt: serverTimestamp()
 			};
 
-			let firestoreSuccess = false;
-
 			try {
-				// 1. Save to Firebase Database (Free)
-				try {
-					await addDoc(collection(db, "inquiries"), formData);
-					firestoreSuccess = true;
-					console.log("Firestore success");
-				} catch (firestoreError) {
-					console.error("Firestore Error:", firestoreError);
-					// Continue to try sending email even if database fails, or stop? 
-					// Usually if DB fails, we might still want email. But let's warn.
-					alert("Note: Database storage failed (" + firestoreError.message + "), but attempting to send email...");
-				}
-
-				// 2. Trigger Gmail Notification via Vercel API (Free)
-				const emailRes = await fetch('/api/send-email', {
+				// 1. Save to Firebase (Database Backup)
+				await addDoc(collection(db, "inquiries"), formData);
+				
+				// 2. Send Secure Email via Hosting (PHP Bridge)
+				// This works on Tier.net and keeps credentials hidden on the server.
+				const emailRes = await fetch('./contact-action.php', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(formData)
 				});
 
-				if (!emailRes.ok) {
-					const errLog = await emailRes.json();
-					console.error("Email API failed:", errLog);
-					alert("System Alert: Email notification failed. " + (errLog.error || "Unknown error"));
-				} else {
-					if (firestoreSuccess) {
-						alert("Success! Your inquiry has been submitted and the team has been notified.");
-					} else {
-						alert("Inquiry sent via email, but database record failed.");
-					}
+				if (emailRes.ok) {
+					alert("Success! Your inquiry has been submitted and we will contact you soon.");
 					document.getElementById('contact_form').reset();
+				} else {
+					// Fallback if PHP fails but Firebase worked
+					alert("Inquiry saved to database, but notification email was delayed. We will still see your request!");
 				}
 
 			} catch (error) {
-				console.error("General Submission Error: ", error);
-				alert("Something went wrong. Please check your connection or contact us directly via email.");
+				console.error("Submission Error: ", error);
+				alert("Something went wrong. Please check your connection or email us directly at info@mark-overseas.com");
 			} finally {
 				btn.disabled = false;
 				btn.innerText = originalText;
