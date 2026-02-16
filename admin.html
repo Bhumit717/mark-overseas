@@ -60,6 +60,7 @@
             font-size: 0.875rem;
             transition: all 0.2s;
             background: white;
+            text-decoration: none;
         }
 
         .btn-logout:hover {
@@ -99,240 +100,166 @@
             font-weight: 600;
         }
 
-        .btn-refresh {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 6px -1px rgba(8, 175, 8, 0.2);
-            transition: transform 0.1s, box-shadow 0.2s;
-        }
-
-        .btn-refresh:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 8px -1px rgba(8, 175, 8, 0.3);
-            color: white;
-        }
-
-        .btn-refresh:active {
-            transform: translateY(0);
-        }
-
-        /* Data Card */
+        /* Card & Table */
         .data-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
 
-        /* Login Card */
-        .login-wrapper {
-            min-height: 100vh;
+        .table-toolbar {
+            padding: 1.25rem;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
+            gap: 12px;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
         }
 
-        .login-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            text-align: center;
-        }
-
-        /* Table Styling */
         .table {
             margin-bottom: 0;
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
         }
 
         .table thead th {
             background-color: #f9fafb;
-            color: #374151;
-            font-weight: 600;
+            padding: 0.75rem 1.25rem;
             font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            padding: 1rem 1.5rem;
+            color: var(--text-muted);
             border-bottom: 1px solid var(--border-color);
-            white-space: nowrap;
         }
 
         .table tbody td {
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.95rem;
-            vertical-align: top;
-            color: #4b5563;
+            padding: 1rem 1.25rem;
+            vertical-align: middle;
+            font-size: 0.875rem;
         }
 
-        .table tbody tr:last-child td {
-            border-bottom: none;
+        /* Badges */
+        .status-badge {
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
         }
 
-        .table tbody tr:hover {
+        .status-new {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        /* Action Buttons */
+        .btn-action {
+            padding: 6px;
+            border-radius: 6px;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+
+        .btn-action:hover {
+            color: #ef4444;
+            background: #fef2f2;
+        }
+
+        /* Login Screen */
+        .login-view {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: #f9fafb;
         }
 
-        /* Table Content Helpers */
-        .cell-date {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            white-space: nowrap;
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        .cell-name {
-            font-weight: 600;
-            color: #111827;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.875rem;
-        }
-
-        .subject-badge {
-            display: inline-block;
-            background-color: #eff6ff;
-            color: #1d4ed8;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid #dbeafe;
-        }
-
-        .message-box {
-            max-width: 300px;
-            max-height: 80px;
-            overflow-y: auto;
-            color: #374151;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            scrollbar-width: thin;
-        }
-
-        .btn-delete {
-            padding: 8px;
-            border-radius: 6px;
-            color: #ef4444;
-            border: 1px solid transparent;
-            background: transparent;
-            transition: all 0.2s;
-        }
-
-        .btn-delete:hover {
-            background-color: #fee2e2;
-            border-color: #fca5a5;
-        }
-
-        /* Form Controls */
-        .form-control {
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border-color: var(--border-color);
+        .login-card h2 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
         }
 
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(8, 175, 8, 0.15);
+            box-shadow: 0 0 0 4px rgba(8, 175, 8, 0.1);
         }
 
-        .btn-login {
+        .btn-primary-custom {
             background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-weight: 600;
             border: none;
+            padding: 10px;
+            font-weight: 600;
+            transition: 0.2s;
+            color: white;
             width: 100%;
-            margin-top: 1rem;
-            transition: all 0.2s;
+            border-radius: 8px;
         }
 
-        .btn-login:hover {
+        .btn-primary-custom:hover {
             background-color: var(--primary-hover);
+            transform: translateY(-1px);
         }
 
-        /* Mobile Responsiveness */
+        #dashboard-section {
+            display: none;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .navbar .admin-container {
-                flex-direction: row;
-                /* Keep logo and logout on same line if possible */
-                align-items: center;
-            }
-
-            .navbar-brand span {
-                display: none;
-                /* Hide text, keep logo on very small screens */
-            }
-
             .page-header {
                 flex-direction: column;
-                align-items: stretch;
+                align-items: flex-start;
                 gap: 1rem;
             }
 
-            .page-header>div:last-child {
-                display: flex;
+            .table-toolbar {
                 flex-wrap: wrap;
-                gap: 10px;
-                justify-content: stretch;
             }
 
-            .page-header .btn-refresh {
-                flex: 1;
-                justify-content: center;
-                font-size: 0.9rem;
-                padding: 8px 12px;
+            .table thead {
+                display: none;
             }
 
-            .stat-badge {
-                width: 100%;
-                text-align: center;
-                margin-bottom: 5px;
+            .table td {
                 display: block;
+                text-align: right;
+                padding: 0.5rem 1rem;
+                border: none;
             }
 
-            .data-card {
-                border-radius: 8px;
+            .table td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: 600;
+                color: var(--text-muted);
             }
 
-            .table thead th,
-            .table tbody td {
-                padding: 10px;
-            }
-
-            .message-box {
-                max-width: 200px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .navbar-brand span {
-                display: inline;
+            .table tr {
+                display: block;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 0;
             }
         }
     </style>
@@ -341,147 +268,131 @@
 <body>
 
     <!-- Login Section -->
-    <section id="login-section" class="login-wrapper">
+    <div id="login-section" class="login-view">
         <div class="login-card">
+            <div class="text-center mb-4">
+                <img src="images/mark-logo.png" alt="Logo" style="height: 60px;">
+            </div>
+            <h2>Admin Login</h2>
+            <p class="text-center text-muted mb-4">Enter your credentials to access the dashboard</p>
+
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="admin-email" class="form-control" placeholder="admin@mark-overseas.com">
+            </div>
             <div class="mb-4">
-                <img src="images/mark-logo.png" alt="Mark Overseas" style="height: 60px; object-fit: contain;">
+                <label class="form-label">Password</label>
+                <input type="password" id="admin-password" class="form-control" placeholder="••••••••">
             </div>
-            <h4 class="mb-1" style="font-weight: 700;">Welcome Back</h4>
-            <p class="text-muted mb-4">Please sign in to access the dashboard</p>
-
-            <div class="text-start mb-3">
-                <label class="form-label" style="font-weight: 500; font-size: 0.9rem;">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-lock"></i></span>
-                    <input type="password" id="admin-password" class="form-control border-start-0"
-                        placeholder="Enter admin password">
-                </div>
-            </div>
-
-            <button id="btn-login" class="btn-login">Sign In</button>
-            <p id="login-error" class="text-danger mt-3 small" style="display:none;"><i
-                    class="bi bi-exclamation-circle me-1"></i> Invalid Password</p>
+            <button id="btn-login" class="btn btn-primary-custom">Sign In</button>
+            <div id="login-error" class="text-danger mt-3 text-center small" style="display:none;"></div>
         </div>
-    </section>
+    </div>
 
     <!-- Dashboard Section -->
-    <section id="dashboard-section" style="display: none;">
-        <!-- Navbar -->
-        <nav class="navbar sticky-top">
-            <div class="admin-container my-0 py-0 w-100 d-flex justify-content-between">
-                <div class="navbar-brand">
+    <div id="dashboard-section">
+        <nav class="navbar">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand" href="#">
                     <img src="images/mark-logo.png" alt="Logo">
-                    <span>Admin Portal</span>
+                    <span class="d-none d-sm-inline">Mark Overseas Admin</span>
+                </a>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-logout" onclick="logout()">
+                        <i class="bi bi-box-arrow-right me-1"></i> Sign Out
+                    </button>
                 </div>
-                <button class="btn-logout" onclick="logout()">
-                    <i class="bi bi-box-arrow-right me-1"></i> Logout
-                </button>
             </div>
         </nav>
 
         <div class="admin-container">
             <div class="page-header">
                 <div>
-                    <h1 class="page-title">Inquiries Dashboard</h1>
-                    <p class="text-muted mb-0 mt-1">Manage all your incoming website inquiries.</p>
+                    <h1 class="page-title">Website Inquiries</h1>
+                    <p class="text-muted small mb-0">Manage and respond to client requests</p>
                 </div>
-                <div class="d-flex align-items-center gap-2">
-                    <span id="total-count" class="stat-badge me-2">0 Submissions</span>
-
-                    <button id="btn-download" class="btn btn-primary btn-refresh"
-                        style="background-color: #3b82f6; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);"
-                        onclick="downloadPDF()">
-                        <i class="bi bi-file-earmark-pdf"></i> PDF
-                    </button>
-
-                    <button class="btn-refresh" onclick="fetchSubmissions()">
-                        <i class="bi bi-arrow-clockwise"></i> Refresh
-                    </button>
-
-                    <button id="btn-delete-all" class="btn btn-danger btn-refresh"
-                        style="background-color: #ef4444; box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2);"
-                        onclick="deleteAllSubmissions()">
-                        <i class="bi bi-trash"></i> Delete All
-                    </button>
+                <div class="d-flex gap-2">
+                    <span class="stat-badge" id="inquiry-count">0 Total Inquiries</span>
                 </div>
             </div>
 
             <div class="data-card">
+                <div class="table-toolbar">
+                    <button class="btn btn-light btn-sm border" onclick="fetchSubmissions()">
+                        <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+                    </button>
+                    <button class="btn btn-light btn-sm border" onclick="downloadPDF()">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> Export PDF
+                    </button>
+                    <div class="ms-auto d-flex gap-2">
+                        <button class="btn btn-outline-danger btn-sm border" onclick="deleteAllSubmissions()">
+                            <i class="bi bi-trash me-1"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-hover align-middle">
                         <thead>
                             <tr>
-                                <th width="150">Received On</th>
-                                <th width="180">Customer</th>
-                                <th width="220">Contact Details</th>
-                                <th width="180">Subject</th>
+                                <th>Date</th>
+                                <th>Client Name</th>
+                                <th>Contact Info</th>
+                                <th>Subject</th>
                                 <th>Message</th>
-                                <th width="80" class="text-center">Action</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="inquiries-table-body">
-                            <!-- Data will be injected here -->
+                        <tbody id="submissions-table-body">
+                            <!-- Data will be loaded here -->
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Loading State -->
-                <div id="loading-spinner" class="text-center py-5">
-                    <div class="spinner-border text-success" style="width: 3rem; height: 3rem;" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                    <p class="text-muted mt-3">Fetching inquiries...</p>
+                <div id="empty-state" class="p-5 text-center text-muted" style="display:none;">
+                    <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                    No inquiries found.
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- JS Libraries -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 
-    <!-- Firebase SDK & Logic (Zip-Ready Version) -->
+    <!-- Firebase SDK (Professional Secure Version) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, getDoc, doc, deleteDoc, orderBy, query, setDoc, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { firebaseConfig } from "./js/firebase-config.js";
 
-        // Initialize Firebase
+        // Initialize
         const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Global data storage
         let allInquiriesData = [];
 
-        // --- Auth Logic ---
-        const ADMIN_DOC_ID = "admin_config";
-        const SETTINGS_COLLECTION = "settings";
-        const DEFAULT_PASSWORD = "Mark@Overseas321";
-
-        // Check persistent session
-        if (localStorage.getItem('admin_authenticated') === 'true') {
-            showDashboard();
-        }
-
-        // --- Functions Exposed to Window ---
-        window.logout = () => {
-            localStorage.removeItem('admin_authenticated');
-            showLogin();
-        };
-        window.fetchSubmissions = fetchSubmissions;
-        window.deleteSubmission = deleteSubmission;
-        window.deleteAllSubmissions = deleteAllSubmissions;
-        window.downloadPDF = downloadPDF;
+        // Auth Monitor
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                showDashboard();
+            } else {
+                showLogin();
+            }
+        });
 
         // Login Handler
         document.getElementById('btn-login').addEventListener('click', async () => {
-            const inputPwd = document.getElementById('admin-password').value;
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
             const btn = document.getElementById('btn-login');
             const errorMsg = document.getElementById('login-error');
 
-            if (!inputPwd) {
-                alert("Please enter the password.");
+            if (!email || !password) {
+                alert("Please enter both email and password.");
                 return;
             }
 
@@ -490,34 +401,122 @@
             errorMsg.style.display = 'none';
 
             try {
-                const docRef = doc(db, SETTINGS_COLLECTION, ADMIN_DOC_ID);
-                let docSnap = await getDoc(docRef);
-
-                // Auto-create password if it doesn't exist (First time use)
-                if (!docSnap.exists()) {
-                    await setDoc(docRef, { password: DEFAULT_PASSWORD });
-                    docSnap = await getDoc(docRef);
-                }
-
-                const storedPassword = docSnap.data().password;
-
-                if (inputPwd === storedPassword) {
-                    localStorage.setItem('admin_authenticated', 'true');
-                    showDashboard();
-                } else {
-                    errorMsg.style.display = 'block';
-                    btn.disabled = false;
-                    btn.innerText = "Sign In";
-                }
+                await signInWithEmailAndPassword(auth, email, password);
             } catch (err) {
-                console.error("Login Error:", err);
-                alert("System Error: " + err.message);
+                console.error(err);
+                errorMsg.style.display = 'block';
+                errorMsg.innerText = "Invalid credentials or unauthorized access.";
                 btn.disabled = false;
                 btn.innerText = "Sign In";
             }
         });
 
-        // View Switchers
+        window.logout = () => signOut(auth);
+
+        // Fetch Data
+        async function fetchSubmissions() {
+            const tbody = document.getElementById('submissions-table-body');
+            const emptyState = document.getElementById('empty-state');
+            const countBadge = document.getElementById('inquiry-count');
+
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center p-5"><div class="spinner-border text-success" role="status"></div></td></tr>';
+
+            try {
+                const q = query(collection(db, "inquiries"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                allInquiriesData = [];
+                tbody.innerHTML = '';
+
+                if (querySnapshot.empty) {
+                    emptyState.style.display = 'block';
+                    countBadge.innerText = '0 Inquiries';
+                    return;
+                }
+
+                emptyState.style.display = 'none';
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    allInquiriesData.push({ id: doc.id, ...data });
+
+                    const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td data-label="Date" class="text-muted small">${date}</td>
+                        <td data-label="Client"><strong>${data.name}</strong></td>
+                        <td data-label="Contact">
+                            <div class="small">${data.email}</div>
+                            <div class="text-muted extra-small">${data.phone}</div>
+                        </td>
+                        <td data-label="Subject"><span class="status-badge status-new">${data.subject}</span></td>
+                        <td data-label="Message"><div style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" onclick="alert(this.innerText)">${data.message}</div></td>
+                        <td data-label="Actions">
+                            <button class="btn-action" onclick="deleteSubmission('${doc.id}')" title="Delete">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                countBadge.innerText = `${allInquiriesData.length} Total Inquiries`;
+            } catch (error) {
+                console.error("Fetch error:", error);
+                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-danger">Error loading data. Make sure you are authorized.</td></tr>`;
+            }
+        }
+
+        window.deleteSubmission = async (id) => {
+            if (!confirm("Are you sure you want to delete this inquiry?")) return;
+            try {
+                await deleteDoc(doc(db, "inquiries", id));
+                fetchSubmissions();
+            } catch (err) {
+                alert("Only authorized admins can delete records.");
+            }
+        };
+
+        window.deleteAllSubmissions = async () => {
+            if (!confirm("CRITICAL: This will delete ALL inquiries from the database. Continue?")) return;
+
+            const password = prompt("Type 'DELETE ALL' to confirm:");
+            if (password !== 'DELETE ALL') return;
+
+            try {
+                const q = collection(db, "inquiries");
+                const snapshot = await getDocs(q);
+                const batch = writeBatch(db);
+                snapshot.docs.forEach((doc) => batch.delete(doc.ref));
+                await batch.commit();
+                fetchSubmissions();
+                alert("Database cleared.");
+            } catch (err) {
+                alert("Operation failed. Unauthorized.");
+            }
+        };
+
+        window.downloadPDF = () => {
+            if (allInquiriesData.length === 0) return alert("No data to export");
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Mark Overseas Inquiry Report", 14, 15);
+            doc.autoTable({
+                head: [['Date', 'Name', 'Email', 'Phone', 'Subject', 'Message']],
+                body: allInquiriesData.map(item => [
+                    item.createdAt ? new Date(item.createdAt.seconds * 1000).toLocaleDateString() : 'N/A',
+                    item.name,
+                    item.email,
+                    item.phone,
+                    item.subject,
+                    item.message
+                ]),
+                startY: 20,
+            });
+            doc.save(`mark_overseas_inquiries_${new Date().toISOString().split('T')[0]}.pdf`);
+        };
+
         function showDashboard() {
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('dashboard-section').style.display = 'block';
@@ -527,200 +526,10 @@
         function showLogin() {
             document.getElementById('login-section').style.display = 'flex';
             document.getElementById('dashboard-section').style.display = 'none';
-            document.getElementById('admin-password').value = '';
-            document.getElementById('btn-login').disabled = false;
-            document.getElementById('btn-login').innerText = "Sign In";
         }
 
-        // --- Data Logic ---
-        async function fetchSubmissions() {
-            const tbody = document.getElementById('inquiries-table-body');
-            const spinner = document.getElementById('loading-spinner');
-            const countLabel = document.getElementById('total-count');
+        window.fetchSubmissions = fetchSubmissions;
 
-            tbody.innerHTML = '';
-            spinner.style.display = 'block';
-            allInquiriesData = []; // Clear global data
-
-            try {
-                const q = query(collection(db, "inquiries"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-
-                spinner.style.display = 'none';
-                countLabel.innerText = `${querySnapshot.size} Submissions`;
-
-                if (querySnapshot.empty) {
-                    tbody.innerHTML = `
-                        <tr>
-                            <td colspan="6" class="text-center py-5">
-                                <div class="text-muted">
-                                    <i class="bi bi-inbox fs-2 d-block mb-2"></i>
-                                    No inquiries found. Only new submissions will appear here.
-                                </div>
-                            </td>
-                        </tr>`;
-                    // Disable action buttons if empty
-                    document.getElementById('btn-download').disabled = true;
-                    document.getElementById('btn-delete-all').disabled = true;
-                    return;
-                }
-
-                // Enable buttons
-                document.getElementById('btn-download').disabled = false;
-                document.getElementById('btn-delete-all').disabled = false;
-
-                querySnapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    const date = data.createdAt && data.createdAt.seconds
-                        ? new Date(data.createdAt.seconds * 1000).toLocaleString('en-GB')
-                        : '-';
-
-                    // Store for PDF
-                    allInquiriesData.push({
-                        ...data,
-                        id: docSnap.id,
-                        formattedDate: date
-                    });
-
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td class="cell-date">${date}</td>
-                        <td class="cell-name">${escapeHtml(data.name || 'Unknown')}</td>
-                        <td>
-                            <div class="contact-info">
-                                <div class="contact-item" title="Email"><i class="bi bi-envelope text-muted"></i> ${escapeHtml(data.email || '-')}</div>
-                                <div class="contact-item" title="Phone"><i class="bi bi-telephone text-muted"></i> ${escapeHtml(data.phone || '-')}</div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="subject-badge">${escapeHtml(data.subject || 'Inquiry')}</span>
-                        </td>
-                        <td>
-                            <div class="message-box">${escapeHtml(data.message || '-')}</div>
-                        </td>
-                        <td class="text-center">
-                            <button class="btn-delete" title="Delete Submission" onclick="deleteSubmission('${docSnap.id}')">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
-
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                spinner.style.display = 'none';
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4">Failed to load data: ${error.message}</td></tr>`;
-            }
-        }
-
-        async function deleteSubmission(id) {
-            if (!confirm("Are you sure you want to delete this submission permanently?")) return;
-
-            try {
-                await deleteDoc(doc(db, "inquiries", id));
-                fetchSubmissions(); // Refresh
-            } catch (error) {
-                console.error("Error deleting:", error);
-                alert("Failed to delete: " + error.message);
-            }
-        }
-
-        async function deleteAllSubmissions() {
-            if (!allInquiriesData.length) return;
-            if (!confirm("⚠️ WARNING: This will delete ALL " + allInquiriesData.length + " submissions permanently!\n\nType 'DELETE' to confirm.")) return;
-
-            // Simple prompt for double confirmation isn't possible with just confirm, so relying on the button context and standard confirm
-            // For extra safety, could ask for text input, but let's stick to standard confirm for now or a stricter check if requested.
-            // User asked for "Delete all option".
-
-            const btn = document.getElementById('btn-delete-all');
-            const originalText = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Deleting...';
-
-            try {
-                // Firestore batch delete allows up to 500 operations
-                const batch = writeBatch(db);
-
-                // We will just process the first 500 if there are many, or loop logic for robust production.
-                // Assuming reasonable volume < 500 for this context.
-                allInquiriesData.forEach(item => {
-                    const docRef = doc(db, "inquiries", item.id);
-                    batch.delete(docRef);
-                });
-
-                await batch.commit();
-
-                alert("All submissions have been deleted.");
-                fetchSubmissions();
-            } catch (error) {
-                console.error("Error deleting all:", error);
-                alert("Failed to delete all: " + error.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = originalText;
-            }
-        }
-
-        function downloadPDF() {
-            if (!allInquiriesData.length) {
-                alert("No data to download.");
-                return;
-            }
-
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            // Header
-            doc.setFontSize(18);
-            doc.setTextColor(8, 175, 8); // Mark Overseas Green
-            doc.text("Mark Overseas - Inquiries Report", 14, 20);
-
-            doc.setFontSize(11);
-            doc.setTextColor(100);
-            doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 28);
-
-            // Table
-            const tableColumn = ["Date", "Name", "Email", "Phone", "Subject", "Message"];
-            const tableRows = [];
-
-            allInquiriesData.forEach(item => {
-                const rowData = [
-                    item.formattedDate,
-                    item.name || '-',
-                    item.email || '-',
-                    item.phone || '-',
-                    item.subject || '-',
-                    item.message || '-'
-                ];
-                tableRows.push(rowData);
-            });
-
-            doc.autoTable({
-                head: [tableColumn],
-                body: tableRows,
-                startY: 35,
-                theme: 'grid',
-                headStyles: { fillColor: [8, 175, 8] },
-                styles: { fontSize: 8, cellPadding: 3 },
-                columnStyles: {
-                    5: { cellWidth: 50 } // Restrict message column width
-                }
-            });
-
-            doc.save("mark-overseas-inquiries.pdf");
-        }
-
-        function escapeHtml(text) {
-            if (!text) return text;
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
     </script>
 </body>
 

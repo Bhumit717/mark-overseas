@@ -6,12 +6,15 @@ service cloud.firestore {
     // Inquiries: Anyone can submit.
     match /inquiries/{inquiryId} {
       allow create: if true;
-      allow read, delete: if true; 
+      
+      // ONLY AUTHENTICATED USERS CAN READ OR DELETE.
+      // This is the only way to be 100% safe.
+      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com'; 
     }
 
-    // Admin Config: allow the dashboard to set its own password
+    // Admin Config: 100% Locked. Nobody can read/write except via console.
     match /settings/{docId} {
-      allow read, write: if true;
+      allow read, write: if false;
     }
   }
 }
