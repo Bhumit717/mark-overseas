@@ -42,9 +42,13 @@ Go to **Authentication > Users** and add:
 
 ---
 
-## 📂 Project Structure
-- `api/creds.js`: **Central Config**. Edit this to change your Gmail credentials. (Portable & Scraper-Safe).
-- `admin.html`: Secure dashboard using Firebase Auth.
-- `contact-us.html`: Inquiry form protected by Domain Proxy.
+## 🛠️ Troubleshooting (If nothing is working)
+If you see "Database Error" or "Login Failed" on the website:
+
+1.  **Check Firebase Auth**: Ensure you enabled **Email/Password** in the Firebase Console (Authentication > Sign-in method).
+2.  **Check Firestore Config**: Ensure you created a **Cloud Firestore** database and pasted the **Rules** from Section 1 above.
+3.  **Vercel Node Version**: Ensure your Vercel project is using **Node.js 18.x or 20.x**.
+4.  **Local Testing**: If you are testing locally using "Live Server", the domain is `localhost`. The rules already allow this.
 
 © 2026 Mark Overseas. All Rights Reserved.
+Developed by **Antigravity AI**.
