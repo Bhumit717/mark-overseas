@@ -1,6 +1,6 @@
 <?php
 /**
- * ROBUST EMAIL BRIDGE (Mobile-Perfect Theme)
+ * ROBUST EMAIL BRIDGE (Mobile-Perfect Theme - No Logo)
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -29,7 +29,7 @@ $phone = strip_tags($data['phone']);
 $subject = strip_tags($data['subject']);
 $message = nl2br(strip_tags($data['message']));
 
-// MOBILE-PERFECT HTML THEME
+// MOBILE-PERFECT HTML THEME (No Logo Version)
 $email_html = "
 <!DOCTYPE html>
 <html>
@@ -43,8 +43,8 @@ $email_html = "
         .header h1 { margin: 0; font-size: 20px; font-weight: 600; }
         .body { padding: 20px; color: #444; }
         .item { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
-        .label { font-size: 12px; color: #08af08; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-        .value { font-size: 16px; color: #222; word-break: break-all; }
+        .label { font-size: 11px; color: #08af08; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .value { font-size: 15px; color: #222; word-break: break-all; }
         .msg-box { background: #f9fbfb; padding: 15px; border-radius: 6px; border-left: 4px solid #08af08; margin-top: 10px; }
         .footer { text-align: center; padding: 20px; font-size: 12px; color: #888; }
         @media screen and (max-width: 600px) {
@@ -56,15 +56,15 @@ $email_html = "
 <body>
     <div class='wrapper'>
         <div class='content'>
-            <div class='header'><h1>New Website Inquiry</h1></div>
+            <div class='header'><h1>WEBSITE INQUIRY: $subject</h1></div>
             <div class='body'>
                 <div class='item'><div class='label'>Client Name</div><div class='value'>$name</div></div>
                 <div class='item'><div class='label'>Email Address</div><div class='value'>$email</div></div>
                 <div class='item'><div class='label'>Phone Number</div><div class='value'>$phone</div></div>
-                <div class='item'><div class='label'>Subject</div><div class='value'>$subject</div></div>
+                <div class='item'><div class='label'>Subject Line</div><div class='value'>$subject</div></div>
                 <div class='msg-box'>
-                    <div class='label'>Message</div>
-                    <div class='value' style='font-size: 15px;'>$message</div>
+                    <div class='label'>Message Content</div>
+                    <div class='value' style='font-size: 14px;'>$message</div>
                 </div>
             </div>
             <div class='footer'>Sent from Mark Overseas Administration</div>
@@ -73,11 +73,8 @@ $email_html = "
 </body>
 </html>";
 
-// SMTP socket handler (Generic reliable version)
 function send_smtp($to, $subject, $body, $creds, $replyTo) {
-    // Try standard ports if custom ones fail
     $hosts = ["ssl://smtp.gmail.com:465", "tls://smtp.gmail.com:587"];
-    
     foreach ($hosts as $h) {
         $parts = explode(":", $h);
         $socket = @fsockopen($parts[0], $parts[1], $errno, $errstr, 10);
@@ -105,15 +102,14 @@ function send_smtp($to, $subject, $body, $creds, $replyTo) {
     return false;
 }
 
-if (send_smtp($creds['to'], "Mark Overseas: $subject", $email_html, $creds, $email)) {
+if (send_smtp($creds['to'], "[Mark Overseas] $subject - $name", $email_html, $creds, $email)) {
     echo json_encode(['success' => true]);
 } else {
-    // Ultimate Fallback: PHP Mail
     $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";
     if (mail($creds['to'], "[Fallback] $subject", $email_html, $headers)) {
         echo json_encode(['success' => true, 'note' => 'fallback']);
     } else {
-        echo json_encode(['success' => false, 'error' => 'Mail delivery failed. Please check host configuration.']);
+        echo json_encode(['success' => false, 'error' => 'Mail delivery failed.']);
     }
 }
 ?>

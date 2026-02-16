@@ -1,6 +1,6 @@
 <?php
 /**
- * PRODUCT INQUIRY BRIDGE (Mobile-Perfect Theme)
+ * PRODUCT INQUIRY BRIDGE (Mobile-Perfect Theme - No Logo)
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -47,7 +47,7 @@ $email_html = "
 <body>
     <div class='wrapper'>
         <div class='content'>
-            <div class='header'><h1>Product Inquiry</h1></div>
+            <div class='header'><h1>PRODUCT INQUIRY: $product</h1></div>
             <div class='body'>
                 <div class='item'><div class='label'>Product Name</div><div class='value'><strong>$product</strong></div></div>
                 <div class='item'><div class='label'>Client Name</div><div class='value'>$name</div></div>
@@ -64,7 +64,6 @@ $email_html = "
 </html>";
 
 function send_smtp($to, $subject, $body, $creds) {
-    // Robust multi-port retry logic
     $targets = [["ssl://smtp.gmail.com", 465], ["tls://smtp.gmail.com", 587]];
     foreach ($targets as $t) {
         $socket = @fsockopen($t[0], $t[1], $errno, $errstr, 10);
@@ -77,7 +76,7 @@ function send_smtp($to, $subject, $body, $creds) {
                 "MAIL FROM: <{$creds['user']}>" => 250,
                 "RCPT TO: <$to>" => 250,
                 "DATA" => 354,
-                "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas <{$creds['user']}>\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+                "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas Inquiry <{$creds['user']}>\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
                 "QUIT" => 221
             ];
             foreach ($commands as $cmd => $code) {
@@ -91,7 +90,7 @@ function send_smtp($to, $subject, $body, $creds) {
     return false;
 }
 
-if (send_smtp($creds['to'], "Inquiry for $product - $name", $email_html, $creds)) {
+if (send_smtp($creds['to'], "[Product] $product from $name", $email_html, $creds)) {
     echo json_encode(['success' => true]);
 } else {
     $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";

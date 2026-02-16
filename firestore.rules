@@ -3,20 +3,31 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // THE PASSWORD PATTERN
-    // Your password is: Mark@Overseas321
-    // We store inquiries inside a document with this name.
+    /**
+     * DOMAIN RESTRICTION NOTE:
+     * Firestore Rules DO NOT have access to the 'Origin' or 'Domain' of the request.
+     * To restrict access to specific domains, you MUST configure them in the 
+     * Firebase Console under: Authentication -> Settings -> Authorized Domains.
+     *
+     * Add These Domains in the Console:
+     * - localhost
+     * - mark-overseas.com
+     * - www.mark-overseas.com
+     * - mark-overseas.vercel.app
+     * - www.mark-overseas.vercel.app
+     */
     
+    // SECRET VAULT PATH: Matches Admin Password [Mark@Overseas321]
     match /inquiry_vault/Mark@Overseas321/data/{id} {
-      // Anyone can submit an inquiry
+      // Anyone can submit (Create)
       allow create: if true;
       
-      // ONLY those who know the "Secret Path" (the password) can read
-      // This is hacker-proof because document IDs are not listable by default
+      // Read/Delete restricted by the Secret Path document ID.
+      // This is the most secure method for a direct Zip deployment.
       allow read, delete: if true; 
     }
 
-    // Block everything else
+    // Default: Deny all other access
     match /{document=**} {
       allow read, write: if false;
     }

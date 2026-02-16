@@ -126,6 +126,7 @@
                                 <th>Date</th>
                                 <th>Client</th>
                                 <th>Contact</th>
+                                <th>Subject</th>
                                 <th>Message</th>
                                 <th>Action</th>
                             </tr>
@@ -185,6 +186,7 @@
                         <td><span class="mobile-label">Date:</span>${date}</td>
                         <td><span class="mobile-label">Name:</span><strong>${data.name}</strong></td>
                         <td><span class="mobile-label">Contact:</span>${data.email}<br><small>${data.phone}</small></td>
+                        <td><span class="mobile-label">Subject:</span><span class="badge bg-light text-dark border">${data.subject || 'N/A'}</span></td>
                         <td><span class="mobile-label">Message:</span><small>${data.message}</small></td>
                         <td><button class="btn btn-sm text-danger" onclick="deleteItem('${d.id}')"><i class="bi bi-trash"></i></button></td>
                     `;
