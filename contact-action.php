@@ -1,7 +1,7 @@
 <?php
 /**
- * 🚀 UNIVERSAL ZERO-CONFIG BRIDGE
- * Works instantly on any host. 100% Scraper-Proof.
+ * 🚀 UNIVERSAL CLOUD-CONFIG BRIDGE
+ * Fetches SMTP secrets from Firebase at runtime. Zero secrets in this file.
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -11,8 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json');
 
-// 1. LOAD SECURE CONFIG
-$config = include(__DIR__ . '/php/config.php');
+// 1. PUBLIC FIREBASE IDENTIFIERS
+$FB_KEY = "AIzaSyAtWGC2M5CqAhDK1O7mVqYvkhCqXhv0Ii0";
+$FB_PID = "mark-overseas";
 
 // 2. GET SUBMITTED DATA
 $data = json_decode(file_get_contents('php://input'), true);
@@ -24,13 +25,35 @@ if (!$data) {
 $name = strip_tags($data['name']);
 $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 $phone = strip_tags($data['phone']);
-$subject = strip_tags($data['subject']);
+$subject = strip_tags($data['subject'] ?? 'Website Inquiry');
 $message = nl2br(strip_tags($data['message']));
 $origin = $_SERVER['HTTP_REFERER'] ?? 'unknown';
 
 try {
-    // 3. SAVE TO FIREBASE (REST API)
-    $save_url = "https://firestore.googleapis.com/v1/projects/{$config['firebase']['projectId']}/databases/(default)/documents/inquiries?key={$config['firebase']['apiKey']}";
+    // 3. 🛡️ FETCH SMTP FROM FIREBASE (SECURE CLOUD FETCH)
+    function fetch_fb($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $res = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($res, true);
+    }
+
+    $config_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/config/smtp?key=$FB_KEY";
+    $config = fetch_fb($config_url);
+
+    if (!isset($config['fields']['user']['stringValue'])) {
+        echo json_encode(['success' => false, 'error' => 'SMTP Cloud Config missing. Create config/smtp in Firestore.']);
+        exit;
+    }
+
+    $GMAIL_USER = $config['fields']['user']['stringValue'];
+    $GMAIL_PASS = $config['fields']['pass']['stringValue'];
+
+    // 4. SAVE INQUIRY TO FIREBASE
+    $save_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/inquiries?key=$FB_KEY";
     $save_payload = json_encode([
         'fields' => [
             'name' => ['stringValue' => $name],
@@ -51,7 +74,7 @@ try {
     curl_exec($ch);
     curl_close($ch);
 
-    // 4. SEND EMAIL via SMTP
+    // 5. SEND EMAIL VIA SMTP
     function send_smtp_direct($to, $subject, $body, $user, $pass, $replyTo) {
         $socket = @fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
         if ($socket) {
@@ -77,8 +100,8 @@ try {
         return false;
     }
 
-    $email_html = "<h2>New Website Inquiry</h2><p><strong>From:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
-    send_smtp_direct($config['to'], "[New Inquiry] $subject", $email_html, $config['user'], $config['pass'], $email);
+    $email_html = "<h2>New Website Inquiry</h2><p><strong>Name:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
+    send_smtp_direct($GMAIL_USER, "[New Inquiry] $subject", $email_html, $GMAIL_USER, $GMAIL_PASS, $email);
 
     echo json_encode(['success' => true]);
 
