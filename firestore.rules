@@ -3,33 +3,20 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    /**
-     * 🛡️ PORTABLE DOMAIN SECURITY
-     * ---------------------------
-     * IMPORTANT: Firestore Rules cannot see the 'Domain' of the request.
-     * To secure your database, you MUST add your domains in the Firebase Console:
-     * Authentication -> Settings -> Authorized Domains.
-     *
-     * AUTHORIZED DOMAINS TO ADD:
-     * 1. mark-overseas.com
-     * 2. www.mark-overseas.com
-     * 3. mark-overseas.vercel.app
-     * 4. [Your Custom Domain]
-     */
-    
-    // 🛡️ REAL DOMAIN SECURITY
-    // This rule REJECTS any data that doesn't belong to your domains.
-    match /inquiry_vault/{pwd}/data/{id} {
+    // 🛡️ ENFORCED FIREBASE AUTH SECURITY
+    // No passwords in code. Access is tied to your Google/Firebase Account.
+    match /inquiries/{inquiryId} {
       
-      allow create: if pwd == 'Mark@Overseas321' && 
-        (request.resource.data.authorizedDomain.lower() in [
+      // Allow creation only if it contains the authorizedDomain (Layer 2 Security)
+      allow create: if request.resource.data.authorizedDomain.lower() in [
           'https://mark-overseas.com', 
           'https://www.mark-overseas.com', 
           'https://mark-overseas.vercel.app'
-        ]);
+        ];
 
-      // Read/Delete restricted to the secret path
-      allow read, delete: if pwd == 'Mark@Overseas321';
+      // Access is ONLY granted to your specific admin email.
+      // Even if a hacker has your config, they CANNOT login without your Google account.
+      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com'; 
     }
 
     // Default: Deny EVERYTHING else

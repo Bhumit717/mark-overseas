@@ -14,13 +14,12 @@ module.exports = {
         measurementId: "G-48YT3FTPSP"
     },
 
-    // Admin Access Security
-    adminPassword: "Mark@Overseas321",
-
     // Domain Security (Prevents other sites from using your API)
     allowedDomains: [
         'mark-overseas.com',
         'www.mark-overseas.com',
-        'mark-overseas.vercel.app'
+        'mark-overseas.vercel.app',
+        'localhost',
+        '127.0.0.1'
     ]
 };
