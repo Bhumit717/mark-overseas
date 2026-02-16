@@ -292,27 +292,35 @@
 			};
 
 			try {
-				// 1. Save to Firestore (Database Record)
+				// 1. Save to Firebase Database
 				await addDoc(collection(db, "inquiries"), formData);
 
-				// 2. Send Email via PHP Bridge (Instant Portability)
-				// This works immediately in a Zip file.
+				// 2. Try Vercel API first
+				let emailSent = false;
 				try {
-					const emailRes = await fetch('./contact-action.php', {
+					const vercelRes = await fetch('/api/send-email', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(formData)
 					});
+					if (vercelRes.ok) emailSent = true;
+				} catch (e) { console.log("Vercel API skipped"); }
 
-					if (emailRes.ok) {
-						alert("Success! Your inquiry has been submitted and our team has been notified.");
-						document.getElementById('contact_form').reset();
-					} else {
-						alert("Inquiry saved, but notification email had a delay. We will still see your request!");
-					}
-				} catch (emailErr) {
-					console.error("Email Error:", emailErr);
-					alert("Inquiry saved to database. Our team will check and reply soon.");
+				// 3. Fallback to PHP Bridge (for Tier.net/Standard Hosting)
+				if (!emailSent) {
+					const phpRes = await fetch('./contact-action.php', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
+					if (phpRes.ok) emailSent = true;
+				}
+
+				if (emailSent) {
+					alert("Success! Your inquiry has been submitted and our team has been notified.");
+					document.getElementById('contact_form').reset();
+				} else {
+					alert("Technical Note: Inquiry saved to database, but email notification failed. We will still check your message!");
 					document.getElementById('contact_form').reset();
 				}
 
