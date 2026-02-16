@@ -14,19 +14,15 @@ It is designed with **Zero Credentials in Files**. All sensitive data lives secu
 
 ---
 
-## 🛡️ CRITICAL: Setup Your Secrets (One-Time)
+## 🛡️ CRITICAL: One-Click Automated Setup (REQUIRED)
 
-To make the website send emails, you **MUST** store your credentials in your Firebase Console once:
+To make everything work without manual console entry, follow these steps:
 
-### 1. Store SMTP in Firestore
-*   Go to **Firebase Console > Firestore Database**.
-*   Create a collection named: `config`
-*   Create a document named: `smtp`
-*   Add two **string** fields:
-    *   `user`: `markoverseas28@gmail.com`
-    *   `pass`: `your-gmail-app-password` (e.g., `aopp wbdc ykky txwl`)
+1.  **Open your Website**: Visit `https://[your-domain].vercel.app/api/setup` in your browser.
+2.  **Verify Success**: You should see a "✅ SUCCESS" message. This automatically creates the `config/smtp` document in your Firebase.
+3.  **Maximum Security**: For the highest security, you can now **delete** the `api/setup.js` file from your project so nobody else can change your settings.
 
-*By doing this, your credentials are never in the source code.*
+---
 
 ### 2. Firestore Rules (Security Lockdown)
 Paste these in the **Rules** tab. These rules allow the system to read the config and users to submit inquiries while keeping your data safe:

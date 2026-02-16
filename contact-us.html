@@ -291,22 +291,34 @@
 			};
 
 			try {
-				// 🤖 SMART AUTO-DETECT BRIDGE
-				// Uses Vercel API if on Vercel, otherwise uses PHP Bridge.
-				const isVercel = window.location.hostname.includes('vercel.app');
-				const endpoint = isVercel ? '/api/send-email' : './contact-action.php';
-
-				const response = await fetch(endpoint, {
+				// 🛡️ TRUE UNIVERSAL AUTO-DETECT
+				// Tries Node API first (Best for Vercel), then PHP fallback.
+				let response = await fetch('/api/send-email', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(formData)
 				});
 
+				// Fallback to PHP if Node API is missing (404) or failed
+				if (response.status === 404 || !response.ok) {
+					const phpResponse = await fetch('./contact-action.php', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
+					if (phpResponse.ok || response.status === 404) {
+						response = phpResponse;
+					}
+				}
+
+				let result = {};
+				try { result = await response.json(); } catch (e) { result = { error: "Server returned invalid response" }; }
+
 				if (response.ok) {
 					alert("Success! Your inquiry has been submitted successfully.");
 					document.getElementById('contact_form').reset();
 				} else {
-					alert("Submission failed. Please try again.");
+					alert("Submission failed: " + (result.error || "Please check your Firebase Firestore rules or config/smtp document."));
 				}
 			} catch (error) {
 				console.error("Submission Error: ", error);
