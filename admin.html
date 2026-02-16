@@ -276,10 +276,6 @@
             <h2>Admin Login</h2>
             <p class="text-center text-muted mb-4">Enter your credentials to access the dashboard</p>
 
-            <div class="mb-3">
-                <label class="form-label">Email Address</label>
-                <input type="email" id="admin-email" class="form-control" placeholder="admin@mark-overseas.com">
-            </div>
             <div class="mb-4">
                 <label class="form-label">Password</label>
                 <input type="password" id="admin-password" class="form-control" placeholder="••••••••">
@@ -386,13 +382,13 @@
 
         // Login Handler
         document.getElementById('btn-login').addEventListener('click', async () => {
-            const email = document.getElementById('admin-email').value;
+            const email = "markoverseas28@gmail.com";
             const password = document.getElementById('admin-password').value;
             const btn = document.getElementById('btn-login');
             const errorMsg = document.getElementById('login-error');
 
-            if (!email || !password) {
-                alert("Please enter both email and password.");
+            if (!password) {
+                alert("Please enter the password.");
                 return;
             }
 
