@@ -1,16 +1,22 @@
-# Enable Clean URLs for Tier.net/Standard Hosting
-RewriteEngine On
+# 🛡️ MARK OVERSEAS FIREWALL
+# This script blocks HTTrack and other scrapers from downloading your secrets.
 
-# Redirect /admin to /admin.html
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^admin$ admin.html [L]
+<FilesMatch "\.(js|php|json|env|sh|bak)$">
+    # Block direct access to files that often contain secrets
+    # This specifically protects creds.js and gmail_credentials.php
+    <If "%{REQUEST_URI} =~ /creds|credentials|env|config/">
+        Order allow,deny
+        Deny from all
+    </If>
+</FilesMatch>
 
-# Redirect /contact to /contact-us.html
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^contact$ contact-us.html [L]
-
-# Security: Prevent viewing of .env or hidden files
-<FilesMatch "^\.">
+<Files "vercel.json">
     Order allow,deny
     Deny from all
+</Files>
+
+# Ensure PHP files are executed, not shown as text
+<FilesMatch "\.php$">
+    Order allow,deny
+    Allow from all
 </FilesMatch>
