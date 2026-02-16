@@ -1,6 +1,7 @@
 <?php
 /**
- * ROBUST EMAIL BRIDGE (Mobile-Perfect Theme - No Logo)
+ * 🚀 UNIVERSAL HOSTING-INDEPENDENT BRIDGE
+ * Fetches SMTP from Firebase and handles emails/database logic.
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -10,16 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json');
 
-$creds_file = __DIR__ . '/php/gmail_credentials.php';
-if (!file_exists($creds_file)) {
-    echo json_encode(['success' => false, 'error' => 'Config missing']);
-    exit;
-}
-$creds = include($creds_file);
+// 1. PUBLIC FIREBASE IDENTIFIERS
+$FB_KEY = "AIzaSyAtWGC2M5CqAhDK1O7mVqYvkhCqXhv0Ii0";
+$FB_PID = "mark-overseas";
 
+// 2. GET SUBMITTED DATA
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data) {
-    echo json_encode(['success' => false, 'error' => 'No data']);
+    echo json_encode(['success' => false, 'error' => 'No data received']);
     exit;
 }
 
@@ -28,88 +27,88 @@ $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 $phone = strip_tags($data['phone']);
 $subject = strip_tags($data['subject']);
 $message = nl2br(strip_tags($data['message']));
+$origin = $_SERVER['HTTP_REFERER'] ?? 'unknown';
 
-// MOBILE-PERFECT HTML THEME (No Logo Version)
-$email_html = "
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background: #f4f7f6; }
-        .wrapper { width: 100%; padding: 20px 0; }
-        .content { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e1e4e8; }
-        .header { background: #08af08; padding: 25px; text-align: center; color: #ffffff; }
-        .header h1 { margin: 0; font-size: 20px; font-weight: 600; }
-        .body { padding: 20px; color: #444; }
-        .item { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; }
-        .label { font-size: 11px; color: #08af08; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-        .value { font-size: 15px; color: #222; word-break: break-all; }
-        .msg-box { background: #f9fbfb; padding: 15px; border-radius: 6px; border-left: 4px solid #08af08; margin-top: 10px; }
-        .footer { text-align: center; padding: 20px; font-size: 12px; color: #888; }
-        @media screen and (max-width: 600px) {
-            .wrapper { padding: 10px; }
-            .header { padding: 15px; }
-        }
-    </style>
-</head>
-<body>
-    <div class='wrapper'>
-        <div class='content'>
-            <div class='header'><h1>WEBSITE INQUIRY: $subject</h1></div>
-            <div class='body'>
-                <div class='item'><div class='label'>Client Name</div><div class='value'>$name</div></div>
-                <div class='item'><div class='label'>Email Address</div><div class='value'>$email</div></div>
-                <div class='item'><div class='label'>Phone Number</div><div class='value'>$phone</div></div>
-                <div class='item'><div class='label'>Subject Line</div><div class='value'>$subject</div></div>
-                <div class='msg-box'>
-                    <div class='label'>Message Content</div>
-                    <div class='value' style='font-size: 14px;'>$message</div>
-                </div>
-            </div>
-            <div class='footer'>Sent from Mark Overseas Administration</div>
-        </div>
-    </div>
-</body>
-</html>";
+try {
+    // 3. 🛡️ FETCH SMTP FROM FIREBASE (SECURE CLOUD FLOW)
+    // We fetch from 'config/smtp' document. 
+    function fetch_fb($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $res = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($res, true);
+    }
 
-function send_smtp($to, $subject, $body, $creds, $replyTo) {
-    $hosts = ["ssl://smtp.gmail.com:465", "tls://smtp.gmail.com:587"];
-    foreach ($hosts as $h) {
-        $parts = explode(":", $h);
-        $socket = @fsockopen($parts[0], $parts[1], $errno, $errstr, 10);
+    $config_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/config/smtp?key=$FB_KEY";
+    $config = fetch_fb($config_url);
+
+    if (!isset($config['fields']['user']['stringValue'])) {
+        echo json_encode(['success' => false, 'error' => 'SMTP Cloud Config missing. Create config/smtp in Firestore.']);
+        exit;
+    }
+
+    $GMAIL_USER = $config['fields']['user']['stringValue'];
+    $GMAIL_PASS = $config['fields']['pass']['stringValue'];
+
+    // 4. SAVE INQUIRY TO FIREBASE
+    $save_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/inquiries?key=$FB_KEY";
+    $save_payload = json_encode([
+        'fields' => [
+            'name' => ['stringValue' => $name],
+            'email' => ['stringValue' => $email],
+            'phone' => ['stringValue' => $phone],
+            'subject' => ['stringValue' => $subject],
+            'message' => ['stringValue' => $message],
+            'authorizedDomain' => ['stringValue' => $origin],
+            'createdAt' => ['timestampValue' => date('c')]
+        ]
+    ]);
+
+    $ch = curl_init($save_url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $save_payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_exec($ch);
+    curl_close($ch);
+
+    // 5. SEND EMAIL VIA SMTP
+    function send_smtp_direct($to, $subject, $body, $user, $pass, $replyTo) {
+        $socket = @fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
         if ($socket) {
-            $commands = [
-                "EHLO " . $_SERVER['HTTP_HOST'] => 250,
+            $cmds = [
+                "EHLO mark-overseas.com" => 250,
                 "AUTH LOGIN" => 334,
-                base64_encode($creds['user']) => 334,
-                base64_encode($creds['pass']) => 235,
-                "MAIL FROM: <{$creds['user']}>" => 250,
-                "RCPT TO: <$to>" => 250,
+                base64_encode($user) => 334,
+                base64_encode($pass) => 235,
+                "MAIL FROM: <$user>" => 250,
+                "RCPT TO: <$user>" => 250,
                 "DATA" => 354,
-                "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas <{$creds['user']}>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+                "Subject: $subject\r\nTo: $user\r\nFrom: Mark Overseas Site <$user>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
                 "QUIT" => 221
             ];
-            foreach ($commands as $cmd => $code) {
+            foreach ($cmds as $cmd => $code) {
                 fputs($socket, $cmd . "\r\n");
-                $res = fgets($socket, 1024);
-                if ((int)substr($res, 0, 3) !== $code) { fclose($socket); continue 2; }
+                $r = fgets($socket, 1024);
+                if ((int)substr($r, 0, 3) !== $code) { fclose($socket); return false; }
             }
             fclose($socket);
             return true;
         }
+        return false;
     }
-    return false;
-}
 
-if (send_smtp($creds['to'], "[Mark Overseas] $subject - $name", $email_html, $creds, $email)) {
-    echo json_encode(['success' => true]);
-} else {
-    $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";
-    if (mail($creds['to'], "[Fallback] $subject", $email_html, $headers)) {
-        echo json_encode(['success' => true, 'note' => 'fallback']);
+    $email_html = "<h2>New Website Message</h2><p><strong>Name:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
+    if (send_smtp_direct($GMAIL_USER, "[New Inquiry] $subject", $email_html, $GMAIL_USER, $GMAIL_PASS, $email)) {
+        echo json_encode(['success' => true]);
     } else {
-        echo json_encode(['success' => false, 'error' => 'Mail delivery failed.']);
+        echo json_encode(['success' => true, 'warning' => 'Saved to DB, email failed. Check App Password.']);
     }
+
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 ?>

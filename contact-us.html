@@ -291,23 +291,23 @@
 			};
 
 			try {
-				// 🛡️ DIRECT FIREBASE WRITE (NO PROXY API)
-				// Since we use Firebase Rules, this is standard and secure.
-				const { getFirestore, collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-				const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
-				const { firebaseConfig } = await import("./js/firebase-config.js");
+				// 🛡️ UNIVERSAL PHP BRIDGE (HOSTING INDEPENDENT)
+				// This works on any host (Vercel, cPanel, Tier.net, etc.)
+				const response = await fetch('./contact-action.php', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(formData)
+				});
 
-				const app = initializeApp(firebaseConfig);
-				const db = getFirestore(app);
-
-				await addDoc(collection(db, "inquiries"), formData);
-
-				alert("Success! Your inquiry has been submitted successfully.");
-				document.getElementById('contact_form').reset();
-
+				if (response.ok) {
+					alert("Success! Your inquiry has been submitted successfully.");
+					document.getElementById('contact_form').reset();
+				} else {
+					alert("Submission failed. Please try again.");
+				}
 			} catch (error) {
 				console.error("Submission Error: ", error);
-				alert("Something went wrong. Please check your internet connection or Firebase permissions.");
+				alert("Network Error. Please check your connection.");
 			} finally {
 				btn.disabled = false;
 				btn.innerText = originalText;
