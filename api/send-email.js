@@ -1,73 +1,57 @@
 const nodemailer = require('nodemailer');
-const creds = require('./creds');
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).end();
 
-    // 1. DOMAIN SECURITY CHECK
-    const origin = req.headers.origin || req.headers.referer || "";
-    const isAllowed = creds.allowedDomains.some(domain => origin.includes(domain));
+    // 1. SECURE ENVIRONMENT CONFIGURATION
+    // No secrets in code. These must be set in your Vercel Project Settings.
+    const GMAIL_USER = process.env.GMAIL_USER;
+    const GMAIL_PASS = process.env.GMAIL_PASS;
+    const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
+    const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
 
-    if (!isAllowed && process.env.NODE_ENV === 'production') {
-        return res.status(403).json({ error: 'Unauthorized domain access blocked.' });
-    }
-
+    const origin = req.headers.origin || req.headers.referer || "unknown";
     const { name, email, phone, subject, message } = req.body;
 
-    // 2. SAVE TO FIRESTORE (INQUIRIES COLLECTION)
-    // No password needed in the path anymore.
+    // 2. PROXY TO FIRESTORE (REST API)
     try {
-        const firestoreUrl = `https://firestore.googleapis.com/v1/projects/${creds.firebaseConfig.projectId}/databases/(default)/documents/inquiries?key=${creds.firebaseConfig.apiKey}`;
-
-        const firestoreData = {
-            fields: {
-                name: { stringValue: name || "N/A" },
-                email: { stringValue: email || "N/A" },
-                phone: { stringValue: phone || "N/A" },
-                subject: { stringValue: subject || "N/A" },
-                message: { stringValue: message || "N/A" },
-                authorizedDomain: { stringValue: origin },
-                createdAt: { timestampValue: new Date().toISOString() }
-            }
-        };
+        const firestoreUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/inquiries?key=${FIREBASE_API_KEY}`;
 
         await fetch(firestoreUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(firestoreData)
+            body: JSON.stringify({
+                fields: {
+                    name: { stringValue: name || "N/A" },
+                    email: { stringValue: email || "N/A" },
+                    phone: { stringValue: phone || "N/A" },
+                    subject: { stringValue: subject || "N/A" },
+                    message: { stringValue: message || "N/A" },
+                    authorizedDomain: { stringValue: origin.replace(/^https?:\/\//, '').split('/')[0] },
+                    createdAt: { timestampValue: new Date().toISOString() }
+                }
+            })
         });
-    } catch (dbError) {
-        console.error("Firestore Save Error:", dbError);
+    } catch (e) {
+        console.error("DB Error:", e);
     }
 
-    // 3. SMTP NOTIFICATION (Vercel Side for reliability)
-    const emailHtml = `
-    <div style="font-family: Arial; border: 1px solid #08af08; border-radius: 10px; padding: 20px;">
-        <h2 style="color:#08af08;">New Website Inquiry</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr>
-        <p>${message}</p>
-    </div>
-    `;
-
+    // 3. SMTP NOTIFICATION
     const transporter = nodemailer.createTransport({
         service: 'gmail',
-        auth: { user: creds.user, pass: creds.pass }
+        auth: { user: GMAIL_USER, pass: GMAIL_PASS }
     });
 
     try {
         await transporter.sendMail({
-            from: `"Mark Overseas" <${creds.user}>`,
-            to: creds.user,
+            from: `"Mark Overseas" <${GMAIL_USER}>`,
+            to: GMAIL_USER,
             replyTo: email,
-            subject: `[Web Inquiry] ${subject} from ${name}`,
-            html: emailHtml
+            subject: `[Website Inquiry] ${subject}`,
+            html: `<h3>New Inquiry</h3><p><strong>From:</strong> ${name}</p><p>${message}</p>`
         });
         return res.status(200).json({ success: true });
-    } catch (mailError) {
-        console.error("Mail Error:", mailError);
-        return res.status(200).json({ success: true, warning: 'Saved to DB, but email failed.' });
+    } catch (e) {
+        return res.status(200).json({ success: true, warning: 'Saved to DB, notification pending.' });
     }
 }
