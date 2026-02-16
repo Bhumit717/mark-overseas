@@ -1,6 +1,7 @@
 <?php
 /**
- * PRODUCT INQUIRY BRIDGE (Mobile-Perfect Theme - No Logo)
+ * 🚀 UNIVERSAL PRODUCT INQUIRY BRIDGE
+ * Fetches SMTP from Firebase at runtime. Hosting Independent.
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -10,94 +11,101 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json');
 
-$creds_file = __DIR__ . '/php/gmail_credentials.php';
-if (!file_exists($creds_file)) {
-    echo json_encode(['success' => false, 'error' => 'Config missing']);
+// 1. PUBLIC FIREBASE IDENTIFIERS
+$FB_KEY = "AIzaSyAtWGC2M5CqAhDK1O7mVqYvkhCqXhv0Ii0";
+$FB_PID = "mark-overseas";
+
+// 2. GET SUBMITTED DATA (Product Name, Client Info, etc.)
+$data = json_decode(file_get_contents('php://input'), true);
+if (!$data) {
+    echo json_encode(['success' => false, 'error' => 'No data received']);
     exit;
 }
-$creds = include($creds_file);
 
-$data = $_POST;
-if (empty($data)) $data = json_decode(file_get_contents('php://input'), true);
+$product = strip_tags($data['product_name'] ?? 'General Product');
+$name = strip_tags($data['name']);
+$email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+$phone = strip_tags($data['phone']);
+$message = nl2br(strip_tags($data['message']));
+$origin = $_SERVER['HTTP_REFERER'] ?? 'unknown';
 
-$name = strip_tags($data['name'] ?? 'Unknown');
-$product = strip_tags($data['productname'] ?? 'Product');
-$email = filter_var($data['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$phone = strip_tags($data['phone'] ?? '');
-$message = nl2br(strip_tags($data['message'] ?? ''));
+try {
+    // 3. 🛡️ FETCH SMTP FROM CLOUD
+    function fetch_fb($url) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $res = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($res, true);
+    }
 
-$email_html = "
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; background: #f8fafc; }
-        .wrapper { width: 100%; padding: 20px 0; }
-        .content { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
-        .header { background: #08af08; padding: 25px; text-align: center; color: white; }
-        .body { padding: 20px; color: #334155; }
-        .item { margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid #f1f5f9; }
-        .label { font-size: 11px; color: #08af08; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
-        .value { font-size: 16px; color: #0f172a; }
-        .msg-box { background: #fdfdfd; padding: 15px; border-radius: 6px; border: 1px dashed #e2e8f0; margin-top: 15px; }
-        @media screen and (max-width: 600px) { .wrapper { padding: 10px; } }
-    </style>
-</head>
-<body>
-    <div class='wrapper'>
-        <div class='content'>
-            <div class='header'><h1>PRODUCT INQUIRY: $product</h1></div>
-            <div class='body'>
-                <div class='item'><div class='label'>Product Name</div><div class='value'><strong>$product</strong></div></div>
-                <div class='item'><div class='label'>Client Name</div><div class='value'>$name</div></div>
-                <div class='item'><div class='label'>Email Address</div><div class='value'>$email</div></div>
-                <div class='item'><div class='label'>Phone Number</div><div class='value'>$phone</div></div>
-                <div class='msg-box'>
-                    <div class='label'>Inquiry Details</div>
-                    <div class='value'>$message</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>";
+    $config_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/config/smtp?key=$FB_KEY";
+    $config = fetch_fb($config_url);
 
-function send_smtp($to, $subject, $body, $creds) {
-    $targets = [["ssl://smtp.gmail.com", 465], ["tls://smtp.gmail.com", 587]];
-    foreach ($targets as $t) {
-        $socket = @fsockopen($t[0], $t[1], $errno, $errstr, 10);
+    if (!isset($config['fields']['user']['stringValue'])) {
+        echo json_encode(['success' => false, 'error' => 'Cloud Config Error']);
+        exit;
+    }
+
+    $GMAIL_USER = $config['fields']['user']['stringValue'];
+    $GMAIL_PASS = $config['fields']['pass']['stringValue'];
+
+    // 4. SAVE TO FIREBASE
+    $save_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/inquiries?key=$FB_KEY";
+    $save_payload = json_encode([
+        'fields' => [
+            'name' => ['stringValue' => $name],
+            'email' => ['stringValue' => $email],
+            'phone' => ['stringValue' => $phone],
+            'subject' => ['stringValue' => "Product: $product"],
+            'message' => ['stringValue' => $message],
+            'authorizedDomain' => ['stringValue' => $origin],
+            'createdAt' => ['timestampValue' => date('c')]
+        ]
+    ]);
+
+    $ch = curl_init($save_url);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $save_payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_exec($ch);
+    curl_close($ch);
+
+    // 5. SEND EMAIL via SMTP
+    function send_smtp_direct($to, $subject, $body, $user, $pass, $replyTo) {
+        $socket = @fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
         if ($socket) {
-            $commands = [
-                "EHLO " . $_SERVER['HTTP_HOST'] => 250,
+            $cmds = [
+                "EHLO mark-overseas.com" => 250,
                 "AUTH LOGIN" => 334,
-                base64_encode($creds['user']) => 334,
-                base64_encode($creds['pass']) => 235,
-                "MAIL FROM: <{$creds['user']}>" => 250,
-                "RCPT TO: <$to>" => 250,
+                base64_encode($user) => 334,
+                base64_encode($pass) => 235,
+                "MAIL FROM: <$user>" => 250,
+                "RCPT TO: <$user>" => 250,
                 "DATA" => 354,
-                "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas Inquiry <{$creds['user']}>\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+                "Subject: $subject\r\nTo: $user\r\nFrom: Mark Overseas <$user>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
                 "QUIT" => 221
             ];
-            foreach ($commands as $cmd => $code) {
+            foreach ($cmds as $cmd => $code) {
                 fputs($socket, $cmd . "\r\n");
-                if ((int)substr(fgets($socket, 1024), 0, 3) !== $code) { fclose($socket); continue 2; }
+                $r = fgets($socket, 1024);
+                if ((int)substr($r, 0, 3) !== $code) { fclose($socket); return false; }
             }
             fclose($socket);
             return true;
         }
+        return false;
     }
-    return false;
-}
 
-if (send_smtp($creds['to'], "[Product] $product from $name", $email_html, $creds)) {
+    $email_html = "<h2>Product Inquiry: $product</h2><p><strong>From:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
+    send_smtp_direct($GMAIL_USER, "[Product Inquiry] $product", $email_html, $GMAIL_USER, $GMAIL_PASS, $email);
+
     echo json_encode(['success' => true]);
-} else {
-    $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";
-    if (mail($creds['to'], "[Product] $product", $email_html, $headers)) {
-        echo json_encode(['success' => true, 'note' => 'fallback']);
-    } else {
-        echo json_encode(['success' => false, 'error' => 'Delivery failed.']);
-    }
+
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 ?>
