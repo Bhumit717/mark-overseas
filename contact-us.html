@@ -291,9 +291,12 @@
 			};
 
 			try {
-				// 🛡️ UNIVERSAL PHP BRIDGE (HOSTING INDEPENDENT)
-				// This works on any host (Vercel, cPanel, Tier.net, etc.)
-				const response = await fetch('./contact-action.php', {
+				// 🤖 SMART AUTO-DETECT BRIDGE
+				// Uses Vercel API if on Vercel, otherwise uses PHP Bridge.
+				const isVercel = window.location.hostname.includes('vercel.app');
+				const endpoint = isVercel ? '/api/send-email' : './contact-action.php';
+
+				const response = await fetch(endpoint, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(formData)
