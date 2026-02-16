@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Point /admin to admin.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^admin$ admin.html [L]
+
+# Hide config and sensitive logs
+<FilesMatch "^\.|\.json$|config\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
