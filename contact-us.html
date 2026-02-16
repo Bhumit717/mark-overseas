@@ -285,39 +285,29 @@
 				email: document.getElementById('email').value,
 				phone: document.getElementById('phone').value,
 				subject: document.getElementById('subject').value,
-				message: document.getElementById('message').value
+				message: document.getElementById('message').value,
+				createdAt: new Date().toISOString(),
+				authorizedDomain: window.location.hostname // For rule verification
 			};
 
 			try {
-				// 1. Send to API (which handles BOTH Email and Firebase Save)
-				// This prevents leaking database keys in the browser!
-				const response = await fetch('/api/send-email', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(formData)
-				});
+				// 🛡️ DIRECT FIREBASE WRITE (NO PROXY API)
+				// Since we use Firebase Rules, this is standard and secure.
+				const { getFirestore, collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+				const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+				const { firebaseConfig } = await import("./js/firebase-config.js");
 
-				// 2. Fallback to PHP Bridge if Vercel fails
-				let success = response.ok;
-				if (!success) {
-					const phpRes = await fetch('./contact-action.php', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(formData)
-					});
-					if (phpRes.ok) success = true;
-				}
+				const app = initializeApp(firebaseConfig);
+				const db = getFirestore(app);
 
-				if (success) {
-					alert("Success! Your inquiry has been submitted successfully.");
-					document.getElementById('contact_form').reset();
-				} else {
-					alert("Technical Error: Submission failed. Please try again or contact us via WhatsApp.");
-				}
+				await addDoc(collection(db, "inquiries"), formData);
+
+				alert("Success! Your inquiry has been submitted successfully.");
+				document.getElementById('contact_form').reset();
 
 			} catch (error) {
 				console.error("Submission Error: ", error);
-				alert("Something went wrong. Please check your internet connection.");
+				alert("Something went wrong. Please check your internet connection or Firebase permissions.");
 			} finally {
 				btn.disabled = false;
 				btn.innerText = originalText;
