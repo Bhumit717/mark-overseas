@@ -91,12 +91,15 @@ This project is optimized for **Vercel**.
    - Go to Vercel Dashboard > Add New Project.
    - Import the `mark-overseas` repository.
    
-3. **Configure Environment Variables (Vital)**:
-   - In Vercel Project Settings > Environment Variables, add:
-     - `GMAIL_USER`: [Your Gmail Account]
-     - `GMAIL_PASS`: [Your Gmail App Password]
+3. **Configure Firebase SMTP (Automatic Rules)**:
+   - Set credentials via the Firebase CLI:
+     ```bash
+     firebase functions:config:set gmail.user="your-email@gmail.com" gmail.pass="your-app-password"
+     firebase deploy --only functions
+     ```
+   - This sends emails automatically on database entry.
 
-4. **Deploy**: Vercel will auto-detect the `/api` directory and deploy the serverless functions.
+4. **Deploy**: Vercel handles the website and the Secure Proxy API.
 
 ---
 
