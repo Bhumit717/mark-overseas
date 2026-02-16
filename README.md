@@ -46,21 +46,18 @@ npm install
 **Python (for generating pages):**
 ```bash
 # No external requirements, uses standard library (os, requests)
-# If you run the script, ensure you have internet access for placeholder images
 ```
 
 ### 3. Environment Variables
 Create a `.env` file in the root directory to store your credentials locally. **DO NOT COMMIT THIS FILE**.
 ```env
-GMAIL_USER="markoverseas28@gmail.com"
-GMAIL_PASS="your-app-specific-password"
+GMAIL_USER="your-email@gmail.com"
+GMAIL_PASS="your-app-password"
 ```
 
 ### 4. Run Locally
 You can use `live-server` or any static file server.
 ```bash
-# If you have VS Code Live Server extension, just "Go Live".
-# Or use python:
 python -m http.server 5500
 ```
 Visit `http://localhost:5500` in your browser.
@@ -93,12 +90,11 @@ This project is optimized for **Vercel**.
 2. **Import to Vercel**:
    - Go to Vercel Dashboard > Add New Project.
    - Import the `mark-overseas` repository.
-   - Framework Preset: **Other** (since it's mostly static HTML).
    
 3. **Configure Environment Variables (Vital)**:
    - In Vercel Project Settings > Environment Variables, add:
-     - `GMAIL_USER`: `markoverseas28@gmail.com`
-     - `GMAIL_PASS`: `[Your Gmail App Password]`
+     - `GMAIL_USER`: [Your Gmail Account]
+     - `GMAIL_PASS`: [Your Gmail App Password]
 
 4. **Deploy**: Vercel will auto-detect the `/api` directory and deploy the serverless functions.
 
@@ -107,10 +103,10 @@ This project is optimized for **Vercel**.
 ## 🛡️ Admin Dashboard
 Access the dashboard at: `https://www.mark-overseas.com/admin.html`
 
-- **Password**: `Mark@Overseas321` (Default)
+- **Security**: The dashboard is protected by a master password.
 - **Functions**:
   - View all inquiries.
-  - Delete spam/test submissions.
+  - Delete submissions.
   - Download reports as PDF.
 
 ---
@@ -122,19 +118,17 @@ mark-overseas/
 ├── api/                    # Serverless Functions (Backend)
 │   └── send-email.js       # Node.js script for sending emails via SMTP
 │
-├── css/                    # Stylesheets (Custom + Libs)
+├── css/                    # Stylesheets
 ├── js/                     # JavaScript files
 ├── images/                 # Assets
 │
-├── product-*.html          # Generated Product Pages (do not edit manually)
-├── generate-product-pages.py # Python script to generate product HTMLs
+├── product-*.html          # Generated Product Pages
+├── generate-product-pages.py # Python script for automation
 │
 ├── index.html              # Homepage
-├── about-us.html           # About Page
-├── contact-us.html         # Contact Form Page
-├── admin.html              # Protected Admin Dashboard
+├── contact-us.html         # Contact Page
+├── admin.html              # Admin Dashboard
 │
-├── firebase.json           # Firebase Hosting config (optional)
 ├── firestore.rules         # Database Security Rules
 ├── vercel.json             # Vercel Configuration
 └── README.md               # You are here

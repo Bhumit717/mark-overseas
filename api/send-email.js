@@ -5,8 +5,12 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const GMAIL_USER = process.env.GMAIL_USER || 'markoverseas28@gmail.com';
-    const GMAIL_PASS = process.env.GMAIL_PASS || 'aopp wbdc ykky txwl';
+    const GMAIL_USER = process.env.GMAIL_USER;
+    const GMAIL_PASS = process.env.GMAIL_PASS;
+
+    if (!GMAIL_USER || !GMAIL_PASS) {
+        return res.status(500).json({ error: 'Server misconfigured: Email credentials missing.' });
+    }
 
     const { name, email, phone, subject, message } = req.body;
 

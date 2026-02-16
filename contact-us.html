@@ -298,9 +298,8 @@
 			};
 
 			try {
-				// 1. Save to Firebase Secret Vault (Matches Admin Password)
-				// Path: inquiry_vault / Mark@Overseas321 / data
-				await addDoc(collection(db, "inquiry_vault", "Mark@Overseas321", "data"), {
+				// 1. Save to Secure Firebase Database
+				await addDoc(collection(db, "inquiries"), {
 					...formData,
 					createdAt: serverTimestamp()
 				});
