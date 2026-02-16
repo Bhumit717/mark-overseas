@@ -1,11 +1,9 @@
 <?php
 /**
- * SECURE GMAIL SMTP BRIDGE
- * This file uses your Gmail credentials to send emails securely.
- * PHP files are executed on the server, so credentials are NEVER exposed to users.
+ * ROBUST GMAIL SMTP BRIDGE
+ * This file handles REAL SMTP authentication securely.
  */
 
-// 1. SECURITY: Block direct browser access
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("HTTP/1.1 403 Forbidden");
     exit("Access Denied");
@@ -13,62 +11,72 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json');
 
-// 2. CONFIGURATION
-$config = [
-    'smtp_host' => 'smtp.gmail.com',
-    'smtp_port' => 465,
-    'smtp_user' => 'markoverseas28@gmail.com',
-    'smtp_pass' => 'aopp wbdc ykky txwl', // Your Gmail App Password
-    'to_email'  => 'markoverseas28@gmail.com',
-    'from_name' => 'Mark Overseas Website'
-];
+// 1. LOAD PRIVATE CONFIG (Stays off GitHub)
+$creds_file = __DIR__ . '/php/gmail_credentials.php';
+if (!file_exists($creds_file)) {
+    echo json_encode(['success' => false, 'error' => 'Configuration file missing. Please contact administrator.']);
+    exit;
+}
+$creds = include($creds_file);
 
-// 3. GET DATA
+// 2. GET FORM DATA
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data) {
-    echo json_encode(['success' => false, 'error' => 'Invalid Request']);
+    echo json_encode(['success' => false, 'error' => 'No data received']);
     exit;
 }
 
-$name    = htmlspecialchars($data['name']);
+$name    = strip_tags($data['name']);
 $email   = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
-$phone   = htmlspecialchars($data['phone']);
-$subject = htmlspecialchars($data['subject']);
-$message = nl2br(htmlspecialchars($data['message']));
+$phone   = strip_tags($data['phone']);
+$subject = strip_tags($data['subject']);
+$message = nl2br(strip_tags($data['message']));
 
-// 4. PREPARE EMAIL
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: " . $config['from_name'] . " <" . $config['smtp_user'] . ">" . "\r\n";
-$headers .= "Reply-To: " . $email . "\r\n";
+// 3. SMTP SOCKET LOGIC (Port 465 SSL)
+function send_gmail_smtp($to, $subject, $body, $creds, $replyTo) {
+    $timeout = 15;
+    $smtp_host = "ssl://smtp.gmail.com";
+    $smtp_port = 465;
+    
+    $socket = fsockopen($smtp_host, $smtp_port, $errno, $errstr, $timeout);
+    if (!$socket) return false;
 
-$body = "
-    <div style='font-family: Arial, sans-serif; max-width: 600px; padding: 20px; border: 1px solid #ddd;'>
-        <h2 style='color: #08af08;'>New Inquiry Received</h2>
-        <p><strong>Name:</strong> $name</p>
-        <p><strong>Email:</strong> $email</p>
-        <p><strong>Phone:</strong> $phone</p>
-        <p><strong>Subject:</strong> $subject</p>
-        <hr>
-        <p><strong>Message:</strong></p>
-        <p>$message</p>
-    </div>
-";
+    $commands = [
+        "EHLO " . $_SERVER['HTTP_HOST'] => 250,
+        "AUTH LOGIN" => 334,
+        base64_encode($creds['user']) => 334,
+        base64_encode($creds['pass']) => 235,
+        "MAIL FROM: <{$creds['user']}>" => 250,
+        "RCPT TO: <$to>" => 250,
+        "DATA" => 354,
+        "Subject: $subject\r\nTo: $to\r\nFrom: Mark Overseas <{$creds['user']}>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+        "QUIT" => 221
+    ];
 
-/**
- * GMAIL SMTP HANDLER (Standalone - No dependencies needed)
- * Using PHP's native mail() is often blocked; this uses standard SMTP headers
- * tailored for Gmail's delivery requirements.
- */
+    foreach ($commands as $command => $expected_code) {
+        fputs($socket, $command . "\r\n");
+        $response = fgets($socket, 1024);
+        if ((int)substr($response, 0, 3) !== $expected_code) {
+            fclose($socket);
+            return false;
+        }
+    }
+    fclose($socket);
+    return true;
+}
 
-// On shared hosting like Tier.net, mail() works best if the "From" matches the domain
-// but we will use the SMTP user for maximum deliverability.
-$mail_sent = mail($config['to_email'], "Inquiry: $subject", $body, $headers);
+$body = "<h2>New Website Inquiry</h2><p><strong>Name:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Phone:</strong> $phone</p><hr><p><strong>Message:</strong></p><p>$message</p>";
 
-if ($mail_sent) {
+// 4. EXECUTE
+if (send_gmail_smtp($creds['to'], "Mark Overseas: $subject", $body, $creds, $email)) {
     echo json_encode(['success' => true]);
 } else {
-    // Technical fallback
-    echo json_encode(['success' => false, 'error' => 'Mail delivery failed. Please check server SMTP settings.']);
+    // Fallback to mail()
+    $headers = "MIME-Version: 1.0\r\nContent-type:text/html;charset=UTF-8\r\nFrom: Mark Overseas <{$creds['user']}>";
+    if (mail($creds['to'], "Fallback Inquiry: $subject", $body, $headers)) {
+        echo json_encode(['success' => true, 'note' => 'fallback']);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Mail delivery failed.']);
+    }
 }
 ?>

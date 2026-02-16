@@ -21,3 +21,4 @@ build/
 .env
 .DS_Store
 Thumbs.db
+php/gmail_credentials.php
