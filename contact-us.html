@@ -270,7 +270,14 @@
 	<script src="js/logo-video.js"></script>
 	<script src="js/language-selector.js"></script>
 
-	<script>
+	<script type="module">
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+		import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+		import { firebaseConfig } from "./js/firebase-config.js";
+
+		const app = initializeApp(firebaseConfig);
+		const db = getFirestore(app);
+
 		document.getElementById('contact_form').addEventListener('submit', async function (e) {
 			e.preventDefault();
 			const btn = document.getElementById('btn_submit');
@@ -285,61 +292,19 @@
 				phone: document.getElementById('phone').value,
 				subject: document.getElementById('subject').value,
 				message: document.getElementById('message').value,
-				authorizedDomain: window.location.hostname || 'localhost'
+				authorizedDomain: window.location.hostname || 'localhost',
+				createdAt: serverTimestamp()
 			};
 
 			try {
-				// 🛡️ DUAL-MODE SUBMISSION (Works Everywhere)
-				// Try 1: PHP Bridge (Production - Hosting Independent)
-				let success = false;
-				let errorMsg = '';
+				// 🚀 PURE FIREBASE SUBMISSION
+				await addDoc(collection(db, "inquiries"), formData);
 
-				try {
-					const response = await fetch('./contact-action.php', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(formData)
-					});
-
-					const result = await response.json();
-
-					if (response.ok && result.success) {
-						success = true;
-					} else {
-						errorMsg = result.error || 'PHP bridge failed';
-					}
-				} catch (phpError) {
-					console.log('PHP bridge not available, using direct Firebase...');
-
-					// Try 2: Direct Firebase (Local Testing / Vercel)
-					try {
-						const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
-						const { getFirestore, collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-						const { firebaseConfig } = await import("./js/firebase-config.js");
-
-						const app = initializeApp(firebaseConfig);
-						const db = getFirestore(app);
-
-						await addDoc(collection(db, "inquiries"), {
-							...formData,
-							createdAt: serverTimestamp()
-						});
-
-						success = true;
-					} catch (fbError) {
-						errorMsg = 'Firebase error: ' + fbError.message;
-					}
-				}
-
-				if (success) {
-					alert("✅ Success! Your inquiry has been submitted and saved to our database.");
-					document.getElementById('contact_form').reset();
-				} else {
-					alert("❌ Submission failed: " + errorMsg);
-				}
+				alert("✅ Success! Your inquiry has been sent to our team.");
+				document.getElementById('contact_form').reset();
 			} catch (error) {
-				console.error("Submission Error: ", error);
-				alert("Network error. Please check your connection.");
+				console.error("Firebase Error: ", error);
+				alert("❌ Submission Failed: " + error.message);
 			} finally {
 				btn.disabled = false;
 				btn.innerText = originalText;
