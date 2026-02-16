@@ -7,13 +7,13 @@ service cloud.firestore {
     match /inquiries/{inquiryId} {
       allow create: if true;
       
-      // ONLY AUTHENTICATED USERS CAN READ OR DELETE.
-      // This is the only way to be 100% safe.
+      // ONLY AUTHENTICATED ADMIN CAN READ OR DELETE.
+      // We check for the specific admin email directly in the rules.
       allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com'; 
     }
 
-    // Admin Config: 100% Locked. Nobody can read/write except via console.
-    match /settings/{docId} {
+    // Settings collection removed from rules as requested (instead of database).
+    match /{document=**} {
       allow read, write: if false;
     }
   }
