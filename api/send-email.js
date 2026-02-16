@@ -1,14 +1,23 @@
 const nodemailer = require('nodemailer');
+let creds;
+
+// Try to load local credentials if they exist (for Zip deployment)
+try {
+    creds = require('./creds');
+} catch (e) {
+    // Fallback to Environment Variables (for Vercel/GitHub deployment)
+    creds = {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+    };
+}
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const GMAIL_USER = process.env.GMAIL_USER;
-    const GMAIL_PASS = process.env.GMAIL_PASS;
-
-    if (!GMAIL_USER || !GMAIL_PASS) {
+    if (!creds.user || !creds.pass) {
         return res.status(500).json({ error: 'Server misconfigured: Email credentials missing.' });
     }
 
@@ -31,44 +40,24 @@ export default async function handler(req, res) {
             .value { font-size: 16px; word-break: break-all; }
             .message-box { background-color: #f9f9f9; padding: 15px; border-radius: 5px; border-left: 4px solid #08af08; margin-top: 20px; }
             .footer { background-color: #f1f1f1; padding: 15px; text-align: center; color: #777777; font-size: 12px; }
-            @media only screen and (max-width: 480px) {
-                .content { padding: 15px; }
-                .header h1 { font-size: 18px; }
-                .value { font-size: 15px; }
-            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="header">
-                <h1>NEW INQUIRY: ${subject}</h1>
+                <h1 style="margin:0; font-size: 20px;">NEW INQUIRY: ${subject}</h1>
             </div>
             <div class="content">
-                <div class="field">
-                    <span class="label">Client Name:</span>
-                    <span class="value">${name}</span>
-                </div>
-                <div class="field">
-                    <span class="label">Email Address:</span>
-                    <span class="value"><a href="mailto:${email}" style="color: #08af08; text-decoration: none;">${email}</a></span>
-                </div>
-                <div class="field">
-                    <span class="label">Phone Number:</span>
-                    <span class="value">${phone}</span>
-                </div>
-                <div class="field">
-                    <span class="label">Subject Line:</span>
-                    <span class="value">${subject}</span>
-                </div>
+                <div class="field"><span class="label">Client Name:</span><span class="value">${name}</span></div>
+                <div class="field"><span class="label">Email Address:</span><span class="value"><a href="mailto:${email}" style="color: #08af08; text-decoration: none;">${email}</a></span></div>
+                <div class="field"><span class="label">Phone Number:</span><span class="value">${phone}</span></div>
+                <div class="field"><span class="label">Subject Line:</span><span class="value">${subject}</span></div>
                 <div class="message-box">
                     <span class="label">Message:</span>
                     <div class="value" style="white-space: pre-wrap;">${message}</div>
                 </div>
             </div>
-            <div class="footer">
-                <p>&copy; 2026 Mark Overseas - All Rights Reserved</p>
-                <p>Website Admin Notification</p>
-            </div>
+            <div class="footer"><p>&copy; 2026 Mark Overseas - All Rights Reserved</p></div>
         </div>
     </body>
     </html>
@@ -77,15 +66,15 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: GMAIL_USER,
-            pass: GMAIL_PASS
+            user: creds.user,
+            pass: creds.pass
         }
     });
 
     try {
         await transporter.sendMail({
-            from: `"Website Inquiry" <${GMAIL_USER}>`,
-            to: GMAIL_USER,
+            from: `"Website Inquiry" <${creds.user}>`,
+            to: creds.user,
             replyTo: email,
             subject: `[Mark Overseas] ${subject} - from ${name}`,
             html: emailHtml
