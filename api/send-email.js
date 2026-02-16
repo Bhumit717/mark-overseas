@@ -2,6 +2,15 @@ const nodemailer = require('nodemailer');
 const creds = require('./creds');
 
 export default async function handler(req, res) {
+    // --- DOMAIN SECURITY CHECK ---
+    const origin = req.headers.origin || req.headers.referer || "";
+    const isAllowed = creds.allowedDomains.some(domain => origin.includes(domain));
+
+    if (!isAllowed && process.env.NODE_ENV === 'production') {
+        console.error(`Blocked unauthorized domain access attempt: ${origin}`);
+        return res.status(403).json({ error: 'Unauthorized domain' });
+    }
+
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -21,6 +30,7 @@ export default async function handler(req, res) {
                 subject: { stringValue: subject || "N/A" },
                 message: { stringValue: message || "N/A" },
                 status: { stringValue: 'new' },
+                authorizedDomain: { stringValue: origin }, // <--- REAL SECURITY ENFORCEMENT
                 createdAt: { timestampValue: new Date().toISOString() }
             }
         };

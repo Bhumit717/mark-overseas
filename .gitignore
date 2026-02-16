@@ -21,7 +21,5 @@ build/
 .env
 .DS_Store
 Thumbs.db
-php/gmail_credentials.php
-api/creds.js
 .vercel
 .env*.local

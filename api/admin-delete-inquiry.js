@@ -1,6 +1,10 @@
 const creds = require('../creds');
 
 export default async function handler(req, res) {
+    const origin = req.headers.origin || req.headers.referer || "";
+    const isAllowed = creds.allowedDomains.some(domain => origin.includes(domain));
+    if (!isAllowed && process.env.NODE_ENV === 'production') return res.status(403).end();
+
     if (req.method !== 'POST') return res.status(405).end();
 
     const { password, id } = req.body;

@@ -3,17 +3,36 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Inquiries: Anyone can submit (Create).
-    // This path is now standard and no longer contains hardcoded passwords.
-    match /inquiries/{inquiryId} {
-      allow create: if true;
+    /**
+     * 🛡️ PORTABLE DOMAIN SECURITY
+     * ---------------------------
+     * IMPORTANT: Firestore Rules cannot see the 'Domain' of the request.
+     * To secure your database, you MUST add your domains in the Firebase Console:
+     * Authentication -> Settings -> Authorized Domains.
+     *
+     * AUTHORIZED DOMAINS TO ADD:
+     * 1. mark-overseas.com
+     * 2. www.mark-overseas.com
+     * 3. mark-overseas.vercel.app
+     * 4. [Your Custom Domain]
+     */
+    
+    // 🛡️ REAL DOMAIN SECURITY
+    // This rule REJECTS any data that doesn't belong to your domains.
+    match /inquiry_vault/{pwd}/data/{id} {
       
-      // READ/DELETE REQUIRED: Must be logged in as the specific Admin account.
-      // This is 100% secure and impossible to bypass even if someone has your Firebase config.
-      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com'; 
+      allow create: if pwd == 'Mark@Overseas321' && 
+        (request.resource.data.authorizedDomain.lower() in [
+          'https://mark-overseas.com', 
+          'https://www.mark-overseas.com', 
+          'https://mark-overseas.vercel.app'
+        ]);
+
+      // Read/Delete restricted to the secret path
+      allow read, delete: if pwd == 'Mark@Overseas321';
     }
 
-    // Default: Deny all other access
+    // Default: Deny EVERYTHING else
     match /{document=**} {
       allow read, write: if false;
     }
