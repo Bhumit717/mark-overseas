@@ -288,18 +288,21 @@
 			};
 
 			try {
-				// 🛡️ SECURE SUBMISSION (PRIVATE API)
-				const response = await fetch('/api/send-email', {
+				// 🛡️ HOSTING-INDEPENDENT SUBMISSION
+				// Uses universal PHP bridge that works on ANY hosting
+				const response = await fetch('./contact-action.php', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(formData)
 				});
 
-				if (response.ok) {
-					alert("Success! Your inquiry has been submitted successfully.");
+				const result = await response.json();
+
+				if (response.ok && result.success) {
+					alert("✅ Success! Your inquiry has been submitted and saved to our database.");
 					document.getElementById('contact_form').reset();
 				} else {
-					alert("Submission failed. Please try again.");
+					alert("❌ Submission failed: " + (result.error || "Please ensure you've initialized the cloud vault using CLOUD-INITIALIZER.html"));
 				}
 			} catch (error) {
 				console.error("Submission Error: ", error);
