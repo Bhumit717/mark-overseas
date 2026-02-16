@@ -270,15 +270,8 @@
 	<script src="js/logo-video.js"></script>
 	<script src="js/language-selector.js"></script>
 
-	<!-- Hacker-Proof Submission Handler (Direct PHP + Firebase) -->
-	<script type="module">
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-		import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-		import { firebaseConfig } from "./js/firebase-config.js";
-
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-
+	<!-- Secure Submission Handler (Proxy through Serverless API) -->
+	<script>
 		document.getElementById('contact_form').addEventListener('submit', async (e) => {
 			e.preventDefault();
 
@@ -292,41 +285,39 @@
 				email: document.getElementById('email').value,
 				phone: document.getElementById('phone').value,
 				subject: document.getElementById('subject').value,
-				message: document.getElementById('message').value,
-				status: 'new',
-				createdAt: serverTimestamp()
+				message: document.getElementById('message').value
 			};
 
 			try {
-				// 1. Save to Secure Firebase Database
-				await addDoc(collection(db, "inquiries"), {
-					...formData,
-					createdAt: serverTimestamp()
+				// 1. Send to API (which handles BOTH Email and Firebase Save)
+				// This prevents leaking database keys in the browser!
+				const response = await fetch('/api/send-email', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(formData)
 				});
 
-				// 2. Clear Form immediately (Success)
-				alert("Success! Your inquiry has been submitted and our team has been notified.");
-				document.getElementById('contact_form').reset();
+				// 2. Fallback to PHP Bridge if Vercel fails
+				let success = response.ok;
+				if (!success) {
+					const phpRes = await fetch('./contact-action.php', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
+					if (phpRes.ok) success = true;
+				}
 
-				// 3. Trigger Email (Silently in background)
-				try {
-					await fetch('/api/send-email', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(formData)
-					});
-				} catch (e) {
-					// Fallback to PHP bridge if Vercel fails (Silently)
-					fetch('./contact-action.php', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify(formData)
-					});
+				if (success) {
+					alert("Success! Your inquiry has been submitted successfully.");
+					document.getElementById('contact_form').reset();
+				} else {
+					alert("Technical Error: Submission failed. Please try again or contact us via WhatsApp.");
 				}
 
 			} catch (error) {
 				console.error("Submission Error: ", error);
-				alert("Something went wrong. Please check your connection or contact us via WhatsApp.");
+				alert("Something went wrong. Please check your internet connection.");
 			} finally {
 				btn.disabled = false;
 				btn.innerText = originalText;

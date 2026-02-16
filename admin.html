@@ -28,11 +28,6 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
         }
 
-        .navbar {
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
         .data-card {
             background: white;
             border-radius: 12px;
@@ -40,49 +35,16 @@
             overflow: hidden;
         }
 
-        .table thead th {
-            background: #f1f5f9;
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #64748b;
-        }
-
         #dashboard-section {
             display: none;
             padding: 20px;
         }
 
-        .mobile-label {
-            display: none;
-            font-weight: bold;
-            color: var(--primary);
+        .table thead th {
+            background: #f1f5f9;
             font-size: 12px;
-        }
-
-        @media (max-width: 768px) {
-            .table thead {
-                display: none;
-            }
-
-            .table tr {
-                display: block;
-                margin-bottom: 15px;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                padding: 10px;
-            }
-
-            .table td {
-                display: block;
-                text-align: left;
-                border: none;
-                padding: 5px 0;
-            }
-
-            .mobile-label {
-                display: inline-block;
-                width: 80px;
-            }
+            text-transform: uppercase;
+            color: #64748b;
         }
     </style>
 </head>
@@ -93,37 +55,34 @@
     <div id="login-section" class="container">
         <div class="login-card text-center">
             <img src="images/mark-logo.png" alt="Logo" style="height: 50px; margin-bottom: 20px;">
-            <h4>Admin Security</h4>
-            <p class="text-muted small">Sign in with authorized administrator email</p>
-            <input type="email" id="admin-email" class="form-control mb-3" placeholder="Admin Email"
-                value="markoverseas28@gmail.com">
+            <h4>Admin Login</h4>
+            <p class="text-muted small">Access Restricted: Enter Password</p>
             <input type="password" id="admin-password" class="form-control mb-3" placeholder="Password">
-            <button id="btn-login" class="btn btn-success w-100" style="background: var(--primary);">Authorized
-                Access</button>
-            <div id="login-error" class="text-danger mt-3 small" style="display:none;">Permission Denied: Invalid
-                credentials.</div>
+            <button id="btn-login" class="btn btn-success w-100" style="background: var(--primary);">Sign In</button>
+            <div id="login-error" class="text-danger mt-3 small" style="display:none;">Access Denied: Invalid Password
+            </div>
         </div>
     </div>
 
     <!-- Dashboard -->
     <div id="dashboard-section">
-        <nav class="navbar mb-4">
+        <nav class="navbar navbar-light bg-white border-bottom mb-4">
             <div class="container-fluid">
                 <span class="navbar-brand fw-bold"><img src="images/mark-logo.png" height="30" class="me-2">
-                    Dashboard</span>
-                <button class="btn btn-outline-danger btn-sm" id="btn-logout">Sign Out</button>
+                    Admin</span>
+                <button class="btn btn-outline-danger btn-sm" onclick="logout()">Sign Out</button>
             </div>
         </nav>
 
         <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Inquiries Received</h5>
+                <h5 class="mb-0">Inquiries</h5>
                 <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-primary" id="btn-pdf"><i
-                            class="bi bi-file-earmark-pdf me-1"></i> PDF</button>
-                    <button class="btn btn-sm btn-outline-danger" id="btn-delete-all"><i class="bi bi-trash me-1"></i>
-                        Delete All</button>
-                    <button class="btn btn-sm btn-primary" id="btn-refresh"><i class="bi bi-arrow-clockwise me-1"></i>
+                    <button class="btn btn-sm btn-outline-primary" id="btn-pdf"><i class="bi bi-file-earmark-pdf"></i>
+                        PDF</button>
+                    <button class="btn btn-sm btn-outline-danger" id="btn-delete-all"><i class="bi bi-trash"></i> Delete
+                        All</button>
+                    <button class="btn btn-sm btn-primary" onclick="fetchData()"><i class="bi bi-arrow-clockwise"></i>
                         Refresh</button>
                 </div>
             </div>
@@ -151,115 +110,117 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { firebaseConfig } from "./js/firebase-config.js";
-
-        // DOMAIN LOCK
-        const ALLOWED_DOMAINS = ['mark-overseas.com', 'www.mark-overseas.com', 'mark-overseas.vercel.app', 'www.mark-overseas.vercel.app', 'localhost'];
-        if (!ALLOWED_DOMAINS.includes(window.location.hostname)) {
-            document.body.innerHTML = '<div style="text-align:center; padding:100px;"><h3>403: Forbidden</h3><p>Unauthorized Domain.</p></div>';
-            window.stop();
-        }
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
+    <script>
+        let MASTER_PWD = localStorage.getItem('master_key') || '';
         let allInquiriesData = [];
 
-        onAuthStateChanged(auth, (user) => {
-            if (user && user.email === 'markoverseas28@gmail.com') {
-                showDashboard();
-                fetchData();
-            } else {
-                showLogin();
-            }
-        });
+        if (MASTER_PWD) {
+            showDashboard();
+            fetchData();
+        }
 
-        // Login
-        document.getElementById('btn-login').addEventListener('click', async () => {
-            const email = document.getElementById('admin-email').value;
+        document.getElementById('btn-login').addEventListener('click', () => {
             const pwd = document.getElementById('admin-password').value;
-            const err = document.getElementById('login-error');
-            try {
-                err.style.display = 'none';
-                await signInWithEmailAndPassword(auth, email, pwd);
-            } catch (e) {
-                err.style.display = 'block';
-                console.error(e);
-            }
+            if (!pwd) return alert("Enter Password");
+            MASTER_PWD = pwd;
+            fetchData(true);
         });
 
-        document.getElementById('btn-logout').addEventListener('click', () => signOut(auth));
+        function logout() {
+            localStorage.removeItem('master_key');
+            location.reload();
+        }
 
-        async function fetchData() {
+        async function fetchData(isLogin = false) {
             const tbody = document.getElementById('table-body');
+            const error = document.getElementById('login-error');
+
             try {
-                const q = query(collection(db, "inquiries"), orderBy("createdAt", "desc"));
-                const snap = await getDocs(q);
+                const res = await fetch('/api/admin-get-inquiries', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: MASTER_PWD })
+                });
+
+                const data = await res.json();
+                if (!data.success) throw new Error(data.error);
+
+                localStorage.setItem('master_key', MASTER_PWD);
+                showDashboard();
+
                 tbody.innerHTML = '';
-                allInquiriesData = [];
-                snap.forEach(d => {
-                    const data = d.data();
-                    const date = data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
-                    allInquiriesData.push({ ...data, dateStr: date });
+                allInquiriesData = data.inquiries;
+
+                allInquiriesData.forEach(item => {
+                    const date = item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'N/A';
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${date}</td>
-                        <td><strong>${data.name}</strong></td>
-                        <td>${data.email}<br><small>${data.phone}</small></td>
-                        <td><span class="badge bg-light text-dark border">${data.subject || 'N/A'}</span></td>
-                        <td><small>${data.message}</small></td>
-                        <td><button class="btn btn-sm text-danger" onclick="window.deleteItem('${d.id}')"><i class="bi bi-trash"></i></button></td>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.email}<br><small>${item.phone}</small></td>
+                        <td><span class="badge bg-light text-dark border">${item.subject}</span></td>
+                        <td><small>${item.message}</small></td>
+                        <td><button class="btn btn-sm text-danger" onclick="deleteItem('${item.id}')"><i class="bi bi-trash"></i></button></td>
                     `;
                     tbody.appendChild(tr);
                 });
-            } catch (e) { console.error(e); }
+            } catch (e) {
+                if (isLogin) {
+                    error.style.display = 'block';
+                } else {
+                    logout();
+                }
+            }
         }
 
-        window.deleteItem = async (id) => {
-            if (!confirm("Delete?")) return;
-            await deleteDoc(doc(db, "inquiries", id));
-            fetchData();
-        };
+        async function deleteItem(id) {
+            if (!confirm("Delete this inquiry?")) return;
+            try {
+                const res = await fetch('/api/admin-delete-inquiry', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: MASTER_PWD, id: id })
+                });
+                if (res.ok) fetchData();
+            } catch (e) { alert("Error deleting"); }
+        }
 
         document.getElementById('btn-delete-all').addEventListener('click', async () => {
-            if (!confirm("Delete ALL data?")) return;
-            const promptVal = prompt("Type DELETE to confirm:");
-            if (promptVal !== 'DELETE') return;
-            const q = collection(db, "inquiries");
-            const snap = await getDocs(q);
-            const batch = writeBatch(db);
-            snap.docs.forEach(d => batch.delete(d.ref));
-            await batch.commit();
-            fetchData();
+            if (!confirm("Delete ALL inquiries?")) return;
+            const check = prompt("Type 'DELETE' to confirm:");
+            if (check !== 'DELETE') return;
+
+            try {
+                const res = await fetch('/api/admin-delete-all', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: MASTER_PWD })
+                });
+                if (res.ok) fetchData();
+            } catch (e) { alert("Error deleting all"); }
         });
 
         document.getElementById('btn-pdf').addEventListener('click', () => {
+            if (allInquiriesData.length === 0) return alert("No data to export");
             const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            pdf.text("Inquiry Report", 14, 15);
-            pdf.autoTable({
+            const doc = new jsPDF();
+            doc.text("Mark Overseas Inquiry Report", 14, 15);
+            doc.autoTable({
                 head: [['Date', 'Name', 'Email', 'Phone', 'Subject', 'Message']],
-                body: allInquiriesData.map(i => [i.dateStr, i.name, i.email, i.phone, i.subject, i.message]),
+                body: allInquiriesData.map(i => [new Date(i.createdAt).toLocaleDateString(), i.name, i.email, i.phone, i.subject, i.message]),
                 startY: 20
             });
-            pdf.save("inquiries.pdf");
+            doc.save("inquiries.pdf");
         });
-
-        document.getElementById('btn-refresh').addEventListener('click', fetchData);
 
         function showDashboard() {
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('dashboard-section').style.display = 'block';
         }
-        function showLogin() {
-            document.getElementById('login-section').style.display = 'block';
-            document.getElementById('dashboard-section').style.display = 'none';
-        }
+
+        window.deleteItem = deleteItem;
+        window.fetchData = fetchData;
+        window.logout = logout;
     </script>
 </body>
 

@@ -100,14 +100,12 @@ This project is optimized for **Vercel**.
 
 ---
 
-## 🛡️ Admin Dashboard
-Access the dashboard at: `https://www.mark-overseas.com/admin.html`
+## 🛡️ Admin Dashboard & Security
+Access the dashboard at: `/admin.html`
 
-- **Security**: The dashboard is protected by a master password.
-- **Functions**:
-  - View all inquiries.
-  - Delete submissions.
-  - Download reports as PDF.
+- **Architecture**: This site uses a **Server-Side Proxy**. Database keys and SMTP passwords are NEVER stored in the browser. Static scrapers (like HTTrack) cannot hack your credentials.
+- **Passwords**: Change the admin password and SMTP keys in `api/creds.js` (for Vercel) or `php/gmail_credentials.php` (for PHP hosting).
+- **Default Password**: `Mark@Overseas321` (Defined in `api/creds.js`).
 
 ---
 
