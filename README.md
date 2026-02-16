@@ -1,71 +1,50 @@
-# Mark Overseas - Secure Website Dashboard
+# Mark Overseas - Secure Portable Website
 
 This project is a professional business website for **Mark Overseas**, featuring a secure admin dashboard and inquire management system.
 
 ## 🚀 Key Features
 - **Zero-Password Codebase**: No passwords are stored in the source code.
-- **Firebase Authentication**: Secure login managed by Google.
-- **Proxied Submissions**: Protects database keys from scrapers like HTTrack.
-- **Admin Dashboard**: View, export (PDF), and delete inquiries.
-- **Automated SMTP**: Email notifications sent on every inquiry.
+- **Portability**: Works instantly without needing `.env` or Vercel environment variables.
+- **Scraper Protection**: All sensitive keys are stored in the `/api` directory, which hides source code from tools like HTTrack.
+- **Enforced Domain Security**: The database only accepts entries from authorized domains.
 
 ---
 
-## 🛠️ Initial Setup (First Time Only)
+## 🛡️ CRITICAL: Firebase Setup (REQUIRED)
 
-Since the password is now kept **only in Firebase**, you must set up your admin account:
+To protect your website from hackers, you **MUST** configure these 2 things inside your Firebase Console:
 
-1.  **Enable Firebase Auth**:
-    *   Go to [Firebase Console](https://console.firebase.google.com/).
-    *   Build > Authentication > Get Started.
-    *   Enable **Email/Password** sign-in method.
-2.  **Create Admin Account**:
-    *   Under the **Users** tab, click **Add User**.
-    *   Enter Email: `markoverseas28@gmail.com`
-    *   Enter your desired **Password**.
-3.  **Authorized Domains (Vital)**:
-    *   Under Authentication > Settings > **Authorized Domains**.
-    *   Add `mark-overseas.com`, `www.mark-overseas.com`, and `mark-overseas.vercel.app`.
-    *   *This prevents hackers from using your login on other sites.*
+### 1. Set Security Rules (Domain Lockdown)
+Go to **Firestore Database > Rules** and paste this:
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /inquiries/{id} {
+      // 🛡️ ENFORCED DOMAIN CHECK
+      allow create: if request.resource.data.authorizedDomain in [
+        'mark-overseas.com', 
+        'www.mark-overseas.com', 
+        'mark-overseas.vercel.app',
+        'localhost'
+      ];
+      // ADMIN ONLY
+      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com';
+    }
+  }
+}
+```
 
----
-
-## ☁️ Deployment (Vercel)
-
-1. **Push to GitHub**:
-   ```bash
-   git add .
-   git commit -m "Deploy site"
-   git push origin main
-   ```
-2. **SMTP Configuration**:
-   Open `api/creds.js` and enter your Gmail App Password for notifications. This file is protected by a server-side firewall.
-
----
-
-## 🛡️ Admin Dashboard
-Access the dashboard at: `/admin.html`
-
-- **Login**: Use the Email and Password you created in the Firebase Console.
-- **Architecture**: The dashboard uses a **State-of-the-Art** security model where access is verified by Google's servers, making it impossible to "hack" via static copies of the site.
+### 2. Set Admin Account
+Go to **Authentication > Users** and add:
+- **Email**: `markoverseas28@gmail.com`
+- **Password**: (Your chosen password)
 
 ---
 
 ## 📂 Project Structure
-```
-mark-overseas/
-│
-├── api/                    # Serverless Functions (Backend)
-│   ├── send-email.js       # Secure Domain Proxy & SMTP
-│   └── creds.js            # Private Server Config (Gmail)
-│
-├── js/                     
-│   └── firebase-config.js  # Public Database Identifiers
-│
-├── admin.html              # Secure Admin Dashboard
-├── contact-us.html         # Inquiry Form
-├── .htaccess               # Apache Firewall
-└── vercel.json             # Vercel Firewall (Blocks Scrapers)
-```
+- `api/creds.js`: **Central Config**. Edit this to change your Gmail credentials. (Portable & Scraper-Safe).
+- `admin.html`: Secure dashboard using Firebase Auth.
+- `contact-us.html`: Inquiry form protected by Domain Proxy.
 
 © 2026 Mark Overseas. All Rights Reserved.

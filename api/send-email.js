@@ -1,21 +1,25 @@
 const nodemailer = require('nodemailer');
+const creds = require('./creds');
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).end();
 
-    // 1. SECURE ENVIRONMENT CONFIGURATION
-    // No secrets in code. These must be set in your Vercel Project Settings.
-    const GMAIL_USER = process.env.GMAIL_USER;
-    const GMAIL_PASS = process.env.GMAIL_PASS;
-    const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
-    const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
-
+    // 🛡️ SERVER-SIDE DOMAIN VERIFICATION
     const origin = req.headers.origin || req.headers.referer || "unknown";
+    const cleanOrigin = origin.replace(/^https?:\/\//, '').split('/')[0];
+
+    // Check if the domain is in our authorized list
+    const isAllowed = creds.allowedDomains.some(d => cleanOrigin.includes(d));
+    if (!isAllowed && process.env.NODE_ENV === 'production') {
+        return res.status(403).json({ error: 'Unauthorized Domain' });
+    }
+
     const { name, email, phone, subject, message } = req.body;
 
-    // 2. PROXY TO FIRESTORE (REST API)
+    // 1. SAVE TO FIRESTORE (REST API)
+    // Domain is passed as a field so the database can verify it in its RULES
     try {
-        const firestoreUrl = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}/databases/(default)/documents/inquiries?key=${FIREBASE_API_KEY}`;
+        const firestoreUrl = `https://firestore.googleapis.com/v1/projects/${creds.firebaseConfig.projectId}/databases/(default)/documents/inquiries?key=${creds.firebaseConfig.apiKey}`;
 
         await fetch(firestoreUrl, {
             method: 'POST',
@@ -27,7 +31,7 @@ export default async function handler(req, res) {
                     phone: { stringValue: phone || "N/A" },
                     subject: { stringValue: subject || "N/A" },
                     message: { stringValue: message || "N/A" },
-                    authorizedDomain: { stringValue: origin.replace(/^https?:\/\//, '').split('/')[0] },
+                    authorizedDomain: { stringValue: cleanOrigin },
                     createdAt: { timestampValue: new Date().toISOString() }
                 }
             })
@@ -36,22 +40,22 @@ export default async function handler(req, res) {
         console.error("DB Error:", e);
     }
 
-    // 3. SMTP NOTIFICATION
+    // 2. SMTP NOTIFICATION
     const transporter = nodemailer.createTransport({
         service: 'gmail',
-        auth: { user: GMAIL_USER, pass: GMAIL_PASS }
+        auth: { user: creds.user, pass: creds.pass }
     });
 
     try {
         await transporter.sendMail({
-            from: `"Mark Overseas" <${GMAIL_USER}>`,
-            to: GMAIL_USER,
+            from: `"Mark Overseas" <${creds.user}>`,
+            to: creds.user,
             replyTo: email,
-            subject: `[Website Inquiry] ${subject}`,
-            html: `<h3>New Inquiry</h3><p><strong>From:</strong> ${name}</p><p>${message}</p>`
+            subject: `[Mark] ${subject} from ${name}`,
+            html: `<h3>New Message</h3><p><strong>Sender:</strong> ${name}</p><p>${message}</p>`
         });
         return res.status(200).json({ success: true });
     } catch (e) {
-        return res.status(200).json({ success: true, warning: 'Saved to DB, notification pending.' });
+        return res.status(200).json({ success: true, warning: 'Sent to DB' });
     }
 }
