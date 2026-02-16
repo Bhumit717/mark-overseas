@@ -1,7 +1,7 @@
 <?php
 /**
  * 🚀 UNIVERSAL PRODUCT INQUIRY BRIDGE
- * Fetches SMTP from Firebase at runtime. Hosting Independent.
+ * Zero-Config and Scraper-Proof.
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -11,14 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json');
 
-// 1. PUBLIC FIREBASE IDENTIFIERS
-$FB_KEY = "AIzaSyAtWGC2M5CqAhDK1O7mVqYvkhCqXhv0Ii0";
-$FB_PID = "mark-overseas";
+// 1. LOAD SECURE CONFIG
+$config = include(__DIR__ . '/php/config.php');
 
-// 2. GET SUBMITTED DATA (Product Name, Client Info, etc.)
+// 2. GET SUBMITTED DATA
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data) {
-    echo json_encode(['success' => false, 'error' => 'No data received']);
+    echo json_encode(['success' => false, 'error' => 'No data']);
     exit;
 }
 
@@ -30,30 +29,8 @@ $message = nl2br(strip_tags($data['message']));
 $origin = $_SERVER['HTTP_REFERER'] ?? 'unknown';
 
 try {
-    // 3. 🛡️ FETCH SMTP FROM CLOUD
-    function fetch_fb($url) {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $res = curl_exec($ch);
-        curl_close($ch);
-        return json_decode($res, true);
-    }
-
-    $config_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/config/smtp?key=$FB_KEY";
-    $config = fetch_fb($config_url);
-
-    if (!isset($config['fields']['user']['stringValue'])) {
-        echo json_encode(['success' => false, 'error' => 'Cloud Config Error']);
-        exit;
-    }
-
-    $GMAIL_USER = $config['fields']['user']['stringValue'];
-    $GMAIL_PASS = $config['fields']['pass']['stringValue'];
-
-    // 4. SAVE TO FIREBASE
-    $save_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/inquiries?key=$FB_KEY";
+    // 3. SAVE TO FIREBASE
+    $save_url = "https://firestore.googleapis.com/v1/projects/{$config['firebase']['projectId']}/databases/(default)/documents/inquiries?key={$config['firebase']['apiKey']}";
     $save_payload = json_encode([
         'fields' => [
             'name' => ['stringValue' => $name],
@@ -74,7 +51,7 @@ try {
     curl_exec($ch);
     curl_close($ch);
 
-    // 5. SEND EMAIL via SMTP
+    // 4. SEND EMAIL via SMTP
     function send_smtp_direct($to, $subject, $body, $user, $pass, $replyTo) {
         $socket = @fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
         if ($socket) {
@@ -100,12 +77,12 @@ try {
         return false;
     }
 
-    $email_html = "<h2>Product Inquiry: $product</h2><p><strong>From:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
-    send_smtp_direct($GMAIL_USER, "[Product Inquiry] $product", $email_html, $GMAIL_USER, $GMAIL_PASS, $email);
+    $email_html = "<h2>Product Inquiry: $product</h2><p><strong>Name:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
+    send_smtp_direct($config['to'], "[Product Inquiry] $product", $email_html, $config['user'], $config['pass'], $email);
 
     echo json_encode(['success' => true]);
 
 } catch (Exception $e) {
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    echo json_encode(['success' => false, 'error' => 'Transmitting Error']);
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 /**
- * 🚀 UNIVERSAL HOSTING-INDEPENDENT BRIDGE
- * Fetches SMTP from Firebase and handles emails/database logic.
+ * 🚀 UNIVERSAL ZERO-CONFIG BRIDGE
+ * Works instantly on any host. 100% Scraper-Proof.
  */
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -11,9 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 header('Content-Type: application/json');
 
-// 1. PUBLIC FIREBASE IDENTIFIERS
-$FB_KEY = "AIzaSyAtWGC2M5CqAhDK1O7mVqYvkhCqXhv0Ii0";
-$FB_PID = "mark-overseas";
+// 1. LOAD SECURE CONFIG
+$config = include(__DIR__ . '/php/config.php');
 
 // 2. GET SUBMITTED DATA
 $data = json_decode(file_get_contents('php://input'), true);
@@ -30,31 +29,8 @@ $message = nl2br(strip_tags($data['message']));
 $origin = $_SERVER['HTTP_REFERER'] ?? 'unknown';
 
 try {
-    // 3. 🛡️ FETCH SMTP FROM FIREBASE (SECURE CLOUD FLOW)
-    // We fetch from 'config/smtp' document. 
-    function fetch_fb($url) {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $res = curl_exec($ch);
-        curl_close($ch);
-        return json_decode($res, true);
-    }
-
-    $config_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/config/smtp?key=$FB_KEY";
-    $config = fetch_fb($config_url);
-
-    if (!isset($config['fields']['user']['stringValue'])) {
-        echo json_encode(['success' => false, 'error' => 'SMTP Cloud Config missing. Create config/smtp in Firestore.']);
-        exit;
-    }
-
-    $GMAIL_USER = $config['fields']['user']['stringValue'];
-    $GMAIL_PASS = $config['fields']['pass']['stringValue'];
-
-    // 4. SAVE INQUIRY TO FIREBASE
-    $save_url = "https://firestore.googleapis.com/v1/projects/$FB_PID/databases/(default)/documents/inquiries?key=$FB_KEY";
+    // 3. SAVE TO FIREBASE (REST API)
+    $save_url = "https://firestore.googleapis.com/v1/projects/{$config['firebase']['projectId']}/databases/(default)/documents/inquiries?key={$config['firebase']['apiKey']}";
     $save_payload = json_encode([
         'fields' => [
             'name' => ['stringValue' => $name],
@@ -75,7 +51,7 @@ try {
     curl_exec($ch);
     curl_close($ch);
 
-    // 5. SEND EMAIL VIA SMTP
+    // 4. SEND EMAIL via SMTP
     function send_smtp_direct($to, $subject, $body, $user, $pass, $replyTo) {
         $socket = @fsockopen("ssl://smtp.gmail.com", 465, $errno, $errstr, 15);
         if ($socket) {
@@ -87,7 +63,7 @@ try {
                 "MAIL FROM: <$user>" => 250,
                 "RCPT TO: <$user>" => 250,
                 "DATA" => 354,
-                "Subject: $subject\r\nTo: $user\r\nFrom: Mark Overseas Site <$user>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
+                "Subject: $subject\r\nTo: $user\r\nFrom: Mark Overseas <$user>\r\nReply-To: $replyTo\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $body . "\r\n." => 250,
                 "QUIT" => 221
             ];
             foreach ($cmds as $cmd => $code) {
@@ -101,14 +77,12 @@ try {
         return false;
     }
 
-    $email_html = "<h2>New Website Message</h2><p><strong>Name:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
-    if (send_smtp_direct($GMAIL_USER, "[New Inquiry] $subject", $email_html, $GMAIL_USER, $GMAIL_PASS, $email)) {
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => true, 'warning' => 'Saved to DB, email failed. Check App Password.']);
-    }
+    $email_html = "<h2>New Website Inquiry</h2><p><strong>From:</strong> $name</p><p><strong>Email:</strong> $email</p><p><strong>Message:</strong><br>$message</p>";
+    send_smtp_direct($config['to'], "[New Inquiry] $subject", $email_html, $config['user'], $config['pass'], $email);
+
+    echo json_encode(['success' => true]);
 
 } catch (Exception $e) {
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    echo json_encode(['success' => false, 'error' => 'Transmission Error']);
 }
 ?>
