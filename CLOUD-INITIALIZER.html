@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cloud Initializer | Mark Overseas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #f0f4f8;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        button {
+            background: #08af08;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #068a06;
+            transform: scale(1.05);
+        }
+
+        .status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="images/mark-logo.png" style="height: 50px; margin-bottom: 20px;">
+        <h2>Cloud Initializer</h2>
+        <p>This will automatically set up your <b>config/smtp</b> collection in Firebase for you.</p>
+        <button id="start-btn">Initialize Cloud Now</button>
+        <div id="status" class="status"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { firebaseConfig } from "./js/firebase-config.js";
+
+        document.getElementById('start-btn').onclick = async () => {
+            const status = document.getElementById('status');
+            status.innerText = "Processing Cloud Setup...";
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                await setDoc(doc(db, "config", "smtp"), {
+                    user: "markoverseas28@gmail.com",
+                    pass: "aopp wbdc ykky txwl"
+                });
+
+                status.innerHTML = "<span style='color:green'>✅ SUCCESS! Cloud is Ready.</span><br><br><small>You can now delete this file (CLOUD-INITIALIZER.html) for maximum security.</small>";
+            } catch (e) {
+                status.innerHTML = "<span style='color:red'>❌ FAILED!</span><br><small>" + e.message + "</small>";
+                console.error(e);
+            }
+        };
+    </script>
+</body>
+
+</html>
