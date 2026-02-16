@@ -13,19 +13,13 @@ try {
     };
 }
 
-// 3. ULTIMATE FALLBACK (Zero-Config for Vercel)
-// If both above fail, use the master credentials directly.
-const MASTER_USER = 'markoverseas28@gmail.com';
-const MASTER_PASS = 'aopp wbdc ykky txwl';
-
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Final check: Use env/file if they exist, otherwise use master
-    const user = creds.user || MASTER_USER;
-    const pass = creds.pass || MASTER_PASS;
+    const user = creds.user;
+    const pass = creds.pass;
 
     if (!user || !pass) {
         return res.status(500).json({ error: 'Server misconfigured: Email credentials missing.' });
