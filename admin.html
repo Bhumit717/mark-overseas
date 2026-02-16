@@ -215,7 +215,18 @@
 
                 snap.forEach(d => {
                     const data = d.data();
-                    const rawDate = data.createdAt ? new Date(data.createdAt) : null;
+
+                    // Handle both Timestamp objects and ISO strings
+                    let rawDate = null;
+                    if (data.createdAt) {
+                        if (data.createdAt.toDate) {
+                            // Firebase Timestamp object
+                            rawDate = data.createdAt.toDate();
+                        } else if (typeof data.createdAt === 'string') {
+                            // ISO string from PHP
+                            rawDate = new Date(data.createdAt);
+                        }
+                    }
                     const dateStr = rawDate ? rawDate.toLocaleDateString() : 'N/A';
 
                     allInquiriesData.push({ ...data, id: d.id, dateStr });
