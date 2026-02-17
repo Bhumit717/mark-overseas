@@ -175,10 +175,18 @@
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('dashboard-section').style.display = 'block';
                 document.getElementById('user-display').innerText = user.email;
+
+                // 🔑 Prompt for Vault Key (Remove hardcoded passwords from files)
+                if (!sessionStorage.getItem('vault_key')) {
+                    const key = prompt("⚠️ Security required.\nPlease enter the Vault Security Key:");
+                    if (key) sessionStorage.setItem('vault_key', key);
+                    else signOut(auth);
+                }
                 fetchData();
             } else {
                 document.getElementById('login-section').style.display = 'block';
                 document.getElementById('dashboard-section').style.display = 'none';
+                sessionStorage.removeItem('vault_key');
             }
         });
 
@@ -197,46 +205,34 @@
             }
         });
 
-        document.getElementById('btn-logout').addEventListener('click', () => signOut(auth));
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            sessionStorage.removeItem('vault_key');
+            signOut(auth);
+        });
+
         document.getElementById('btn-refresh').addEventListener('click', () => fetchData());
-
-
 
         // 📥 FETCH DATA
         async function fetchData() {
             const tbody = document.getElementById('table-body');
+            const key = sessionStorage.getItem('vault_key');
+            if (!key) return;
+
             try {
                 // 🛡️ FETCH FROM SECURE VAULT
-                const q = query(collection(db, "inquiry_vault", "Mark@Overseas321", "data"), orderBy("createdAt", "desc"));
+                const q = query(collection(db, "inquiry_vault", key, "data"), orderBy("createdAt", "desc"));
                 const snap = await getDocs(q);
                 tbody.innerHTML = '';
                 allInquiriesData = [];
 
                 if (snap.empty) {
-                    tbody.innerHTML = '<tr><td colspan="6" class="text-center py-5 text-muted">No inquiries found yet.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-5 text-muted">No inquiries found in this vault.</td></tr>';
                     return;
                 }
 
                 snap.forEach(d => {
                     const data = d.data();
-
-                    // Handle different date formats
-                    let rawDate = null;
-                    if (data.createdAt) {
-                        if (data.createdAt.toDate) {
-                            // Firebase Timestamp object (has toDate method)
-                            rawDate = data.createdAt.toDate();
-                        } else if (data.createdAt.seconds) {
-                            // Firebase Timestamp object (has seconds property)
-                            rawDate = new Date(data.createdAt.seconds * 1000);
-                        } else if (typeof data.createdAt === 'string') {
-                            // ISO string from PHP
-                            rawDate = new Date(data.createdAt);
-                        } else if (data.createdAt instanceof Date) {
-                            // Already a Date object
-                            rawDate = data.createdAt;
-                        }
-                    }
+                    let rawDate = data.createdAt?.toDate ? data.createdAt.toDate() : (data.createdAt ? new Date(data.createdAt) : null);
                     const dateStr = rawDate && !isNaN(rawDate) ? rawDate.toLocaleDateString() : 'N/A';
 
                     allInquiriesData.push({ ...data, id: d.id, dateStr });
@@ -244,19 +240,8 @@
                     const tr = document.createElement('tr');
                     tr.style.fontSize = '14px';
 
-                    // Score Badge Logic
-                    const score = data.recaptchaScore !== undefined ? data.recaptchaScore : 'N/A';
-                    let statusBadge = '';
-
-                    if (data.status === 'SPAM' || (typeof score === 'number' && score < 0.5)) {
-                        statusBadge = `<span class="badge bg-danger">SPAM (${score})</span>`;
-                        tr.style.opacity = '0.6';
-                        tr.style.backgroundColor = '#fff5f5';
-                    } else if (data.status === 'VERIFIED' || (typeof score === 'number' && score >= 0.5)) {
-                        statusBadge = `<span class="badge bg-success">SAFE (${score})</span>`;
-                    } else {
-                        statusBadge = `<span class="badge bg-secondary">LEGACY</span>`;
-                    }
+                    const score = data.status === 'SPAM' ? 'SPAM' : (data.recaptchaScore || 'VERIFIED');
+                    const badgeClass = data.status === 'SPAM' ? 'bg-danger' : 'bg-success';
 
                     tr.innerHTML = `
                         <td class="text-muted fw-bold">${dateStr}</td>
@@ -264,43 +249,43 @@
                         <td>${data.email}<br><small class="text-muted">${data.phone}</small></td>
                         <td><span class="badge-subject">${data.subject}</span></td>
                         <td><div style="max-width:300px; font-size:12px; opacity:0.8">${data.message}</div></td>
-                        <td class="text-center">${statusBadge}</td>
+                        <td class="text-center"><span class="badge ${badgeClass}">${score}</span></td>
                         <td class="text-center"><button class="btn btn-sm text-danger" onclick="window.deleteItem('${d.id}')"><i class="bi bi-trash-fill"></i></button></td>
                     `;
                     tbody.appendChild(tr);
                 });
             } catch (e) {
                 console.error("DB Error:", e);
-                alert("Database Error: " + e.message + "\n\nMake sure your Rules are pasted in the Firebase Console.");
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-danger">⚠️ Access Denied: Incorrect Vault Key</td></tr>`;
             }
         }
 
         // 🗑️ DELETE SINGLE
         window.deleteItem = async (id) => {
-            if (!confirm("Are you sure you want to delete this record?")) return;
+            if (!confirm("Delete this record?")) return;
+            const key = sessionStorage.getItem('vault_key');
             try {
-                // DELETE FROM VAULT
-                await deleteDoc(doc(db, "inquiry_vault", "Mark@Overseas321", "data", id));
+                await deleteDoc(doc(db, "inquiry_vault", key, "data", id));
                 fetchData();
-            } catch (e) { alert("Error deleting document: " + e.message); }
+            } catch (e) { alert("Error: " + e.message); }
         };
 
         // 🧨 DELETE ALL
         document.getElementById('btn-delete-all').addEventListener('click', async () => {
-            if (!confirm("⚠️ DANGER: This will delete ALL inquiries from the database. Proceed?")) return;
+            if (!confirm("DANGER: This will delete ALL inquiries. Proceed?")) return;
             const confirmName = prompt("Type 'DELETE' to confirm:");
             if (confirmName !== 'DELETE') return;
 
+            const key = sessionStorage.getItem('vault_key');
             try {
-                // FETCH FROM VAULT TO DELETE
-                const q = query(collection(db, "inquiry_vault", "Mark@Overseas321", "data"));
+                const q = query(collection(db, "inquiry_vault", key, "data"));
                 const snap = await getDocs(q);
                 const batch = writeBatch(db);
                 snap.forEach(d => batch.delete(d.ref));
                 await batch.commit();
-                alert("Database Cleared.");
+                alert("Vault Cleared.");
                 fetchData();
-            } catch (e) { alert("Error clearing database: " + e.message); }
+            } catch (e) { alert("Error: " + e.message); }
         });
 
         // 📄 EXPORT PDF
