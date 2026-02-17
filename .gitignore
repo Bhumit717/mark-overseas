@@ -8,13 +8,6 @@ audit_log.txt
 fix_categories_log.txt  
 add_tabs_log.txt
 *.py
-*.js
-!js/lottie-animations.js
-!js/custom.js
-!js/logo-video.js
-!js/language-selector.js
-!api/*.js
-!js/firebase-config.js
 node_modules/
 dist/
 build/
@@ -23,3 +16,4 @@ build/
 Thumbs.db
 .vercel
 .env*.local
+*.log
