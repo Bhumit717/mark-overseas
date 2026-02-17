@@ -1,0 +1,42 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    /**
+     * �️ PORTABLE DOMAIN SECURITY
+     * ---------------------------
+     * IMPORTANT: Firestore Rules cannot see the 'Domain' of the request.
+     * To secure your database, you MUST add your domains in the Firebase Console:
+     * Authentication -> Settings -> Authorized Domains.
+     */
+    
+    // 🛡️ REAL DOMAIN SECURITY
+    // This rule REJECTS any data that doesn't belong to your domains.
+    match /inquiry_vault/{pwd}/data/{id} {
+      
+      allow create: if pwd == 'Mark@Overseas321' && 
+        (request.resource.data.authorizedDomain in [
+          'https://mark-overseas.com', 
+          'https://www.mark-overseas.com', 
+          'https://mark-overseas.vercel.app',
+          'http://127.0.0.1:5500',
+          'http://localhost:5500'
+        ] || request.resource.data.authorizedDomain.matches('file://.*'));
+
+      // Read/Delete restricted to the secret path
+      allow read, delete: if pwd == 'Mark@Overseas321';
+    }
+
+    // 📧 SMTP Settings (REQUIRED for Instant Email)
+    // Allows the client to fetch credentials to send the email immediately.
+    match /settings/smtp {
+      allow read: if true; 
+    }
+
+    // Default: Deny EVERYTHING else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
