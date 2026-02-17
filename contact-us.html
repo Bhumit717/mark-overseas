@@ -274,7 +274,7 @@
 
 	<script type="module">
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-		import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+		import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 		import { firebaseConfig } from "./js/firebase-config.js";
 
 		const app = initializeApp(firebaseConfig);
@@ -302,14 +302,44 @@
 						// 🛡️ AUTHORIZED DOMAIN & RECAPTCHA TOKEN
 						authorizedDomain: window.location.origin,
 						recaptchaToken: token,
-						createdAt: serverTimestamp()
+						createdAt: serverTimestamp(),
+						status: 'NEW'
 					};
 
-					// 🚀 SECURE SUBMISSION TO HIDDEN VAULT
-					// Cloud Function will read 'recaptchaToken' -> Verify -> Send Email
-					await addDoc(collection(db, "inquiry_vault", "Mark@Overseas321", "data"), formData);
+					// 1. 💾 SAVE TO DB
+					const docRef = await addDoc(collection(db, "inquiry_vault", "Mark@Overseas321", "data"), formData);
 
-					alert("✅ Success! Your inquiry has been verified and sent to our team.");
+					// 2. ⚡ INSTANT EMAIL SEND (Client-Side Orchestration)
+					btn.innerText = "Sending Email...";
+
+					// Fetch Secure SMTP Password (Protected by Domain Rules)
+					const settingsSnap = await getDoc(doc(db, "settings", "smtp"));
+					if (settingsSnap.exists()) {
+						const smtpPassword = settingsSnap.data().smtp;
+
+						// Call Vercel Relay
+						await fetch('/api/send-relay', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({
+								smtpPassword: smtpPassword,
+								mailOptions: {
+									replyTo: formData.email,
+									subject: `[Web Inquiry] ${formData.subject}`,
+									html: `
+										<h2>New Inquiry from ${formData.name}</h2>
+										<p><strong>Email:</strong> ${formData.email}</p>
+										<p><strong>Phone:</strong> ${formData.phone}</p>
+										<p><strong>Domain:</strong> ${formData.authorizedDomain}</p>
+										<hr>
+										<p>${formData.message}</p>
+									`
+								}
+							})
+						});
+					}
+
+					alert("✅ Success! Your inquiry has been sent to our team.");
 					document.getElementById('contact_form').reset();
 
 				} catch (error) {
