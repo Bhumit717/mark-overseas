@@ -169,24 +169,18 @@
 
         let allInquiriesData = [];
 
+        const VAULT_KEY = 'Mark_Vault';
+
         // 🛡️ AUTH WATCHER
         onAuthStateChanged(auth, (user) => {
             if (user && user.email === 'markoverseas28@gmail.com') {
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('dashboard-section').style.display = 'block';
                 document.getElementById('user-display').innerText = user.email;
-
-                // 🔑 Prompt for Vault Key (Remove hardcoded passwords from files)
-                if (!sessionStorage.getItem('vault_key')) {
-                    const key = prompt("⚠️ Security required.\nPlease enter the Vault Security Key:");
-                    if (key) sessionStorage.setItem('vault_key', key);
-                    else signOut(auth);
-                }
                 fetchData();
             } else {
                 document.getElementById('login-section').style.display = 'block';
                 document.getElementById('dashboard-section').style.display = 'none';
-                sessionStorage.removeItem('vault_key');
             }
         });
 
@@ -206,7 +200,6 @@
         });
 
         document.getElementById('btn-logout').addEventListener('click', () => {
-            sessionStorage.removeItem('vault_key');
             signOut(auth);
         });
 
@@ -215,12 +208,10 @@
         // 📥 FETCH DATA
         async function fetchData() {
             const tbody = document.getElementById('table-body');
-            const key = sessionStorage.getItem('vault_key');
-            if (!key) return;
 
             try {
                 // 🛡️ FETCH FROM SECURE VAULT
-                const q = query(collection(db, "inquiry_vault", key, "data"), orderBy("createdAt", "desc"));
+                const q = query(collection(db, "inquiry_vault", VAULT_KEY, "data"), orderBy("createdAt", "desc"));
                 const snap = await getDocs(q);
                 tbody.innerHTML = '';
                 allInquiriesData = [];
@@ -256,16 +247,15 @@
                 });
             } catch (e) {
                 console.error("DB Error:", e);
-                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-danger">⚠️ Access Denied: Incorrect Vault Key</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-danger">⚠️ Access Denied: Database Error</td></tr>`;
             }
         }
 
         // 🗑️ DELETE SINGLE
         window.deleteItem = async (id) => {
             if (!confirm("Delete this record?")) return;
-            const key = sessionStorage.getItem('vault_key');
             try {
-                await deleteDoc(doc(db, "inquiry_vault", key, "data", id));
+                await deleteDoc(doc(db, "inquiry_vault", VAULT_KEY, "data", id));
                 fetchData();
             } catch (e) { alert("Error: " + e.message); }
         };
@@ -276,9 +266,8 @@
             const confirmName = prompt("Type 'DELETE' to confirm:");
             if (confirmName !== 'DELETE') return;
 
-            const key = sessionStorage.getItem('vault_key');
             try {
-                const q = query(collection(db, "inquiry_vault", key, "data"));
+                const q = query(collection(db, "inquiry_vault", VAULT_KEY, "data"));
                 const snap = await getDocs(q);
                 const batch = writeBatch(db);
                 snap.forEach(d => batch.delete(d.ref));
