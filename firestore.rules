@@ -12,6 +12,7 @@ service cloud.firestore {
     }
 
     function correctPassword(pwd) {
+      // 🔑 The Master Key for the Admin
       return pwd == 'Mark_Vault'; 
     }
 
@@ -19,19 +20,15 @@ service cloud.firestore {
       // ✅ ADD DETAILS → ONLY DOMAIN REQUIRED
       allow create: if isAllowedDomain();
 
-      // ✅ READ / DELETE → DOMAIN + PASSWORD REQUIRED
-      allow read, delete: if correctPassword(pwd)
-                          && resource.data.authorizedDomain in [
-                            'https://mark-overseas.com',
-                            'https://www.mark-overseas.com',
-                            'https://mark-overseas.vercel.app',
-                            'https://www.mark-overseas.vercel.app'
-                          ];
+      // ✅ ADMIN READ / DELETE → ONLY PASSWORD REQUIRED
+      // We removed the resource.data.authorizedDomain check here 
+      // because it was blocking the Admin Dashboard from loading the full list.
+      allow read, delete: if correctPassword(pwd);
     }
 
-    // ✅ SMTP SETTINGS → ONLY DOMAIN REQUIRED (NO PASSWORD)
+    // ✅ SMTP SETTINGS → REQUIRED FOR INSTANT EMAIL
     match /settings/smtp {
-      allow read: if true;   // rules cannot see domain → App Check handles real restriction
+      allow read: if true;
     }
 
     match /{document=**} {
