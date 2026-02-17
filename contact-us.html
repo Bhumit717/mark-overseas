@@ -327,12 +327,12 @@
 									replyTo: formData.email,
 									subject: `[Web Inquiry] ${formData.subject}`,
 									html: `
-										<h2>New Inquiry from ${formData.name}</h2>
+										<p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+										<p><strong>Name:</strong> ${formData.name}</p>
 										<p><strong>Email:</strong> ${formData.email}</p>
 										<p><strong>Phone:</strong> ${formData.phone}</p>
-										<p><strong>Domain:</strong> ${formData.authorizedDomain}</p>
-										<hr>
-										<p>${formData.message}</p>
+										<p><strong>Subject:</strong> ${formData.subject}</p>
+										<p><strong>Message:</strong><br>${formData.message}</p>
 									`
 								}
 							})
