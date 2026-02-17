@@ -12,12 +12,10 @@ service cloud.firestore {
     }
 
     function correctPassword(pwd) {
-      // 🔑 The Master Key for the Admin
       return pwd == 'Mark_Vault'; 
     }
 
     match /inquiry_vault/{pwd}/data/{id} {
-
       // ✅ ADD DETAILS → ONLY DOMAIN REQUIRED
       allow create: if isAllowedDomain();
 
@@ -29,6 +27,11 @@ service cloud.firestore {
                             'https://mark-overseas.vercel.app',
                             'https://www.mark-overseas.vercel.app'
                           ];
+    }
+
+    // ✅ SMTP SETTINGS → ONLY DOMAIN REQUIRED (NO PASSWORD)
+    match /settings/smtp {
+      allow read: if true;   // rules cannot see domain → App Check handles real restriction
     }
 
     match /{document=**} {

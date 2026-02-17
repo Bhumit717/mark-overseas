@@ -306,12 +306,42 @@
 						status: 'NEW'
 					};
 
-					// 🚀 SECURE SUBMISSION
-					// Note: Submission path is protected by Domain Rules in Firestore
+					// 1. 💾 SAVE TO DB
 					const VAULT_KEY = 'Mark_Vault';
 					await addDoc(collection(db, "inquiry_vault", VAULT_KEY, "data"), formData);
 
-					alert("✅ Success! Your inquiry has been submitted to our team.");
+					// 2. ⚡ INSTANT EMAIL SEND (Client-Side Orchestration)
+					btn.innerText = "Sending Email...";
+
+					// Fetch Secure SMTP Password (Protected by Domain Rules in Console)
+					const settingsSnap = await getDoc(doc(db, "settings", "smtp"));
+					if (settingsSnap.exists()) {
+						const smtpPassword = settingsSnap.data().smtp;
+
+						// Call Vercel Relay
+						await fetch('/api/send-relay', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify({
+								smtpPassword: smtpPassword,
+								mailOptions: {
+									replyTo: formData.email,
+									subject: `[Mark Overseas] New Inquiry: ${formData.subject}`,
+									html: `
+										<p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+										<p><strong>Name:</strong> ${formData.name}</p>
+										<p><strong>Email:</strong> ${formData.email}</p>
+										<p><strong>Phone:</strong> ${formData.phone}</p>
+										<p><strong>Subject:</strong> ${formData.subject}</p>
+										<hr>
+										<p><strong>Message:</strong><br>${formData.message}</p>
+									`
+								}
+							})
+						});
+					}
+
+					alert("✅ Success! Your inquiry has been sent to our team.");
 					document.getElementById('contact_form').reset();
 
 				} catch (error) {
