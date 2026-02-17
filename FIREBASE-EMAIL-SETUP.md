@@ -27,7 +27,7 @@ firebase deploy --only functions
 Ensure you have the document set up exactly as shown in your screenshot:
 -   **Collection**: `settings`
 -   **Document**: `smtp`
--   **Field**: `smtp` -> Value: `aopp wbdc ykky txwl`
+-   **Field**: `smtp` -> Value: `[Your App Password]`
 
 ---
 
