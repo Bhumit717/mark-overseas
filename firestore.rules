@@ -7,7 +7,9 @@ service cloud.firestore {
         'https://mark-overseas.com',
         'https://www.mark-overseas.com',
         'https://mark-overseas.vercel.app',
-        'https://www.mark-overseas.vercel.app'
+        'https://www.mark-overseas.vercel.app',
+        'http://localhost',
+        'http://127.0.0.1'
       ];
     }
 
