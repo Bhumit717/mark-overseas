@@ -18,7 +18,9 @@ if (!admin.apps.length) {
         console.error("Firebase Admin Init Error:", error.message);
     }
 }
-const db = admin.firestore();
+
+let db = null;
+try { db = admin.apps.length ? admin.firestore() : null; } catch(e) { console.error('Firestore init failed:', e.message); }
 
 module.exports = async (req, res) => {
     // 1. Method Validation
@@ -48,8 +50,8 @@ module.exports = async (req, res) => {
     // 3. Origin validation
     const originOrReferer = req.headers.origin || req.headers.referer || "";
     // Check for allowed hostnames
-    const allowedDomains = ['mark-overseas.com', 'www.mark-overseas.com', 'localhost', '127.0.0.1'];
-    const isAllowedOrigin = allowedDomains.some(d => originOrReferer.includes(d));
+    const allowedDomains = ['mark-overseas.com', 'www.mark-overseas.com', 'mark-overseas.vercel.app', 'localhost', '127.0.0.1'];
+    const isAllowedOrigin = !originOrReferer || allowedDomains.some(d => originOrReferer.includes(d));
     if (!isAllowedOrigin) {
         return res.status(403).json({ success: false, error: 'invalid domain' });
     }
