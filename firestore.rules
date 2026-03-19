@@ -29,7 +29,7 @@ service cloud.firestore {
     // ✅ SMTP SETTINGS → REQUIRED FOR INSTANT EMAIL
     match /settings/smtp {
       allow read: if true;
-    }
+          }
 
     match /{document=**} {
       allow read, write: if false;
