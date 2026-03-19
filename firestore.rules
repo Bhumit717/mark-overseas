@@ -19,8 +19,8 @@ service cloud.firestore {
       // ✅ CREATE → PUBLIC IF THROUGH FORM
       allow create: if isAllowedDomain();
 
-      // ✅ ADMIN READ / DELETE → ONLY AUTHORIZED EMAIL
-      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com';
+      // ✅ ADMIN READ / DELETE → ONLY AUTHORIZED EMAILS
+      allow read, delete: if request.auth != null && (request.auth.token.email == 'markoverseas28@gmail.com' || request.auth.token.email == 'bhumitnasit1@gmail.com');
     }
 
     // ✅ SMTP SETTINGS → REQUIRED FOR INSTANT EMAIL
