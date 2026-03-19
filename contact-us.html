@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -44,20 +44,7 @@
 	<meta name="keywords"
 		content="agro commodities, mark overseas, export import, india exporter, gujarat exporter, oil seeds, spices, grains" />
 
-	<script
-		src="https://www.google.com/recaptcha/enterprise.js?render=6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA"></script>
-	<style>
-		.grecaptcha-badge {
-			display: none !important;
-		}
-	</style>
-
-	<style>
-		.grecaptcha-badge {
-			visibility: hidden !important;
-		}
-	</style>
-</head>
+	</head>
 
 <body class="contact_us-page">
 
@@ -183,6 +170,11 @@
 											<input type="text" name="subject" id="subject" required=""
 												placeholder="Subject" />
 										</div>
+										<!-- Anti-Spam Honeypot Field -->
+										<div class="form-feild" style="display:none;" aria-hidden="true">
+											<label>Website URL</label>
+											<input type="text" name="website_url" id="website_url" tabindex="-1" autocomplete="off" />
+										</div>
 										<div class="form-feild form-feild-full">
 											<label>Message</label>
 											<textarea type="text" name="message" id="message"
@@ -285,7 +277,7 @@
 	</script>
 
 	<script type="module">
-		document.getElementById('contact_form')?.addEventListener('submit', function (e) {
+		document.getElementById('contact_form')?.addEventListener('submit', async function (e) {
 			e.preventDefault();
 			const btn = document.getElementById('btn_submit');
 			const originalText = btn.innerText;
@@ -293,19 +285,15 @@
 			if (btn.disabled) return;
 			btn.disabled = true;
 			btn.innerText = "Verifying...";
-
-			// ðŸ›¡ï¸ RECAPTCHA ENTERPRISE EXECUTION
-			grecaptcha.enterprise.ready(async () => {
-				try {
-					const token = await grecaptcha.enterprise.execute('6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA', { action: 'submit_contact' });
-
-					const formData = {
-						token: token,
+			
+				try { const formData = {
+						token: "honeypot_override",
 						name: document.getElementById('name').value,
 						email: document.getElementById('email').value,
 						phone: document.getElementById('phone').value,
 						subject: document.getElementById('subject').value,
-						message: document.getElementById('message').value
+						message: document.getElementById('message').value,
+						website_url: document.getElementById('website_url').value
 					};
 
 					btn.innerText = "Sending Message...";
@@ -333,7 +321,6 @@
 					btn.disabled = false;
 					btn.innerText = originalText;
 				}
-			});
 		});
 	</script>
 

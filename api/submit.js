@@ -25,18 +25,10 @@ module.exports = async (req, res) => {
     if (req.method !== 'POST') return res.status(405).json({ success: false, error: 'Method Not Allowed' });
 
     // Verify critical environment variables
-    if (!process.env.FIREBASE_SERVICE_ACCOUNT || !process.env.RECAPTCHA_SECRET_KEY || !process.env.SMTP_PASSWORD) {
+    if (!process.env.FIREBASE_SERVICE_ACCOUNT || !process.env.SMTP_PASSWORD) {
         return res.status(500).json({ 
             success: false, 
-            error: 'Server configuration incomplete. Please set RECAPTCHA_SECRET_KEY, SMTP_PASSWORD, and FIREBASE_SERVICE_ACCOUNT in Vercel.' 
-        });
-    }
-
-    // Verify critical environment variables
-    if (!process.env.FIREBASE_SERVICE_ACCOUNT || !process.env.RECAPTCHA_SECRET_KEY || !process.env.SMTP_PASSWORD) {
-        return res.status(500).json({ 
-            success: false, 
-            error: 'Server configuration incomplete. Please set RECAPTCHA_SECRET_KEY, SMTP_PASSWORD, and FIREBASE_SERVICE_ACCOUNT in Vercel.' 
+            error: 'Server configuration incomplete. Please set SMTP_PASSWORD and FIREBASE_SERVICE_ACCOUNT in Vercel.' 
         });
     }
 
@@ -62,7 +54,7 @@ module.exports = async (req, res) => {
         return res.status(403).json({ success: false, error: 'invalid domain' });
     }
 
-    const { token, name, email, phone, subject, message } = req.body;
+    const { token, name, email, phone, subject, message, website_url } = req.body;
 
     // 4. Sanitization
     const clean = (s, len) => (s || "").toString().replace(/<[^>]*>?/gm, '').trim().substring(0, len);
@@ -76,37 +68,18 @@ module.exports = async (req, res) => {
         createdAt: new Date().toISOString()
     };
 
-    if (!token) return res.status(400).json({ success: false, error: 'captcha missed' });
+    if (!token) return res.status(400).json({ success: false, error: 'submission missed' });
 
     try {
-        // 5. reCAPTCHA Verification
-        const secret = process.env.RECAPTCHA_SECRET_KEY;
-        const verifyRes = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `secret=${secret}&response=${token}`
-        });
-        const recaptcha = await verifyRes.json();
+        // 5. Bot Check (Honeypot) - If a bot fills out the hidden website_url field, reject quietly
+        if (website_url && website_url.trim() !== '') {
+            console.warn(`[BOT BLOCKED] IP: ${ip} filled honeypot`);
+            return res.status(200).json({ success: true, message: 'Message sent successfully' }); // fake success for bots
+        }
 
-        // 6. Detailed checks
-        if (!recaptcha.success || recaptcha.score < 0.5 || !allowedDomains.some(host => recaptcha.hostname?.includes(host))) {
-            
-            // Log suspicious request to Firestore
-            if (db) {
-                await db.collection("security_logs").add({
-                    type: "suspicious_request",
-                    reason: !recaptcha.success ? "captcha_failed" : (recaptcha.score < 0.5 ? `low_score_${recaptcha.score}` : "invalid_hostname"),
-                    recaptcha: recaptcha,
-                    ip: ip,
-                    data_preview: { name: data.name, email: data.email },
-                    timestamp: admin.firestore.FieldValue.serverTimestamp()
-                }).catch(err => console.error("Log error:", err));
-            }
-
-            return res.status(400).json({ 
-                success: false, 
-                error: (recaptcha.score < 0.5) ? 'low score' : 'captcha failed'
-            });
+        // 6. Data Validation
+        if (!data.name || !data.email || !data.message) {
+             return res.status(400).json({ success: false, error: 'missing required fields' });
         }
 
         // 7. Success logic
@@ -129,7 +102,7 @@ module.exports = async (req, res) => {
                 to: "markoverseas28@gmail.com",
                 replyTo: data.email,
                 subject: `[SECURE] New Inquiry: ${data.subject}`,
-                html: `<p>New message from <b>${data.name}</b> (${data.email})</p><hr><p>${data.message}</p><br><p><small>IP: ${ip} | Score: ${recaptcha.score}</small></p>`
+                html: `<p>New message from <b>${data.name}</b> (${data.email})</p><hr><p>${data.message}</p><br><p><small>IP: ${ip} | Phone: ${data.phone}</small></p>`
             });
         }
 
