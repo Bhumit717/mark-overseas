@@ -3,10 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     function isAllowedDomain() {
-      return request.resource.data.authorizedDomain.matches('^https://(www\\.)?mark-overseas\\.com$') || 
-             request.resource.data.authorizedDomain.matches('^https://(www\\.)?mark-overseas\\.vercel\\.app$') || 
-             request.resource.data.authorizedDomain.matches('^http://localhost(:[0-9]+)?$') ||
-             request.resource.data.authorizedDomain.matches('^http://127\\.0\\.0\\.1(:[0-9]+)?$');
+      return true;
     }
 
     function correctPassword(pwd) {
