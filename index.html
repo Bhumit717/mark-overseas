@@ -708,7 +708,7 @@
 
 
 	<script
-		src="https://www.google.com/recaptcha/api.js?render=6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA"></script>
+		src="https://www.google.com/recaptcha/api.js?render=6LdBwI8sAAAAACoX-gHP990jwhzrom9cgD-LahhA"></script>
 
 	<script type="module">
 		document.getElementById('contact_form')?.addEventListener('submit', function (e) {
@@ -723,7 +723,7 @@
 			// ðŸ›¡ï¸ RECAPTCHA ENTERPRISE EXECUTION
 			grecaptcha.ready(async () => {
 				try {
-					const token = await grecaptcha.execute('6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA', { action: 'submit_contact' });
+					const token = await grecaptcha.execute('6LdBwI8sAAAAACoX-gHP990jwhzrom9cgD-LahhA', { action: 'submit_contact' });
 
 					const formData = {
 						token: token,
