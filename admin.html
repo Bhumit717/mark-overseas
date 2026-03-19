@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -9,41 +9,117 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        :root {
-            --primary: #08af08;
-            --bg: #f8fafc;
-        }
+        :root { --primary: #08af08; --bg: #f4f7f6; }
 
-        body {
-            background-color: var(--bg);
-            font-family: system-ui, -apple-system, sans-serif;
+        body { background: var(--bg); font-family: system-ui, -apple-system, sans-serif; }
+
+        /* ── LOGIN ── */
+        .login-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .login-card {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eee;
+            width: 380px;
+            padding: 44px 40px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 24px 56px rgba(0,0,0,.10);
+            text-align: center;
         }
+
+        .login-card img.logo { height: 64px; margin-bottom: 20px; }
+
+        .login-card h4 { font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+
+        .login-card p.sub { color: #888; font-size: 13px; margin-bottom: 28px; }
+
+        .btn-google {
+            width: 100%;
+            padding: 13px;
+            border: 1.5px solid #ddd;
+            border-radius: 12px;
+            background: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: box-shadow .2s, border-color .2s;
+            cursor: pointer;
+        }
+
+        .btn-google:hover { box-shadow: 0 4px 14px rgba(0,0,0,.12); border-color: #bbb; }
+
+        .btn-google:disabled { opacity: .6; cursor: not-allowed; }
+
+        .err-msg { color: #e53e3e; font-size: 13px; margin-top: 14px; font-weight: 600; display: none; }
+
+        /* ── DASHBOARD ── */
+        #dashboard-section { display: none; }
+
+        .top-bar {
+            background: #fff;
+            border-bottom: 1px solid #e8ecef;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 17px; }
+
+        .top-bar .user-pill {
+            background: #f0fdf0;
+            border: 1px solid #c6f6c6;
+            color: #276427;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .dashboard-body { padding: 28px; }
+
+        .stat-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat-chip {
+            background: #fff;
+            border: 1px solid #e8ecef;
+            border-radius: 12px;
+            padding: 14px 22px;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .stat-chip .num { font-size: 28px; font-weight: 800; color: var(--primary); }
+        .stat-chip .label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: .5px; }
 
         .data-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid #e8ecef;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 2px 8px rgba(0,0,0,.03);
         }
 
-        #dashboard-section {
-            display: none;
-            padding: 30px;
-        }
-
-        #login-section {
-            display: block;
+        .data-card-header {
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #f0f4f8;
         }
 
         .table thead th {
@@ -51,82 +127,90 @@
             font-size: 11px;
             text-transform: uppercase;
             color: #64748b;
-            padding: 15px;
-            border-bottom: 2px solid #f1f5f9;
+            padding: 14px 16px;
+            border-bottom: 1.5px solid #f1f5f9;
+            white-space: nowrap;
         }
 
-        .badge-subject {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #e2e8f0;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-        }
+        .table tbody td { padding: 14px 16px; vertical-align: middle; font-size: 14px; }
 
-        .btn-primary {
-            background: var(--primary);
-            border: none;
-        }
+        .badge-verified { background: #dcfce7; color: #166534; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 700; }
+        .badge-spam    { background: #fee2e2; color: #991b1b; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 700; }
 
-        .btn-primary:hover {
-            background: #079607;
-        }
+        .msg-preview { max-width: 280px; font-size: 12px; color: #6b7280; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .loading-row td { text-align: center; padding: 60px 0; color: #aaa; }
     </style>
-
-	</head>
+</head>
 
 <body>
 
-    <!-- ðŸ” LOGIN SECTION -->
-    <div id="login-section" class="container">
-        <div class="login-card text-center">
-            <img src="images/mark-logo.png" alt="Logo" style="height: 60px; margin-bottom: 25px;">
-            <h4 class="fw-bold">Mark Admin</h4>
-            <p class="text-muted small mb-4">Cloud-Secured Dashboard</p>
+    <!-- 🔐 LOGIN -->
+    <div id="login-section" class="login-wrap">
+        <div class="login-card">
+            <img src="images/mark-logo.png" alt="Logo" class="logo">
+            <h4>Mark Admin</h4>
+            <p class="sub">Sign in with your authorized Google account</p>
 
-            <button id="btn-google-login" class="btn btn-outline-dark w-100 py-3 fw-bold d-flex align-items-center justify-content-center gap-2 shadow-sm rounded-3">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
+            <button id="btn-google-login" class="btn-google">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="22" alt="G">
                 Continue with Google
             </button>
-            <div id="login-error" class="text-danger mt-3 small fw-bold" style="display:none;">âš ï¸ ACCESS DENIED: Unauthorized Account</div>
+
+            <div id="login-error" class="err-msg"></div>
         </div>
     </div>
 
-    <!-- ðŸ“Š DASHBOARD SECTION -->
+    <!-- 📊 DASHBOARD -->
     <div id="dashboard-section">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mb-4 px-3 rounded-3 shadow-sm">
-            <div class="container-fluid">
-                <span class="navbar-brand fw-bold d-flex align-items-center">
-                    <img src="images/mark-logo.png" height="35" class="me-3">
-                    <span class="d-none d-sm-inline">Administration</span>
-                </span>
-                <div class="d-flex align-items-center gap-3">
-                    <span class="text-muted small d-none d-md-inline" id="user-display"></span>
-                    <button class="btn btn-outline-danger btn-sm px-3" id="btn-logout">Logout</button>
-                </div>
+        <div class="top-bar">
+            <div class="brand">
+                <img src="images/mark-logo.png" height="36" alt="logo">
+                Administration Panel
             </div>
-        </nav>
+            <div class="d-flex align-items-center gap-3">
+                <span class="user-pill" id="user-display"></span>
+                <button class="btn btn-outline-danger btn-sm px-3" id="btn-logout">
+                    <i class="bi bi-box-arrow-right me-1"></i> Logout
+                </button>
+            </div>
+        </div>
 
-        <div class="container-fluid">
-            <div class="row mb-4 align-items-center">
-                <div class="col-md-6">
-                    <h4 class="fw-bold mb-0">Client Inquiries</h4>
-                    <p class="text-muted small mb-0">Manage all incoming web leads</p>
+        <div class="dashboard-body">
+            <div class="stat-bar">
+                <div class="stat-chip">
+                    <div class="num" id="stat-total">—</div>
+                    <div class="label">Total Inquiries</div>
                 </div>
-                <div class="col-md-6 text-md-end mt-3 mt-md-0">
-                    <div class="d-flex justify-content-md-end gap-2">
-                        <button class="btn btn-sm btn-outline-dark" id="btn-pdf"><i class="bi bi-download me-1"></i>
-                            PDF</button>
-                        <button class="btn btn-sm btn-outline-primary" id="btn-refresh"><i
-                                class="bi bi-arrow-clockwise me-1"></i> Refresh</button>
-                        <button class="btn btn-sm btn-danger" id="btn-delete-all"><i class="bi bi-trash3 me-1"></i>
-                            Clear All</button>
-                    </div>
+                <div class="stat-chip">
+                    <div class="num" id="stat-today">—</div>
+                    <div class="label">Today</div>
+                </div>
+                <div class="stat-chip">
+                    <div class="num" id="stat-week">—</div>
+                    <div class="label">This Week</div>
                 </div>
             </div>
 
             <div class="data-card">
+                <div class="data-card-header">
+                    <div>
+                        <h5 class="fw-bold mb-0">Client Inquiries</h5>
+                        <small class="text-muted">All incoming web leads from the contact form</small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-secondary" id="btn-pdf">
+                            <i class="bi bi-file-pdf me-1"></i>Export PDF
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary" id="btn-refresh">
+                            <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+                        </button>
+                        <button class="btn btn-sm btn-danger" id="btn-delete-all">
+                            <i class="bi bi-trash3 me-1"></i>Clear All
+                        </button>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead>
@@ -135,15 +219,13 @@
                                 <th>Client Name</th>
                                 <th>Email & Phone</th>
                                 <th>Subject</th>
-                                <th>Message Body</th>
-                                <th class="text-center">Status / Score</th>
+                                <th>Message</th>
+                                <th class="text-center">Status</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody id="table-body">
-                            <tr>
-                                <td colspan="7" class="text-center py-5 text-muted">Loading inquiries...</td>
-                            </tr>
+                            <tr class="loading-row"><td colspan="7">Loading inquiries...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -157,149 +239,187 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, deleteDoc, updateDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, deleteDoc, orderBy, query, writeBatch } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { firebaseConfig } from "./js/firebase-config.js";
 
-        const app = initializeApp(firebaseConfig);
+        const app  = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const db = getFirestore(app);
+        const db   = getFirestore(app);
         const provider = new GoogleAuthProvider();
+
+        // Only this email can access admin
+        const AUTHORIZED_EMAIL = 'markoverseas28@gmail.com';
+        const VAULT_KEY = 'Mark_Vault';
 
         let allInquiriesData = [];
 
-        const VAULT_KEY = 'Mark_Vault';
-        const AUTHORIZED_EMAILS = ['markoverseas28@gmail.com', 'bhumitnasit1@gmail.com'];
-
-        // ðŸ›¡ï¸ AUTH WATCHER
+        // ─── AUTH STATE ───────────────────────────────────────────
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                if (AUTHORIZED_EMAILS.includes(user.email)) {
-                    document.getElementById('login-section').style.display = 'none';
+                if (user.email === AUTHORIZED_EMAIL) {
+                    document.getElementById('login-section').style.display  = 'none';
                     document.getElementById('dashboard-section').style.display = 'block';
                     document.getElementById('user-display').innerText = user.email;
                     fetchData();
                 } else {
-                    alert("Unauthorized account! Only authorized administrators are allowed.");
+                    showError(`⚠️ Access Denied: ${user.email} is not authorized.`);
                     await signOut(auth);
                 }
             } else {
-                document.getElementById('login-section').style.display = 'block';
+                document.getElementById('login-section').style.display  = 'flex';
                 document.getElementById('dashboard-section').style.display = 'none';
             }
         });
 
-        // ðŸ”˜ ACTIONS
+        // ─── GOOGLE SIGN-IN ───────────────────────────────────────
         document.getElementById('btn-google-login').addEventListener('click', async () => {
             const btn = document.getElementById('btn-google-login');
-            const error = document.getElementById('login-error');
-            error.style.display = 'none';
+            const errEl = document.getElementById('login-error');
+            errEl.style.display = 'none';
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span> Signing in...`;
 
             try {
+                provider.setCustomParameters({ prompt: 'select_account' });
                 await signInWithPopup(auth, provider);
             } catch (e) {
-                console.error(e);
-                error.style.display = 'block';
-                error.innerText = "âš ï¸ Login Failed: " + e.message;
+                console.error('Login error:', e);
+                showError(e.code === 'auth/popup-blocked'
+                    ? '⚠️ Popup blocked by browser. Please allow popups for this site and try again.'
+                    : '⚠️ Login Failed: ' + e.message);
+                btn.disabled = false;
+                btn.innerHTML = `<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="22"> Continue with Google`;
             }
         });
 
-        document.getElementById('btn-logout').addEventListener('click', () => {
-            signOut(auth);
-        });
+        function showError(msg) {
+            const el = document.getElementById('login-error');
+            el.innerText = msg;
+            el.style.display = 'block';
+        }
 
+        // ─── LOGOUT ───────────────────────────────────────────────
+        document.getElementById('btn-logout').addEventListener('click', () => signOut(auth));
+
+        // ─── REFRESH ──────────────────────────────────────────────
         document.getElementById('btn-refresh').addEventListener('click', () => fetchData());
 
-        // ðŸ“¥ FETCH DATA
+        // ─── FETCH DATA ───────────────────────────────────────────
         async function fetchData() {
             const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '<tr class="loading-row"><td colspan="7"><div class="spinner-border spinner-border-sm text-success me-2"></div> Loading...</td></tr>';
+            allInquiriesData = [];
 
             try {
-                // ðŸ›¡ï¸ FETCH FROM SECURE VAULT
-                const q = query(collection(db, "inquiry_vault", VAULT_KEY, "data"), orderBy("createdAt", "desc"));
+                const q = query(
+                    collection(db, "inquiry_vault", VAULT_KEY, "data"),
+                    orderBy("createdAt", "desc")
+                );
                 const snap = await getDocs(q);
-                tbody.innerHTML = '';
-                allInquiriesData = [];
 
                 if (snap.empty) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-5 text-muted">No inquiries found in this vault.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-5 text-muted">No inquiries yet.</td></tr>';
+                    updateStats([]);
                     return;
                 }
 
+                tbody.innerHTML = '';
                 snap.forEach(d => {
                     const data = d.data();
-                    let rawDate = data.createdAt?.toDate ? data.createdAt.toDate() : (data.createdAt ? new Date(data.createdAt) : null);
-                    const dateStr = rawDate && !isNaN(rawDate) ? rawDate.toLocaleDateString() : 'N/A';
+                    const rawDate = data.createdAt ? new Date(data.createdAt) : null;
+                    const dateStr = rawDate && !isNaN(rawDate) ? rawDate.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : 'N/A';
+                    const timeStr = rawDate && !isNaN(rawDate) ? rawDate.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' }) : '';
 
                     allInquiriesData.push({ ...data, id: d.id, dateStr });
 
+                    const badge = data.status === 'SPAM'
+                        ? `<span class="badge-spam">SPAM</span>`
+                        : `<span class="badge-verified">VERIFIED</span>`;
+
                     const tr = document.createElement('tr');
-                    tr.style.fontSize = '14px';
-
-                    const score = data.status === 'SPAM' ? 'SPAM' : (data.recaptchaScore || 'VERIFIED');
-                    const badgeClass = data.status === 'SPAM' ? 'bg-danger' : 'bg-success';
-
                     tr.innerHTML = `
-                        <td class="text-muted fw-bold">${dateStr}</td>
-                        <td class="fw-bold">${data.name}</td>
-                        <td>${data.email}<br><small class="text-muted">${data.phone}</small></td>
-                        <td><span class="badge-subject">${data.subject}</span></td>
-                        <td><div style="max-width:300px; font-size:12px; opacity:0.8">${data.message}</div></td>
-                        <td class="text-center"><span class="badge ${badgeClass}">${score}</span></td>
-                        <td class="text-center"><button class="btn btn-sm text-danger" onclick="window.deleteItem('${d.id}')"><i class="bi bi-trash-fill"></i></button></td>
+                        <td class="text-muted" style="font-size:12px;">${dateStr}<br><small>${timeStr}</small></td>
+                        <td class="fw-semibold">${data.name || '—'}</td>
+                        <td>
+                            <a href="mailto:${data.email}" class="d-block text-decoration-none text-dark fw-semibold" style="font-size:13px;">${data.email || '—'}</a>
+                            <small class="text-muted">${data.phone || '—'}</small>
+                        </td>
+                        <td><span style="background:#f1f5f9; padding:4px 8px; border-radius:6px; font-size:12px; color:#475569;">${data.subject || '—'}</span></td>
+                        <td><div class="msg-preview" title="${(data.message||'').replace(/"/g,'&quot;')}">${data.message || '—'}</div></td>
+                        <td class="text-center">${badge}</td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-danger" onclick="window.deleteItem('${d.id}')">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
                     `;
                     tbody.appendChild(tr);
                 });
+
+                updateStats(allInquiriesData);
+
             } catch (e) {
                 console.error("DB Error:", e);
-                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-danger">âš ï¸ Access Denied: Database Error</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-5 text-danger fw-bold">⚠️ Error loading data: ${e.message}</td></tr>`;
             }
         }
 
-        // ðŸ—‘ï¸ DELETE SINGLE
+        // ─── STATS ────────────────────────────────────────────────
+        function updateStats(data) {
+            const today = new Date().toDateString();
+            const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+            document.getElementById('stat-total').innerText = data.length;
+            document.getElementById('stat-today').innerText = data.filter(d => d.createdAt && new Date(d.createdAt).toDateString() === today).length;
+            document.getElementById('stat-week').innerText  = data.filter(d => d.createdAt && new Date(d.createdAt).getTime() >= weekAgo).length;
+        }
+
+        // ─── DELETE SINGLE ────────────────────────────────────────
         window.deleteItem = async (id) => {
-            if (!confirm("Delete this record?")) return;
+            if (!confirm("Delete this inquiry?")) return;
             try {
                 await deleteDoc(doc(db, "inquiry_vault", VAULT_KEY, "data", id));
                 fetchData();
             } catch (e) { alert("Error: " + e.message); }
         };
 
-        // ðŸ§¨ DELETE ALL
+        // ─── DELETE ALL ───────────────────────────────────────────
         document.getElementById('btn-delete-all').addEventListener('click', async () => {
-            if (!confirm("DANGER: This will delete ALL inquiries. Proceed?")) return;
-            const confirmName = prompt("Type 'DELETE' to confirm:");
-            if (confirmName !== 'DELETE') return;
-
+            if (!confirm("⚠️ This will permanently delete ALL inquiries. Continue?")) return;
+            if (prompt("Type 'DELETE' to confirm:") !== 'DELETE') return;
             try {
                 const q = query(collection(db, "inquiry_vault", VAULT_KEY, "data"));
                 const snap = await getDocs(q);
                 const batch = writeBatch(db);
                 snap.forEach(d => batch.delete(d.ref));
                 await batch.commit();
-                alert("Vault Cleared.");
+                alert("✅ All inquiries cleared.");
                 fetchData();
             } catch (e) { alert("Error: " + e.message); }
         });
 
-        // ðŸ“„ EXPORT PDF
+        // ─── EXPORT PDF ───────────────────────────────────────────
         document.getElementById('btn-pdf').addEventListener('click', () => {
-            if (allInquiriesData.length === 0) return alert("Nothing to export.");
+            if (!allInquiriesData.length) return alert("No data to export.");
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF('l', 'mm', 'a4');
-            doc.text("Mark Overseas Inquiry Export", 14, 15);
-            doc.autoTable({
+            const pdfDoc = new jsPDF('l', 'mm', 'a4');
+            pdfDoc.setFontSize(14);
+            pdfDoc.text("Mark Overseas — Client Inquiries", 14, 14);
+            pdfDoc.setFontSize(9);
+            pdfDoc.setTextColor(150);
+            pdfDoc.text("Generated: " + new Date().toLocaleString(), 14, 20);
+            pdfDoc.autoTable({
                 head: [['Date', 'Name', 'Email', 'Phone', 'Subject', 'Message']],
                 body: allInquiriesData.map(i => [i.dateStr, i.name, i.email, i.phone, i.subject, i.message]),
-                startY: 25,
-                theme: 'grid'
+                startY: 26,
+                theme: 'grid',
+                styles: { fontSize: 8, cellPadding: 4 },
+                headStyles: { fillColor: [8, 175, 8] }
             });
-            doc.save("Inquiries_" + new Date().toLocaleDateString() + ".pdf");
+            pdfDoc.save("MarkOverseas_Inquiries_" + new Date().toLocaleDateString().replace(/\//g,'-') + ".pdf");
         });
 
     </script>
 
-
 </body>
 
 </html>
-
