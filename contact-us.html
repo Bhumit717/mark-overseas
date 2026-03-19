@@ -25,7 +25,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css" />
+	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 	<link rel="stylesheet" href="css/fancybox.css">
 	<link
 		href="https://fonts.googleapis.com/css2?family=MonteCarlo&family=Fredericka+the+Great&family=Fondamento:ital@0;1&family=Graduate&family=Italiana&family=Bowlby+One+SC&family=Prata&family=La+Belle+Aurore&display=swap"
@@ -43,8 +43,15 @@
 	<meta name="twitter:image" content="https://www.mark-overseas.com/images/mark-logo.png" />
 	<meta name="keywords"
 		content="agro commodities, mark overseas, export import, india exporter, gujarat exporter, oil seeds, spices, grains" />
+	
 	<script
 		src="https://www.google.com/recaptcha/enterprise.js?render=6LdEV24sAAAAAGo0wr3C-xkzw_spoY8cEDpzM5nO"></script>
+	<style>
+		.grecaptcha-badge { display: none !important; }
+	</style>
+
+	<style>.grecaptcha-badge { visibility: hidden !important; }</style>
+	<script src="https://www.google.com/recaptcha/api.js?render=6LdEV24sAAAAAGo0wr3C-xkzw_spoY8cEDpzM5nO"></script>
 </head>
 
 <body class="contact_us-page">
@@ -111,6 +118,16 @@
 			</div>
 		</section>
 
+		<div class="container mt-4 mb-4">
+			<div class="banner-image-container" style="width: 100%;" data-aos="fade-up">
+				<picture>
+					<source media="(max-width: 767px)" srcset="images/banner-mobile.png">
+					<source media="(min-width: 768px)" srcset="images/banner-desktop.png">
+					<img src="images/banner-desktop.png" alt="Contact Us Banner" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+				</picture>
+			</div>
+		</div>
+
 		<section class="pt-0">
 			<div class="container">
 				<div class="contact_us-content">
@@ -130,9 +147,9 @@
 									</li>
 									<li>
 										<b>ADDRESS</b>
-										#202 – B, Imperial Heights
+										#202 â€“ B, Imperial Heights
 										150 Ft. Ring Road,
-										Rajkot – 360005
+										Rajkot â€“ 360005
 										(Gujarat), India.
 									</li>
 								</ul>
@@ -141,7 +158,6 @@
 						<div class="col-md-7">
 							<div class="contact-form">
 								<form class="needs-validation" id="contact_form" novalidate="" method="post">
-									<input type="hidden" name="sendEmail" value="ok" />
 									<div class="form-fields">
 										<div class="form-feild">
 											<label>Name<em>*</em></label>
@@ -201,7 +217,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 order-3 order-lg-2 my-4 my-lg-0" d-none d-lg-block>
+                <div class="col-lg-4 col-md-12 order-3 order-lg-2 my-4 my-lg-0">
                     <div class="footer-globe-col" style="background-color: rgb(8, 175, 8);  padding: 15px; display: flex; justify-content: center; align-items: center;">
                         <dotlottie-wc src="https://lottie.host/41077101-c549-437c-9866-9b60eb1b5f68/fGmXkVZbE6.lottie" style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
                     </div>
@@ -223,7 +239,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6 col-md-6">
-                    <p class="mb-0">Copyright © 2026 Mark Overseas - All Rights Reserved.</p>
+                    <p class="mb-0">Copyright Â© 2026 Mark Overseas - All Rights Reserved.</p>
                 </div>
                 <div class="col-lg-6 col-md-6 text-md-end">
                     <p class="mb-0">Made By <a href="https://bhumitnasit.vercel.app/" target="_blank" style="color: inherit; text-decoration: none; font-weight: bold;">BHUMIT NASIT</a></p>
@@ -232,7 +248,6 @@
         </div>
     </div>
 </footer>
-
 
 		<a href="javascript:void(0)" class="scrollToTop"><svg xmlns="http://www.w3.org/2000/svg" width="49.198"
 				height="78.727" viewBox="0 0 49.198 78.727">
@@ -247,88 +262,59 @@
 	<script src="js/jquery.fancybox.min.js"></script>
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script src="js/custom.js"></script>
-	<script>
-		AOS.init();
-	</script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/logo-video.js"></script>
 	<script src="js/language-selector.js"></script>
 
+	<script>
+		AOS.init();
+	</script>
+
 	<script type="module">
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-		import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-		import { firebaseConfig } from "./js/firebase-config.js";
-
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-
-		document.getElementById('contact_form').addEventListener('submit', function (e) {
+		document.getElementById('contact_form')?.addEventListener('submit', function (e) {
 			e.preventDefault();
 			const btn = document.getElementById('btn_submit');
 			const originalText = btn.innerText;
 
+			if (btn.disabled) return;
 			btn.disabled = true;
 			btn.innerText = "Verifying...";
 
-			// 🛡️ RECAPTCHA ENTERPRISE EXECUTION
+			// ðŸ›¡ï¸ RECAPTCHA ENTERPRISE EXECUTION
 			grecaptcha.enterprise.ready(async () => {
 				try {
 					const token = await grecaptcha.enterprise.execute('6LdEV24sAAAAAGo0wr3C-xkzw_spoY8cEDpzM5nO', { action: 'submit_contact' });
 
 					const formData = {
+						token: token,
 						name: document.getElementById('name').value,
 						email: document.getElementById('email').value,
 						phone: document.getElementById('phone').value,
 						subject: document.getElementById('subject').value,
-						message: document.getElementById('message').value,
-						// 🛡️ SECURITY METADATA
-						authorizedDomain: window.location.origin,
-						recaptchaToken: token,
-						createdAt: serverTimestamp(),
-						status: 'NEW'
+						message: document.getElementById('message').value
 					};
 
-					// 1. 💾 SAVE TO DB
-					const VAULT_KEY = 'Mark_Vault';
-					await addDoc(collection(db, "inquiry_vault", VAULT_KEY, "data"), formData);
+					btn.innerText = "Sending Message...";
 
-					// 2. ⚡ INSTANT EMAIL SEND (Client-Side Orchestration)
-					btn.innerText = "Sending Email...";
+					// ðŸ”’ SECURE BACKEND CALL
+					const response = await fetch('/api/submit', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
 
-					// Fetch Secure SMTP Password (Protected by Domain Rules in Console)
-					const settingsSnap = await getDoc(doc(db, "settings", "smtp"));
-					if (settingsSnap.exists()) {
-						const smtpPassword = settingsSnap.data().smtp;
+					const result = await response.json();
 
-						// Call Vercel Relay
-						await fetch('/api/send-relay', {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify({
-								smtpPassword: smtpPassword,
-								mailOptions: {
-									replyTo: formData.email,
-									subject: `[Mark Overseas] New Inquiry: ${formData.subject}`,
-									html: `
-										<p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
-										<p><strong>Name:</strong> ${formData.name}</p>
-										<p><strong>Email:</strong> ${formData.email}</p>
-										<p><strong>Phone:</strong> ${formData.phone}</p>
-										<p><strong>Subject:</strong> ${formData.subject}</p>
-										<hr>
-										<p><strong>Message:</strong><br>${formData.message}</p>
-									`
-								}
-							})
-						});
+					if (result.success) {
+						alert("âœ… Success! Your inquiry has been sent to our team.");
+						document.getElementById('contact_form').reset();
+					} else {
+						throw new Error(result.error || "Submission failed");
 					}
-
-					alert("✅ Success! Your inquiry has been sent to our team.");
-					document.getElementById('contact_form').reset();
 
 				} catch (error) {
 					console.error("Submission Error: ", error);
-					alert("❌ Submission Failed: " + error.message);
+					alert("âŒ Submission Failed: " + error.message);
 				} finally {
 					btn.disabled = false;
 					btn.innerText = originalText;
@@ -343,7 +329,6 @@
 		function googleTranslateElementInit() {
 			new google.translate.TranslateElement({
 				pageLanguage: 'en',
-
 				autoDisplay: false
 			}, 'google_translate_element');
 		}
@@ -351,10 +336,10 @@
 	<script type="text/javascript"
 		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
 	<!-- Lottie Animations - Sequential playback after page load -->
 	<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
 	<script src="js/lottie-animations.js"></script>
 </body>
 
 </html>
+

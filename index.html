@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -97,6 +97,7 @@
 			visibility: hidden !important;
 		}
 	</style>
+	<script src="https://www.google.com/recaptcha/api.js?render=6LdEV24sAAAAAGo0wr3C-xkzw_spoY8cEDpzM5nO"></script>
 </head>
 
 <body>
@@ -394,7 +395,7 @@
 								</a>
 							</div>
 							<h3>Corn Flour</h3>
-							<p>Invariably known as Corn Meal, Semoule de maïs, Groats of Maize.</p>
+							<p>Invariably known as Corn Meal, Semoule de maÃ¯s, Groats of Maize.</p>
 							<a href="product-maize.html" class="btn read-more-btn">Read More</a>
 						</div>
 					</div>
@@ -575,7 +576,7 @@
 									</li>
 									<li>
 										<b>ADDRESS</b>
-										#202 – B, Imperial Heights, Rajkot – 360005 (Gujarat), India.
+										#202 â€“ B, Imperial Heights, Rajkot â€“ 360005 (Gujarat), India.
 									</li>
 								</ul>
 							</div>
@@ -659,7 +660,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6 col-md-6">
-                    <p class="mb-0">Copyright © 2026 Mark Overseas - All Rights Reserved.</p>
+                    <p class="mb-0">Copyright Â© 2026 Mark Overseas - All Rights Reserved.</p>
                 </div>
                 <div class="col-lg-6 col-md-6 text-md-end">
                     <p class="mb-0">Made By <a href="https://bhumitnasit.vercel.app/" target="_blank" style="color: inherit; text-decoration: none; font-weight: bold;">BHUMIT NASIT</a></p>
@@ -711,84 +712,50 @@
 		src="https://www.google.com/recaptcha/enterprise.js?render=6LdEV24sAAAAAGo0wr3C-xkzw_spoY8cEDpzM5nO"></script>
 
 	<script type="module">
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-		import { getFirestore, collection, addDoc, serverTimestamp, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-		import { firebaseConfig } from "./js/firebase-config.js";
-
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-
 		document.getElementById('contact_form')?.addEventListener('submit', function (e) {
 			e.preventDefault();
 			const btn = document.getElementById('btn_submit');
 			const originalText = btn.innerText;
 
+			if (btn.disabled) return; // Prevent double submission
 			btn.disabled = true;
 			btn.innerText = "Verifying...";
 
-			// 🛡️ RECAPTCHA ENTERPRISE EXECUTION
+			// ðŸ›¡ï¸ RECAPTCHA ENTERPRISE EXECUTION
 			grecaptcha.enterprise.ready(async () => {
 				try {
 					const token = await grecaptcha.enterprise.execute('6LdEV24sAAAAAGo0wr3C-xkzw_spoY8cEDpzM5nO', { action: 'submit_contact' });
 
 					const formData = {
+						token: token,
 						name: document.getElementById('name').value,
 						email: document.getElementById('email').value,
 						phone: document.getElementById('phone').value,
 						subject: document.getElementById('subject').value,
-						message: document.getElementById('message').value,
-						// 🛡️ SECURITY METADATA
-						authorizedDomain: window.location.origin,
-						recaptchaToken: token,
-						createdAt: serverTimestamp(),
-						status: 'NEW'
+						message: document.getElementById('message').value
 					};
 
-					// 1. 💾 SAVE TO DB
-					const VAULT_KEY = 'Mark_Vault';
-					await addDoc(collection(db, "inquiry_vault", VAULT_KEY, "data"), formData);
+					btn.innerText = "Sending Message...";
 
-					// 2. ⚡ INSTANT EMAIL SEND (Client-Side Orchestration)
-					btn.innerText = "Sending Email...";
+					// ðŸ”’ SECURE BACKEND CALL
+					const response = await fetch('/api/submit', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
 
-					// Fetch Secure SMTP Password (Protected by Domain Rules in Console)
-					try {
-						const settingsSnap = await getDoc(doc(db, "settings", "smtp"));
-						if (settingsSnap.exists()) {
-							const smtpPassword = settingsSnap.data().smtp;
+					const result = await response.json();
 
-							// Call Vercel Relay
-							await fetch('/api/send-relay', {
-								method: 'POST',
-								headers: { 'Content-Type': 'application/json' },
-								body: JSON.stringify({
-									smtpPassword: smtpPassword,
-									mailOptions: {
-										replyTo: formData.email,
-										subject: `[Mark Overseas] New Inquiry: ${formData.subject}`,
-										html: `
-											<p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
-											<p><strong>Name:</strong> ${formData.name}</p>
-											<p><strong>Email:</strong> ${formData.email}</p>
-											<p><strong>Phone:</strong> ${formData.phone}</p>
-											<p><strong>Subject:</strong> ${formData.subject}</p>
-											<hr>
-											<p><strong>Message:</strong><br>${formData.message}</p>
-										`
-									}
-								})
-							});
-						}
-					} catch(err) {
-						console.warn("SMTP fetch skipped or failed, inquiry saved to DB only.", err);
+					if (result.success) {
+						alert("âœ… Success! Your inquiry has been sent to our team.");
+						document.getElementById('contact_form').reset();
+					} else {
+						throw new Error(result.error || "Submission failed");
 					}
-
-					alert("✅ Success! Your inquiry has been sent to our team.");
-					document.getElementById('contact_form').reset();
 
 				} catch (error) {
 					console.error("Submission Error: ", error);
-					alert("❌ Submission Failed: " + error.message);
+					alert("âŒ Submission Failed: " + error.message);
 				} finally {
 					btn.disabled = false;
 					btn.innerText = originalText;
@@ -796,6 +763,12 @@
 			});
 		});
 	</script>
+	<script type="text/javascript"
+		src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+	<!-- Lottie Animations - Sequential playback after page load -->
+	<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+	<script src="js/lottie-animations.js"></script>
 </body>
 
 </html>
