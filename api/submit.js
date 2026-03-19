@@ -32,6 +32,14 @@ module.exports = async (req, res) => {
         });
     }
 
+    // Verify critical environment variables
+    if (!process.env.FIREBASE_SERVICE_ACCOUNT || !process.env.RECAPTCHA_SECRET_KEY || !process.env.SMTP_PASSWORD) {
+        return res.status(500).json({ 
+            success: false, 
+            error: 'Server configuration incomplete. Please set RECAPTCHA_SECRET_KEY, SMTP_PASSWORD, and FIREBASE_SERVICE_ACCOUNT in Vercel.' 
+        });
+    }
+
     // 2. IP Rate Limiting
     const ip = req.headers['x-forwarded-for'] || req.connection?.remoteAddress || "";
     const now = Date.now();
