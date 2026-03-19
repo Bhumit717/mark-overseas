@@ -11,16 +11,23 @@ function getDb() {
     try {
         if (!admin.apps.length) {
             if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+                const sa = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+                // Fix potential newline issues in the private key
+                if (sa.private_key) {
+                    sa.private_key = sa.private_key.replace(/\\n/g, '\n');
+                }
                 admin.initializeApp({
-                    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT))
+                    credential: admin.credential.cert(sa)
                 });
+                console.log("[FIREBASE] Admin initialized successfully.");
             } else {
+                console.error("[FIREBASE] Missing FIREBASE_SERVICE_ACCOUNT env var!");
                 return null;
             }
         }
         return admin.firestore();
     } catch (error) {
-        console.error("Firebase Admin Init Error:", error.message);
+        console.error("Firebase Admin Init Error:", error.name, error.message);
         return null;
     }
 }

@@ -311,11 +311,13 @@
             allInquiriesData = [];
 
             try {
+                console.log("Fetching inquiries from:", `inquiry_vault/${VAULT_KEY}/data`);
                 const q = query(
                     collection(db, "inquiry_vault", VAULT_KEY, "data"),
                     orderBy("createdAt", "desc")
                 );
                 const snap = await getDocs(q);
+                console.log("Query snap returned. Empty?", snap.empty, "Size:", snap.size);
 
                 if (snap.empty) {
                     tbody.innerHTML = '<tr><td colspan="7" class="text-center py-5 text-muted">No inquiries yet.</td></tr>';
