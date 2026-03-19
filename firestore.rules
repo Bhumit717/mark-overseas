@@ -2,21 +2,29 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // inquiry_vault/Mark_Vault/data/{id}
-    match /inquiry_vault/{vaultId}/data/{id} {
-      // ✅ CREATE → Server-side Admin SDK always bypasses rules.
-      //    For client-side fallback writes, only allow if authenticated admin.
-      allow create: if request.auth != null && 
-                       (request.auth.token.email == 'markoverseas28@gmail.com' || 
-                        request.auth.token.email == 'bhumitnasit1@gmail.com');
-
-      // ✅ READ & DELETE → Only authorized admin emails
-      allow read, delete, update: if request.auth != null && 
-                       (request.auth.token.email == 'markoverseas28@gmail.com' || 
-                        request.auth.token.email == 'bhumitnasit1@gmail.com');
+    function isAllowedDomain() {
+      // 🌐 Standard Production & Trusted Test Domains
+      return request.resource.data.authorizedDomain.matches('^https://(www\\.)?mark-overseas\\.com$') || 
+             request.resource.data.authorizedDomain.matches('^https://(www\\.)?mark-overseas\\.vercel\\.app$') ||
+             request.resource.data.authorizedDomain.matches('^http://localhost:.*$') || 
+             request.resource.data.authorizedDomain.matches('^http://127\\.0\\.0\\.1:.*$');
     }
 
-    // Block all other access
+    function correctPassword(pwd) {
+      // 🔑 The Master Key for the Admin
+      return pwd == 'Mark_Vault'; 
+    }
+
+    match /inquiry_vault/{pwd}/data/{id} {
+      // ✅ CREATE → PUBLIC IF THROUGH FORM
+      allow create: if isAllowedDomain();
+
+      // ✅ ADMIN READ / DELETE → ONLY AUTHORIZED EMAIL
+      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com';
+    }
+
+
+
     match /{document=**} {
       allow read, write: if false;
     }

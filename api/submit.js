@@ -100,6 +100,7 @@ module.exports = async (req, res) => {
                     message: data.message,
                     ip: data.ip,
                     createdAt: data.createdAt,
+                    authorizedDomain: 'https://mark-overseas.vercel.app',
                     timestamp: admin.firestore.FieldValue.serverTimestamp()
                 });
                 console.log(`[INQUIRY SAVED] ${data.name} | ${data.email}`);
