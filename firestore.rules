@@ -10,20 +10,15 @@ service cloud.firestore {
              request.resource.data.authorizedDomain.matches('^http://127\\.0\\.0\\.1:.*$');
     }
 
-    function correctPassword(pwd) {
-      // 🔑 The Master Key for the Admin
-      return pwd == 'Mark_Vault'; 
-    }
-
     match /inquiry_vault/{pwd}/data/{id} {
-      // ✅ CREATE → PUBLIC IF THROUGH FORM
+      // ✅ CREATE → Server-side Admin SDK bypasses these, but for security:
       allow create: if isAllowedDomain();
 
-      // ✅ ADMIN READ / DELETE → ONLY AUTHORIZED EMAIL
-      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com';
+      // ✅ ADMIN READ / DELETE → AUTHORIZED EMAILS
+      allow read, delete: if request.auth != null && 
+          (request.auth.token.email == 'markoverseas28@gmail.com' || 
+           request.auth.token.email == 'bhumitnasit1@gmail.com');
     }
-
-
 
     match /{document=**} {
       allow read, write: if false;

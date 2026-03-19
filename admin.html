@@ -247,8 +247,8 @@
         const db   = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
-        // Only this email can access admin
-        const AUTHORIZED_EMAIL = 'markoverseas28@gmail.com';
+        // Only these emails can access admin
+        const AUTHORIZED_EMAILS = ['markoverseas28@gmail.com', 'bhumitnasit1@gmail.com'];
         const VAULT_KEY = 'Mark_Vault';
 
         let allInquiriesData = [];
@@ -256,7 +256,7 @@
         // ─── AUTH STATE ───────────────────────────────────────────
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                if (user.email === AUTHORIZED_EMAIL) {
+                if (AUTHORIZED_EMAILS.includes(user.email)) {
                     document.getElementById('login-section').style.display  = 'none';
                     document.getElementById('dashboard-section').style.display = 'block';
                     document.getElementById('user-display').innerText = user.email;
