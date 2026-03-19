@@ -45,7 +45,7 @@
 		content="agro commodities, mark overseas, export import, india exporter, gujarat exporter, oil seeds, spices, grains" />
 
 	<script
-		src="https://www.google.com/recaptcha/api.js?render=6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA"></script>
+		src="https://www.google.com/recaptcha/enterprise.js?render=6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA"></script>
 	<style>
 		.grecaptcha-badge {
 			display: none !important;
@@ -295,9 +295,9 @@
 			btn.innerText = "Verifying...";
 
 			// ðŸ›¡ï¸ RECAPTCHA ENTERPRISE EXECUTION
-			grecaptcha.ready(async () => {
+			grecaptcha.enterprise.ready(async () => {
 				try {
-					const token = await grecaptcha.execute('6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA', { action: 'submit_contact' });
+					const token = await grecaptcha.enterprise.execute('6LdBwl8sAAAAACoX-gHP990jwhzrom9cgD-LahhA', { action: 'submit_contact' });
 
 					const formData = {
 						token: token,
