@@ -3,7 +3,11 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     function isAllowedDomain() {
-      return true;
+      // 🌐 Standard Production & Trusted Test Domains
+      return request.resource.data.authorizedDomain.matches('^https://(www\\.)?mark-overseas\\.com$') || 
+             request.resource.data.authorizedDomain.matches('^https://(www\\.)?mark-overseas\\.vercel\\.app$') ||
+             request.resource.data.authorizedDomain.matches('^http://localhost:.*$') || 
+             request.resource.data.authorizedDomain.matches('^http://127\\.0\\.0\\.1:.*$');
     }
 
     function correctPassword(pwd) {
@@ -12,13 +16,11 @@ service cloud.firestore {
     }
 
     match /inquiry_vault/{pwd}/data/{id} {
-      // ✅ ADD DETAILS → ONLY DOMAIN REQUIRED
+      // ✅ CREATE → PUBLIC IF THROUGH FORM
       allow create: if isAllowedDomain();
 
-      // ✅ ADMIN READ / DELETE → ONLY PASSWORD REQUIRED
-      // We removed the resource.data.authorizedDomain check here 
-      // because it was blocking the Admin Dashboard from loading the full list.
-      allow read, delete: if correctPassword(pwd);
+      // ✅ ADMIN READ / DELETE → ONLY AUTHORIZED EMAIL
+      allow read, delete: if request.auth != null && request.auth.token.email == 'markoverseas28@gmail.com';
     }
 
     // ✅ SMTP SETTINGS → REQUIRED FOR INSTANT EMAIL
