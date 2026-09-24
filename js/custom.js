@@ -27,6 +27,77 @@ const preloaderFunc = () => {
 
 preloaderFunc();
 
+// SequentialContentLoader - page content loads in order automatically.
+// First blocks are visible immediately; each following block appears on a
+// timer (no scrolling needed) until the whole page is loaded top-to-bottom.
+const sequentialContentLoader = () => {
+  const wrapper = document.querySelector('.page-wrapper');
+  if (!wrapper) return;
+
+  const hasSliderOrCarousel = (el) =>
+    !!el.querySelector('[class*="carousel"], [class*="swiper"], [class*="slider"], .owl-carousel, .main-slider');
+
+  let units = Array.from(wrapper.querySelectorAll('.row')).filter((r) =>
+    !r.closest('.main-header, .site-footer') && !hasSliderOrCarousel(r)
+  );
+
+  if (units.length < 2) {
+    units = Array.from(wrapper.children).filter((el) => {
+      if (el.nodeType !== 1 || !el.children.length) return false;
+      if (el.closest('.main-header, .site-footer')) return false;
+      if (!el.matches('section, .container, main')) return false;
+      return !hasSliderOrCarousel(el);
+    });
+  }
+
+  if (units.length < 2) return;
+
+  const styleEl = document.createElement('style');
+  styleEl.textContent = '.rk-loading-pending { display: none; }';
+  document.head.appendChild(styleEl);
+
+  const settleBlock = (unit) => {
+    unit.querySelectorAll('.wow, .animated, [data-wow-delay]').forEach((el) => {
+      el.classList.remove('wow', 'animated');
+      el.style.visibility = 'visible';
+      el.style.animationName = 'none';
+      el.style.animationDelay = '';
+      el.style.animationDuration = '';
+    });
+    unit.querySelectorAll('img').forEach((img) => {
+      img.loading = 'lazy';
+      img.decoding = 'async';
+    });
+  };
+
+  const INITIAL_VISIBLE = 2;
+  const STEP_MS = 500;
+
+  units.forEach((unit, i) => {
+    if (i >= INITIAL_VISIBLE) {
+      unit.classList.add('rk-loading-pending');
+      settleBlock(unit);
+    }
+  });
+
+  let next = INITIAL_VISIBLE;
+  const timer = setInterval(() => {
+    if (next >= units.length) {
+      clearInterval(timer);
+      return;
+    }
+    const unit = units[next++];
+    unit.classList.remove('rk-loading-pending');
+    settleBlock(unit);
+  }, STEP_MS);
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', sequentialContentLoader);
+} else {
+  sequentialContentLoader();
+}
+
 // sendQuery - submits inquiry to /api/submit (SMTP email + Firestore via Firebase)
 // Falls back to WhatsApp if the API is unreachable or fields are incomplete.
 async function sendQuery(e, form, product) {
