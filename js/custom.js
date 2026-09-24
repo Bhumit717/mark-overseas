@@ -14,15 +14,16 @@ const preloaderFunc = () => {
   const hidePreloader = () => {
     $('#preloader, .preloader').delay(150).fadeOut(150);
   };
-  // Hide as soon as the DOM is ready so pages are usable immediately,
-  // without waiting for images, fonts or external scripts.
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', hidePreloader);
-  } else {
-    hidePreloader();
-  }
-  // Fail-safe: never keep the page blocked behind the preloader.
-  setTimeout(hidePreloader, 2500);
+  // Show the loader animation for at least 2 seconds, then fade out once the
+  // page is ready - without waiting for images, fonts or external scripts.
+  const minShow = new Promise((r) => setTimeout(r, 2000));
+  const ready =
+    document.readyState === 'loading'
+      ? new Promise((r) => document.addEventListener('DOMContentLoaded', r))
+      : Promise.resolve();
+  Promise.all([minShow, ready]).then(hidePreloader);
+  // Safety: never keep the page blocked behind the preloader.
+  setTimeout(hidePreloader, 5000);
 };
 
 preloaderFunc();
