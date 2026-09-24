@@ -1,0 +1,51 @@
+/*--------------------------------------------------------------
+# Google Map One
+--------------------------------------------------------------*/
+.google-map-one {
+    position: relative;
+    display: block;
+    z-index: 1;
+}
+
+.google-map__one {
+    position: relative;
+    display: block;
+    border: none;
+    height: 580px;
+    width: 100%;
+}
+
+
+/*--------------------------------------------------------------
+# Google Map Two
+--------------------------------------------------------------*/
+.google-map-two {
+    position: relative;
+    display: block;
+    padding: 150px 0 0;
+    z-index: 1;
+}
+
+.google-map__two {
+    position: relative;
+    display: block;
+    border: none;
+    height: 350px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.425) 1px 1px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# End
+--------------------------------------------------------------*/

@@ -1,0 +1,10 @@
+{
+    "name": "mark-overseas",
+    "version": "1.0.0",
+    "description": "Mark Overseas Web",
+    "dependencies": {
+        "firebase": "^12.9.0",
+        "firebase-admin": "^13.7.0",
+        "nodemailer": "^6.9.3"
+    }
+}
