@@ -27,6 +27,35 @@ const preloaderFunc = () => {
 
 preloaderFunc();
 
+// ResponsiveImageManager - keeps img srcset/sizes matched to the actual rendered
+// size so only the pixels currently on screen are downloaded. On page zoom
+// (browser or pinch) the next larger srcset tier is loaded automatically instead
+// of re-downloading the full image.
+const responsiveImageManager = () => {
+  const setSizes = (root) => {
+    (root || document).querySelectorAll('img[srcset]').forEach((img) => {
+      const w = img.clientWidth;
+      if (!w) return;
+      img.sizes = Math.ceil(w) + 'px';
+    });
+  };
+  const schedule = () => {
+    clearTimeout(_rimTimer);
+    _rimTimer = setTimeout(() => setSizes(), 120);
+  };
+  let _rimTimer;
+  setSizes();
+  window.addEventListener('resize', schedule);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', schedule);
+    window.visualViewport.addEventListener('scroll', schedule);
+  }
+  window.addEventListener('load', () => setSizes());
+  setTimeout(() => setSizes(), 600);
+  return setSizes;
+};
+const refreshImageSizes = responsiveImageManager();
+
 // SequentialContentLoader - page content loads in order automatically.
 // First blocks are visible immediately; each following block appears on a
 // timer (no scrolling needed) until the whole page is loaded top-to-bottom.
@@ -68,6 +97,7 @@ const sequentialContentLoader = () => {
       img.loading = 'lazy';
       img.decoding = 'async';
     });
+    requestAnimationFrame(() => refreshImageSizes(unit));
   };
 
   const INITIAL_VISIBLE = 2;
