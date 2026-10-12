@@ -63,6 +63,39 @@
   <link rel="stylesheet" href="chioary/assets/css/style.css" />
   <link rel="stylesheet" href="chioary/assets/css/responsive.css" />
   <link rel="stylesheet" href="chioary/assets/css/language-selector.css" />
+  <style>
+    .page-banner { position: relative; overflow: hidden; line-height: 0; }
+    .page-banner picture,
+    .page-banner img { display: block; width: 100%; }
+    .page-banner img { height: auto; }
+    .page-banner__content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      line-height: 1.4;
+    }
+    .page-banner__title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(30px, 4vw, 66px);
+      font-weight: 700;
+      color: #0B4A33;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .page-banner__breadcrumb {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+      margin: 12px 0 0;
+      color: #0B4A33;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .page-banner__breadcrumb a { color: #0B4A33; text-decoration: none; }
+    .page-banner__breadcrumb a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body class="custom-cursor">
     <div class="custom-cursor__cursor"></div>
@@ -137,27 +170,24 @@
       </div>
       <!-- /.stricky-header -->
 
-      <!--Page Header Start-->
-      <section class="page-header">
-        <div class="page-header__bg-shape"
-          style="background-image: url(chioary/assets/images/shapes/page-header-bg-shape.png);"></div>
-        <div class="container">
-          <div class="page-header__inner">
-            <div class="page-header__shape-1">
-              <img src="chioary/assets/images/shapes/page-header-shape-1.png" alt="">
-            </div>
-            <h2>About Us</h2>
-            <div class="thm-breadcrumb__box">
-              <ul class="thm-breadcrumb list-unstyled">
-                <li><a href="index.html">Home</a></li>
-                <li><span>-</span></li>
-                <li>About Us</li>
-              </ul>
-            </div>
+      <!--Page Banner Start-->
+      <section class="page-banner">
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/about-banner-mobile.png" />
+          <img src="images/about-banner-desktop.png" alt="About Mark Overseas - Spices and Fresh Produce" loading="eager" decoding="async" />
+        </picture>
+        <div class="page-banner__content d-none d-md-block">
+          <div class="container">
+            <h2 class="page-banner__title">About Us</h2>
+            <ul class="page-banner__breadcrumb list-unstyled">
+              <li><a href="index.html">Home</a></li>
+              <li><span>-</span></li>
+              <li>About Us</li>
+            </ul>
           </div>
         </div>
       </section>
-      <!--Page Header End-->
+      <!--Page Banner End-->
 
       <!-- About Content Start -->
       <section class="team-section p-relative section-space">

@@ -63,6 +63,12 @@
   <link rel="stylesheet" href="chioary/assets/css/style.css" />
   <link rel="stylesheet" href="chioary/assets/css/responsive.css" />
   <link rel="stylesheet" href="chioary/assets/css/language-selector.css" />
+  <style>
+    .home-banner { position: relative; overflow: hidden; line-height: 0; }
+    .home-banner picture,
+    .home-banner img { display: block; width: 100%; }
+    .home-banner img { height: auto; }
+  </style>
 </head>
 <body class="custom-cursor">
     <div class="custom-cursor__cursor"></div>
@@ -138,86 +144,13 @@
       <!-- /.stricky-header -->
 
       <!-- Main Slider Start -->
-      <section class="main-slider">
-        <div class="main-slider__shape-1 float-bob-x">
-          <img src="chioary/assets/images/shapes/main-slider-shape-1.png" alt="" />
-        </div>
-        <div class="main-slider__shape-2 float-bob-y">
-          <img src="chioary/assets/images/shapes/main-slider-shape-2.png" alt="" />
-        </div>
-        <div class="main-slider__social-box">
-          <div class="main-slider__social-border"></div>
-          <div class="main-slider__social">
-            <a href="https://api.whatsapp.com/send?phone=+919978925996&text=Hi%20Team" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-        <div class="main-slider__carousel owl-carousel owl-theme">
-          
-          <div class="item">
-            <div class="main-slider__bg"
-              style="background-image: url(chioary/assets/images/backgrounds/slider-1-1.jpg);"></div>
-            <div class="main-slider__map"
-              style="background-image: url(chioary/assets/images/shapes/main-slider-map.png);"></div>
-            <div class="container">
-              <div class="main-slider__content">
-                <div class="main-slider__sub-title-box">
-                  <div class="main-slider__sub-title-shape"></div>
-                  <h5 class="main-slider__sub-title">Premium Quality</h5>
-                </div>
-                <h2 class="main-slider__title">Oil Seeds</h2>
-                <p class="main-slider__text">Sesame, Groundnut, Mustard - Sourced from the finest farms.</p>
-                <div class="main-slider__btn-box">
-                  <a href="our-products.html" class="main-slider__btn thm-btn"><span>Our Products</span><i class="icon-arrow-up"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="item">
-            <div class="main-slider__bg"
-              style="background-image: url(chioary/assets/images/backgrounds/slider-1-2.jpg);"></div>
-            <div class="main-slider__map"
-              style="background-image: url(chioary/assets/images/shapes/main-slider-map.png);"></div>
-            <div class="container">
-              <div class="main-slider__content">
-                <div class="main-slider__sub-title-box">
-                  <div class="main-slider__sub-title-shape"></div>
-                  <h5 class="main-slider__sub-title">Authentic Flavor</h5>
-                </div>
-                <h2 class="main-slider__title">Spices & Herbs</h2>
-                <p class="main-slider__text">Cumin, Turmeric, Chilli - The essence of Indian cuisine.</p>
-                <div class="main-slider__btn-box">
-                  <a href="our-products.html" class="main-slider__btn thm-btn"><span>Our Products</span><i class="icon-arrow-up"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="item">
-            <div class="main-slider__bg"
-              style="background-image: url(chioary/assets/images/backgrounds/slider-1-1.jpg);"></div>
-            <div class="main-slider__map"
-              style="background-image: url(chioary/assets/images/shapes/main-slider-map.png);"></div>
-            <div class="container">
-              <div class="main-slider__content">
-                <div class="main-slider__sub-title-box">
-                  <div class="main-slider__sub-title-shape"></div>
-                  <h5 class="main-slider__sub-title">Staple Foods</h5>
-                </div>
-                <h2 class="main-slider__title">Grains & Pulses</h2>
-                <p class="main-slider__text">Rice, Maize, Millet, Pulses - Feeding the world.</p>
-                <div class="main-slider__btn-box">
-                  <a href="our-products.html" class="main-slider__btn thm-btn"><span>Our Products</span><i class="icon-arrow-up"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section class="home-banner">
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/home-banner-mobile.png" />
+          <img src="images/home-banner-desktop.png" alt="Mark Overseas - Golden Harvest at Global Reach" loading="eager" decoding="async" />
+        </picture>
       </section>
-      <!-- Main Slider End -->
+      <!-- Home Banner End -->
 
       <!-- About Two Start -->
       <section class="about-two" style="padding: 6rem 0px">
