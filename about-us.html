@@ -70,11 +70,14 @@
     .page-banner img { height: auto; }
     .page-banner__content {
       position: absolute;
-      top: 45%;
+      top: 50%;
       left: 0;
       right: 0;
       transform: translateY(-50%);
       line-height: 1.4;
+    }
+    @media (max-width: 767px) {
+      .page-banner__content { top: 30%; }
     }
     .page-banner__title {
       font-family: 'Fraunces', serif;
